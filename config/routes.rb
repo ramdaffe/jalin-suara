@@ -1,4 +1,6 @@
 Mapstories::Application.routes.draw do
+  resources :cities
+
   resources :provinces
 
   # The priority is based upon order of creation:
