@@ -1,4 +1,8 @@
 Mapstories::Application.routes.draw do
+  resources :projects
+
+  resources :subdistricts
+
   resources :cities
 
   resources :provinces
