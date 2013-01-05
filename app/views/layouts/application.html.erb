@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mapstories</title>
+  <title>Store</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Map Stories</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Provinces", provinces_path %></li>
+            <li><%= link_to "Cities" %></li>
+            <li><%= link_to "Subdistricts" %></li>
+            <li><%= link_to "Projects" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Navigation Bar -->
 
-<%= yield %>
-
+  <!-- Content -->
+  <div class="container">
+    <div class="row">
+      <div class="span9"><%= yield %></div>
+      <div class="span3">
+        <h2>Sidebar</h2>
+        <p>Lorem Ipsum Dolor Sit Amet.</p>
+      </div>
+    </div>
+  </div>
+  <!-- End of Content-->
 </body>
 </html>
