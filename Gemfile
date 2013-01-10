@@ -39,3 +39,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'mysql2'
+gem 'simple_form'

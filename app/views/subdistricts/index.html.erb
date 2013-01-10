@@ -7,7 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:city_id) %></th>
+      <th><%= model_class.human_attribute_name(:district_id) %></th>
       <th><%= model_class.human_attribute_name(:latitude) %></th>
       <th><%= model_class.human_attribute_name(:longitude) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -17,9 +17,9 @@
   <tbody>
     <% @subdistricts.each do |subdistrict| %>
       <tr>
-        <td><%= link_to subdistrict.id, subdistrict_path(subdistrict) %></td>
-        <td><%= subdistrict.name %></td>
-        <td><%= subdistrict.city_id %></td>
+        <td><%= subdistrict.id %></td>
+        <td><%= link_to subdistrict.name, subdistrict_path(subdistrict) %></td>
+        <td><%= subdistrict.get_district_name %></td>
         <td><%= subdistrict.latitude %></td>
         <td><%= subdistrict.longitude %></td>
         <td><%=l subdistrict.created_at %></td>
