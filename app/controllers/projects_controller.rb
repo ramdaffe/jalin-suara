@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    @json = Project.all.to_gmaps4rails
 
     respond_to do |format|
       format.html # index.html.erb

@@ -39,5 +39,6 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'mysql2'
+gem 'thin'
 gem 'simple_form'
 gem 'gmaps4rails'
