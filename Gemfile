@@ -40,3 +40,4 @@ gem 'jquery-rails'
 
 gem 'mysql2'
 gem 'simple_form'
+gem 'gmaps4rails'

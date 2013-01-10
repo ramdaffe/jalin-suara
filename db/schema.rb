@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110170623) do
+ActiveRecord::Schema.define(:version => 20130110171628) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(:version => 20130110170623) do
   create_table "districts", :force => true do |t|
     t.string   "name"
     t.integer  "province_id"
-    t.decimal  "latitude",    :precision => 10, :scale => 0
-    t.decimal  "longitude",   :precision => 10, :scale => 0
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "projects", :force => true do |t|
@@ -42,19 +42,19 @@ ActiveRecord::Schema.define(:version => 20130110170623) do
 
   create_table "provinces", :force => true do |t|
     t.string   "name"
-    t.decimal  "latitude",   :precision => 10, :scale => 0
-    t.decimal  "longitude",  :precision => 10, :scale => 0
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "subdistricts", :force => true do |t|
     t.string   "name"
     t.integer  "district_id"
-    t.decimal  "latitude",    :precision => 10, :scale => 0
-    t.decimal  "longitude",   :precision => 10, :scale => 0
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end
