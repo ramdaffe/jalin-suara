@@ -6,6 +6,8 @@ class AlterLatAndLongToFloat < ActiveRecord::Migration
   	change_column :districts, :longitude, :float
   	change_column :subdistricts, :latitude, :float
   	change_column :subdistricts, :longitude, :float
+    change_column :projects, :latitude, :float
+    change_column :projects, :longitude, :float
   end
 
   def down
@@ -15,5 +17,7 @@ class AlterLatAndLongToFloat < ActiveRecord::Migration
   	change_column :districts, :longitude, :decimal
   	change_column :subdistricts, :latitude, :decimal
   	change_column :subdistricts, :longitude, :decimal
+    change_column :projects, :latitude, :decimal
+    change_column :projects, :longitude, :decimal
   end
 end

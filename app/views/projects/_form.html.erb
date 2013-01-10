@@ -1,28 +1,8 @@
-<%= form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :subdistrict_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :subdistrict_id, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :latitude, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :latitude, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :longitude, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :longitude, :class => 'number_field' %>
-    </div>
-  </div>
+<%= simple_form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.association :subdistrict %>
+  <%= f.input :latitude %>
+  <%= f.input :longitude %>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

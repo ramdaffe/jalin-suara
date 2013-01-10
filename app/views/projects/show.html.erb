@@ -7,7 +7,7 @@
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @project.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:subdistrict_id) %>:</strong></dt>
-  <dd><%= @project.subdistrict_id %></dd>
+  <dd><%= @project.get_subdistrict_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:latitude) %>:</strong></dt>
   <dd><%= @project.latitude %></dd>
   <dt><strong><%= model_class.human_attribute_name(:longitude) %>:</strong></dt>
