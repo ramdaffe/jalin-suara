@@ -1,11 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
+gem 'rails', '3.2.11'
 
 
 # Gems used only for assets and not required
@@ -38,7 +33,14 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem 'mysql2'
+group :development, :test do
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'pg'
+end
+
 gem 'thin'
 gem 'simple_form'
 gem 'gmaps4rails'
