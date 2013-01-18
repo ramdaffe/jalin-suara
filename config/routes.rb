@@ -1,4 +1,6 @@
 Mapstories::Application.routes.draw do
+  resources :categories
+
   resources :districts
 
   resources :projects

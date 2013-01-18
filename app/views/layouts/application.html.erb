@@ -24,6 +24,7 @@
             <li><%= link_to "Districts", districts_path %></li>
             <li><%= link_to "Subdistricts", subdistricts_path %></li>
             <li><%= link_to "Projects", projects_path %></li>
+            <li><%= link_to "Categories", categories_path %></li>
           </ul>
         </div>
       </div>
@@ -34,10 +35,7 @@
   <!-- Content -->
   <div class="container">
     <div class="row">
-      <div class="span9"><%= yield %></div>
-      <div class="span3">
-        <!-- To do: fill in with sidebar if needed later on-->      
-      </div>
+      <div class="span12"><%= yield %></div>
     </div>
   </div>
   <!-- End of Content-->
