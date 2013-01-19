@@ -8,26 +8,43 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+          <div class="logo">
+            <h1>[Jalin Suara Logo]</h1>
+          </div>
+        </div>
+        <div class="span4 offset4">
+          <form class="navbar-search pull-right" action="">
+            <input class="search-query span2" type="text">
+            <button class="btn" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- End of Header -->
+
   <!-- Navigation Bar -->
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="brand" href="/">Jalin Suara</a>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li><%= link_to "ABOUT PSF", provinces_path %></li>
-            <li><%= link_to "ABOUT PNPM", districts_path %></li>
-            <li><%= link_to "KNOWLEDGE PRODUCTS", subdistricts_path %></li>
-            <li><%= link_to "PSF LIBRARY", projects_path %></li>
-            <li><%= link_to "GALLERY", categories_path %></li>
-            <li><%= link_to "EVENTS", categories_path %></li>
-            <li><%= link_to "CONTACT US", categories_path %></li>
-          </ul>
+  <div class="container">
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Home</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><%= link_to "ABOUT PSF", provinces_path %></li>
+              <li><%= link_to "ABOUT PNPM", districts_path %></li>
+              <li><%= link_to "KNOWLEDGE PRODUCTS", subdistricts_path %></li>
+              <li><%= link_to "PSF LIBRARY", projects_path %></li>
+              <li><%= link_to "GALLERY", categories_path %></li>
+              <li><%= link_to "EVENTS", categories_path %></li>
+              <li><%= link_to "CONTACT US", categories_path %></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
