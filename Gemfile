@@ -45,3 +45,7 @@ gem 'thin'
 gem 'simple_form'
 gem 'gmaps4rails'
 gem 'flickraw'
+
+# Paperclip and AWS S3
+gem 'aws-sdk', '~> 1.6.0'
+gem 'paperclip', '~> 3.4.0'

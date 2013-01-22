@@ -56,16 +56,22 @@
       <div class="paragraphs">
         <div class="row">
           <div class="span4">
-            <div class="content-heading"><h5>Experience &nbsp </h5></div>
-            <img style="float:left" src=""/>
-            <p>Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-            <div style="clear:both"></div>
+            <% @activities.each do |activity| %>
+              <div class="content-heading"><h5><%= activity.name %> &nbsp </h5></div>
+              <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
+              <p>Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+              <div style="clear:both"></div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
     <div class="span5 pull-right">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <% @activities.each do |activity| %>
+        <%= image_tag activity.picture.url(:tiny), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
+        <h5><%= activity.name %></h5>
+        <div style="clear:both"></div>
+      <% end %>
     </div>
   </div>
 </div>

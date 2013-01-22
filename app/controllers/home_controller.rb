@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   # GET /
   def index
+  	@activities = Activity.all
     @projects = Project.all
     @json = Project.all.to_gmaps4rails
 
