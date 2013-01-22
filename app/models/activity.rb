@@ -1,5 +1,10 @@
 class Activity < ActiveRecord::Base
   attr_accessible :latitude, :longitude, :name, :picture
+  acts_as_gmappable validation: false
+
+  def gmaps4rails_address
+	  "#{self.name}" 
+	end
 
   has_attached_file :picture, styles: {
   	tiny: '50x50',

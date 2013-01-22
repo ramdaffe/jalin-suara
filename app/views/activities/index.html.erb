@@ -16,8 +16,8 @@
   <tbody>
     <% @activities.each do |activity| %>
       <tr>
-        <td><%= link_to activity.id, activity_path(activity) %></td>
-        <td><%= activity.name %></td>
+        <td><%= activity.id %></td>
+        <td><%= link_to activity.name, activity_path(activity) %></td>
         <td><%= activity.latitude %></td>
         <td><%= activity.longitude %></td>
         <td><%=l activity.created_at %></td>

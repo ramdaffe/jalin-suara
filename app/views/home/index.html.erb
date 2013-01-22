@@ -9,16 +9,20 @@
         <div class="span4 pull-right">
           <table class="table table-bordered">
             <tr>
-              <td>Project 1</td>
-              <td>Value</td>
+              <td>Total Activities</td>
+              <td>23,422,234</td>
             </tr>
             <tr>
-              <td>Project 2</td>
-              <td>Value</td>
+              <td>Subdistricts</td>
+              <td>5,100</td>
             </tr>
             <tr>
-              <td>Project 3</td>
-              <td>Value</td>
+              <td>Amount</td>
+              <td>234,566,781</td>
+            </tr>
+            <tr>
+              <td>Beneficiaries</td>
+              <td>234,566,781</td>
             </tr>
           </table>
         </div>
@@ -30,7 +34,7 @@
 <div class="row">
   <div class="span12">
     <div class="well">
-      <h4>District</h4>
+      <h4>Peta Aktivitas PNPM</h4>
       <div class="row">
         <div class="span8">
           <%= gmaps4rails(@json) %>
@@ -48,29 +52,24 @@
 <div class="row">
   <div class="span12">
     <div class="segment-separator">
-      Featured
+      Featured Activities
     </div>
   </div>
   <div class="content">
-    <div class="span7">
-      <div class="paragraphs">
-        <div class="row">
-          <div class="span4">
-            <% @activities.each do |activity| %>
-              <div class="content-heading"><h5><%= activity.name %> &nbsp </h5></div>
-              <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
-              <p>Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-              <div style="clear:both"></div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="span5 pull-right">
-      <% @activities.each do |activity| %>
-        <%= image_tag activity.picture.url(:tiny), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
-        <h5><%= activity.name %></h5>
+    <div class="span8">
+      <% @featured_activities_left.each do |activity| %>
+        <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %> &nbsp </h5></div>
+        <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
+        <p>Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
         <div style="clear:both"></div>
+      <% end %>
+    </div>
+    <div class="span3">
+      <% @featured_activities_right.each do |activity| %>
+        <%= image_tag activity.picture.url(:tiny), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
+        <h5 style="margin-top: -2px"><%= link_to activity.name, activity_path(activity) %></h5>
+        <div style="clear:both"></div>
+        <br/>
       <% end %>
     </div>
   </div>
@@ -79,7 +78,7 @@
 <div class="row">
   <div class="span12">
     <div class="segment-separator">
-      New Project
+      New Activities
     </div>
   </div>
   <div class="span2">
