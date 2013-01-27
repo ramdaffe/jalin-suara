@@ -1,15 +1,10 @@
 Mapstories::Application.routes.draw do
+  devise_for :users
   resources :activities
-
-
   resources :categories
-
   resources :districts
-
   resources :projects
-
   resources :subdistricts
-
   resources :provinces
 
   # The priority is based upon order of creation:
