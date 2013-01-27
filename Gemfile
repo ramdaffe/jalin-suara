@@ -46,6 +46,7 @@ gem 'simple_form'
 gem 'gmaps4rails'
 gem 'flickraw'
 gem 'devise'
+gem 'omniauth-twitter'
 
 # Paperclip and AWS S3
 gem 'aws-sdk', '~> 1.6.0'
