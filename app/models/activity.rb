@@ -1,5 +1,5 @@
 class Activity < ActiveRecord::Base
-  attr_accessible :latitude, :longitude, :name, :picture
+  attr_accessible :latitude, :longitude, :name, :picture, :description
   acts_as_gmappable validation: false
 
   def gmaps4rails_address
