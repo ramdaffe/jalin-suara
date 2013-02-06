@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  address: MyString
+  phone: MyString
+  facilitator: MyString
+  facilitator_phone: MyString
+  call_center: MyString
+  project_length: 1
+  project_area: 1
+  project_quantity: 1
+  blm_amount: 1
+  self_fund_amount: 1
+  male_proposal: 1
+  female_proposal: 1
+  male_beneficiary: 1
+  female_beneciary: 1
+  poor_beneficiary: 1
+  subdistrict_id: 1
+  project_id: 1
+
+two:
+  name: MyString
+  address: MyString
+  phone: MyString
+  facilitator: MyString
+  facilitator_phone: MyString
+  call_center: MyString
+  project_length: 1
+  project_area: 1
+  project_quantity: 1
+  blm_amount: 1
+  self_fund_amount: 1
+  male_proposal: 1
+  female_proposal: 1
+  male_beneficiary: 1
+  female_beneciary: 1
+  poor_beneficiary: 1
+  subdistrict_id: 1
+  project_id: 1

@@ -2,19 +2,19 @@
   <div class="span3">
     <div class="well" style="padding: 8px 0;">
       <h5 class="nav-list"><%= @activity.name %></h5>
+      <h5 class="nav-list"><%= image_tag @activity.picture.url(:square)%></h5>
       <ul class="nav nav-list">
         <li class="divider"></li>
-        <li class="nav-header">Informasi Umum</li>
-        <li style="font-size: 12px;">Propinsi: 12</li>
-        <li style="font-size: 12px;">Kabupaten: 123</li>
-        <li style="font-size: 12px;">Kecamatan: 1234</li>
-        <li style="font-size: 12px;">Desa: 12345</li>
+        <li class="nav-header">Informasi Aktivitas</li>
+        <li style="font-size: 12px;">Jumlah Proposal (L): <%= @activity.male_proposal %></li>
+        <li style="font-size: 12px;">Jumlah Proposal (P): <%= @activity.female_proposal %></li>
+        <li style="font-size: 12px;">Penerima Manfaat (L): <%= @activity.male_beneficiary %></li>
+        <li style="font-size: 12px;">Penerima Manfaat (P): <%= @activity.female_beneficiary %></li>
+        <li style="font-size: 12px;">Penerima Manfaat (Miskin): <%= @activity.poor_beneficiary %></li>
         <li class="divider"></li>
         <li class="nav-header">Dana</li>
-        <li style="font-size: 12px;">Kegiatan: 12</li>
-        <li style="font-size: 12px;">Bantuan Langsung Masyarakat: 123</li>
-        <li style="font-size: 12px;">APBD: 1234</li>
-        <li style="font-size: 12px;">Swadaya Masyarakat: 12345</li>
+        <li style="font-size: 12px;">Bantuan Langsung Masyarakat: <%= @activity.blm_amount %></li>
+        <li style="font-size: 12px;">Swadaya Masyarakat: <%= @activity.self_fund_amount %></li>
       </ul>
     </div>
   </div>

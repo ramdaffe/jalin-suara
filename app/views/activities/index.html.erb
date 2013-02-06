@@ -7,6 +7,8 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:subdistrict_id) %></th>
+      <th><%= model_class.human_attribute_name(:category_id) %></th>
       <th><%= model_class.human_attribute_name(:latitude) %></th>
       <th><%= model_class.human_attribute_name(:longitude) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -18,6 +20,8 @@
       <tr>
         <td><%= activity.id %></td>
         <td><%= link_to activity.name, activity_path(activity) %></td>
+        <td><%= activity.get_subdistrict_name %></td>
+        <td><%= activity.get_category_name %></td>
         <td><%= activity.latitude %></td>
         <td><%= activity.longitude %></td>
         <td><%=l activity.created_at %></td>

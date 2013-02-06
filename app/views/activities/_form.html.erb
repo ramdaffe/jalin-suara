@@ -1,9 +1,23 @@
 <%= simple_form_for @activity, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <%= f.association :subdistrict %>
+  <%= f.association :category %>
+
   <%= f.input :latitude %>
   <%= f.input :longitude %>
   <%= f.input :picture %>
+
+  <%= f.input :project_length %>
+  <%= f.input :project_area %>
+  <%= f.input :project_quantity %>
+  <%= f.input :blm_amount %>
+  <%= f.input :self_fund_amount %>
+  <%= f.input :male_proposal %>
+  <%= f.input :female_proposal %>
+  <%= f.input :male_beneficiary %>
+  <%= f.input :female_beneficiary %>
+  <%= f.input :poor_beneficiary %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

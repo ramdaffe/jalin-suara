@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205031312) do
+ActiveRecord::Schema.define(:version => 20130206085806) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -25,21 +25,24 @@ ActiveRecord::Schema.define(:version => 20130205031312) do
     t.datetime "picture_updated_at"
     t.boolean  "gmaps"
     t.text     "description"
+    t.integer  "project_length"
+    t.integer  "project_area"
+    t.integer  "project_quantity"
+    t.integer  "blm_amount"
+    t.integer  "self_fund_amount"
+    t.integer  "male_proposal"
+    t.integer  "female_proposal"
+    t.integer  "male_beneficiary"
+    t.integer  "female_beneficiary"
+    t.integer  "poor_beneficiary"
+    t.integer  "subdistrict_id"
+    t.integer  "category_id"
   end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "cities", :force => true do |t|
-    t.string   "name"
-    t.integer  "province_id"
-    t.decimal  "latitude",    :precision => 10, :scale => 0
-    t.decimal  "longitude",   :precision => 10, :scale => 0
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -68,15 +71,16 @@ ActiveRecord::Schema.define(:version => 20130205031312) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "projects", :force => true do |t|
+  create_table "implementer_units", :force => true do |t|
     t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "facilitator"
+    t.string   "facilitator_phone"
+    t.string   "call_center"
     t.integer  "subdistrict_id"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.boolean  "gmaps"
-    t.integer  "category_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "provinces", :force => true do |t|

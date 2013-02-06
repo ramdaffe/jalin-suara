@@ -1,0 +1,14 @@
+<%= simple_form_for @implementer_unit, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :phone %>
+  <%= f.input :facilitator %>
+  <%= f.input :facilitator_phone %>
+  <%= f.input :call_center %>
+  <%= f.association :subdistrict %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                implementer_units_path, :class => 'btn' %>
+  </div>
+<% end %>

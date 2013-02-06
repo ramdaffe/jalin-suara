@@ -1,4 +1,7 @@
 Mapstories::Application.routes.draw do
+  resources :implementer_units
+
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :activities
   resources :categories

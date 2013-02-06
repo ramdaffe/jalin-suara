@@ -1,6 +1,7 @@
 class Subdistrict < ActiveRecord::Base
   attr_accessible :district_id, :latitude, :longitude, :name
   belongs_to :district
+  has_one :implementer_units
 
   def get_district_name
   	name = ''
