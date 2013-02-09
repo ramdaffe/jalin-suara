@@ -23,7 +23,7 @@ class Activity < ActiveRecord::Base
   end
 
   def gmaps4rails_address
-	  "#{self.name}" 
+	  "#{self.get_subdistrict_name} - #{self.name}" 
 	end
 
   has_attached_file :picture, styles: {

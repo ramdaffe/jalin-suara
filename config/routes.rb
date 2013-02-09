@@ -1,9 +1,9 @@
 Mapstories::Application.routes.draw do
   resources :implementer_units
-
-
+  resources :excel_files
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :activities
+  match 'activites/import_excel' => 'activities#import_excel'
   resources :categories
   resources :districts
   resources :projects

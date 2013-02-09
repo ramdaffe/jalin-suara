@@ -1,0 +1,9 @@
+<%= simple_form_for @excel_file, :html => { :class => 'form-horizontal' } do |f| %>
+	<%= f.input :name %>
+  <%= f.input :document %>
+	<div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                activities_path, :class => 'btn' %>
+  </div>
+<% end %>

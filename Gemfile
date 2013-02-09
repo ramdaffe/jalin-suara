@@ -48,6 +48,7 @@ gem 'flickraw'
 gem 'devise'
 gem 'omniauth-twitter'
 gem 'acts_as_commentable_with_threading'
+gem 'roo'
 
 # Paperclip and AWS S3
 gem 'aws-sdk', '~> 1.6.0'

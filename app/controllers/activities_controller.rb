@@ -80,4 +80,13 @@ class ActivitiesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def import_excel
+    @excel_file = ExcelFile.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @excel_file }
+    end
+  end
 end
