@@ -10,7 +10,7 @@ class ExcelFilesController < ApplicationController
       if @excel_file.save
         redirect_path = activities_path
         file = Excel.new(@excel_file.document.path)
-        2.upto(file.last_row) do |line|
+        12177.upto(file.last_row) do |line|
           province_name = file.cell(line, 'B')
           district_name = file.cell(line, 'D')
           subdistrict_name = file.cell(line, 'F')
@@ -46,10 +46,10 @@ class ExcelFilesController < ApplicationController
           longitude = file.cell(line, 'Y')
           subdistrict_id = subdistrict.id
           
-          # activity = Activity.find(:first, :conditions => {:name => activity_name, :subdistrict_id => subdistrict_id}) 
-          # if activity == nil
+          activity = Activity.find(:first, :conditions => {:name => activity_name, :subdistrict_id => subdistrict_id}) 
+          if activity == nil
             Activity.create(:name => activity_name, :project_length => project_length, :project_area => project_area, :project_quantity => project_quantity, :blm_amount => blm_amount, :self_fund_amount => self_fund_amount, :male_proposal => male_proposal, :female_proposal => female_proposal, :male_beneficiary => male_beneficiary, :female_beneficiary => female_beneficiary, :poor_beneficiary => poor_beneficiary, :latitude => latitude, :longitude => longitude, :subdistrict_id => subdistrict_id)
-          # end
+          end
         end
         
         format.html { redirect_to activities_path }
