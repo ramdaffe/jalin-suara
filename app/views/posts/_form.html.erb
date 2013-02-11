@@ -1,0 +1,6 @@
+<%= form_for @post do |f| %>
+  <%= f.text_area :description, {:class => "input-xlarge", :rows => 3} %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :activity_id, :value => @activity.id %>
+  <%= f.submit "Kirim", {:class => "btn"} %>
+<% end %>

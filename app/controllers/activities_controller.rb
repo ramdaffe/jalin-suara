@@ -14,6 +14,8 @@ class ActivitiesController < ApplicationController
   # GET /activities/1.json
   def show
     @activity = Activity.find(params[:id])
+    @post = Post.new
+    @posts = Post.find(:all, :conditions => {:activity_id => @activity.id})
 
     respond_to do |format|
       format.html # show.html.erb

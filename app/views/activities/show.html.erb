@@ -1,7 +1,8 @@
 <div class="row">
   <div class="span3">
     <div class="well" style="padding: 8px 0;">
-      <h5 class="nav-list"><%= @activity.name %></h5>
+      <h4 class="nav-list"><%= @activity.name %></h4>
+      <h5 class="nav-list"><%= @activity.get_subdistrict_name %></h5>
       <h5 class="nav-list"><%= image_tag @activity.picture.url(:square)%></h5>
       <ul class="nav nav-list">
         <li class="divider"></li>
@@ -13,8 +14,10 @@
         <li style="font-size: 12px;">Penerima Manfaat (Miskin): <%= @activity.poor_beneficiary %></li>
         <li class="divider"></li>
         <li class="nav-header">Informasi Dana</li>
-        <li style="font-size: 12px;">Bantuan Langsung Masyarakat: <%= number_to_currency(@activity.blm_amount, :unit => "Rp ") %></li>
-        <li style="font-size: 12px;">Swadaya Masyarakat: <%= number_to_currency(@activity.self_fund_amount, :unit => "Rp ") %></li>
+        <li style="font-size: 12px;">Bantuan Langsung Masyarakat:</li>
+        <li style="font-size: 12px;"><b><%= number_to_currency(@activity.blm_amount, :unit => "Rp ") %></b></li>
+        <li style="font-size: 12px;">Swadaya Masyarakat:</li>
+        <li style="font-size: 12px;"><b><%= number_to_currency(@activity.self_fund_amount, :unit => "Rp ") %></b></li>
         <li class="divider"></li>
         <li class="nav-header">Informasi Proyek</li>
         <li style="font-size: 12px;">Panjang Proyek: <%= @activity.project_length %></li>
@@ -26,6 +29,10 @@
   <div class="span6">
     <div class="main-content">
       <div class="well">
+        <%= render "/posts/form" %>
+        <% @posts.each do |post| %>
+          <%= post.description %>
+        <% end %>
       </div>
     </div>
   </div>
