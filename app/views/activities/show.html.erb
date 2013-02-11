@@ -12,9 +12,14 @@
         <li style="font-size: 12px;">Penerima Manfaat (P): <%= @activity.female_beneficiary %></li>
         <li style="font-size: 12px;">Penerima Manfaat (Miskin): <%= @activity.poor_beneficiary %></li>
         <li class="divider"></li>
-        <li class="nav-header">Dana</li>
-        <li style="font-size: 12px;">Bantuan Langsung Masyarakat: <%= @activity.blm_amount %></li>
-        <li style="font-size: 12px;">Swadaya Masyarakat: <%= @activity.self_fund_amount %></li>
+        <li class="nav-header">Informasi Dana</li>
+        <li style="font-size: 12px;">Bantuan Langsung Masyarakat: <%= number_to_currency(@activity.blm_amount, :unit => "Rp ") %></li>
+        <li style="font-size: 12px;">Swadaya Masyarakat: <%= number_to_currency(@activity.self_fund_amount, :unit => "Rp ") %></li>
+        <li class="divider"></li>
+        <li class="nav-header">Informasi Proyek</li>
+        <li style="font-size: 12px;">Panjang Proyek: <%= @activity.project_length %></li>
+        <li style="font-size: 12px;">Luas Proyek: <%= @activity.project_area %></li>
+        <li style="font-size: 12px;">Jumlah Proyek: <%= @activity.project_quantity %></li>
       </ul>
     </div>
   </div>

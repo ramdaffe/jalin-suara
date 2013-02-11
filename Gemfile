@@ -49,6 +49,8 @@ gem 'devise'
 gem 'omniauth-twitter'
 gem 'acts_as_commentable_with_threading'
 gem 'roo'
+gem 'will_paginate', '~> 3.0.3'
+gem 'will_paginate-bootstrap'
 
 # Paperclip and AWS S3
 gem 'aws-sdk', '~> 1.6.0'

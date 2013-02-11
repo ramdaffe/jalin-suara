@@ -39,6 +39,8 @@
   </tbody>
 </table>
 
+<%= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_activity_path,
             :class => 'btn btn-primary' %>

@@ -26,7 +26,7 @@ class Activity < ActiveRecord::Base
 	  "#{self.get_subdistrict_name} - #{self.name}" 
 	end
 
-  has_attached_file :picture, styles: {
+  has_attached_file :picture, :default_url => "/images/missing/:class_:attachment_:style.jpg", styles: {
   	tiny: '50x50',
     thumb: '100x100>',
     square: '200x200#',
