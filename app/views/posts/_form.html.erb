@@ -2,5 +2,6 @@
   <%= f.text_area :description, {:class => "input-xlarge", :rows => 3} %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.hidden_field :activity_id, :value => @activity.id %>
+  <%= f.file_field :picture %>
   <%= f.submit "Kirim", {:class => "btn"} %>
 <% end %>

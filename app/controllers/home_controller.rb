@@ -1,8 +1,12 @@
 class HomeController < ApplicationController
   # GET /
   def index
-    @activities = Activity.all
-    @json = Activity.all.to_gmaps4rails
+    @activities = Activity.paginate(:page => params[:page])
+    @json = Activity.paginate(:page => params[:page]).to_gmaps4rails
+
+    @provinces = Province.all
+    @districts = District.all
+    @subdistricts = Subdistrict.all
 
     respond_to do |format|
       format.html # index.html.erb

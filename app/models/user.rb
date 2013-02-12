@@ -10,6 +10,12 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
+  has_attached_file :picture, :default_url => "/images/missing/:class_:attachment_:style.png", styles: {
+  	tiny: '50x50',
+    thumb: '100x100',
+    square: '128x128'
+  }
+
 	def self.from_omniauth(auth)
 	  where(auth.slice(:provider, :uid)).first_or_create do |user|
 	    user.provider = auth.provider

@@ -31,7 +31,21 @@
       <div class="well">
         <%= render "/posts/form" %>
         <% @posts.each do |post| %>
-          <%= post.description %>
+          <div class="row">
+            <div class="left-side">
+              <%= image_tag post.user.picture.url(:tiny), :style => "float:left; margin-bottom: 10px;" %>
+            </div>
+            <div class="right-side">
+              <div class="content-heading">
+                <h5><%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small></h5>
+              </div>
+              <p style="margin: 0 5 0 0px;"><%= post.description %></p>
+              <% if post.picture_file_name != nil %>
+                <%= image_tag post.picture.url(:large) %>
+              <% end %>
+            </div>
+          </div>
+          <br/>
         <% end %>
       </div>
     </div>
@@ -40,10 +54,6 @@
     <div class="well" style="padding: 8px 0;">
       <ul class="nav nav-list">
         <li class="nav-header">Komentar Terbaru</li>
-        <li style="font-size: 12px;">Kegiatan: 12</li>
-        <li style="font-size: 12px;">Bantuan Langsung Masyarakat: 123</li>
-        <li style="font-size: 12px;">APBD: 1234</li>
-        <li style="font-size: 12px;">Swadaya Masyarakat: 12345</li>
       </ul>
     </div>
   </div>

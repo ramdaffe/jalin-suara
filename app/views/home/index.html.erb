@@ -3,16 +3,17 @@
     <div class="well" style="padding: 8px 0;">
       <ul class="nav nav-list">
         <li class="nav-header">Cakupan</li>
-        <li style="font-size: 12px;">Propinsi: 12</li>
-        <li style="font-size: 12px;">Kabupaten: 123</li>
-        <li style="font-size: 12px;">Kecamatan: 1234</li>
-        <li style="font-size: 12px;">Desa: 12345</li>
+        <li style="font-size: 12px;">Propinsi: <%= @provinces.size %></li>
+        <li style="font-size: 12px;">Kabupaten: <%= @districts.size %></li>
+        <li style="font-size: 12px;">Kecamatan: <%= @subdistricts.size %></li>
+        <li style="font-size: 12px;">Desa: </li>
         <li class="divider"></li>
         <li class="nav-header">Dana</li>
-        <li style="font-size: 12px;">Kegiatan: 12</li>
-        <li style="font-size: 12px;">Bantuan Langsung Masyarakat: 123</li>
-        <li style="font-size: 12px;">APBD: 1234</li>
-        <li style="font-size: 12px;">Swadaya Masyarakat: 12345</li>
+        <li style="font-size: 12px;">Kegiatan: <%= Activity.all.size %></li>
+        <li style="font-size: 12px;">Bantuan Langsung Masyarakat:</li>
+        <li style="font-size: 12px;"><b><%= number_to_currency(Activity.sum('blm_amount'), :unit => "Rp ") %></b></li>
+        <li style="font-size: 12px;">Swadaya Masyarakat:</li>
+        <li style="font-size: 12px;"><b><%= number_to_currency(Activity.sum('self_fund_amount'), :unit => "Rp ") %></b></li>
       </ul>
     </div>
   </div>
@@ -21,11 +22,15 @@
       <div class="well">
         <%= gmaps4rails(@json) %>
         <% @activities.each do |activity| %>
-          <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %> &nbsp </h5></div>
+          <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %> - <%= activity.get_subdistrict_name %></h5></div>
           <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
-          <p>Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+          Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
+          Jumlah Dana Bantuan Langsung Masyarakat: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
+          Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
           <div style="clear:both"></div>
         <% end %>
+        <%= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
+        <br/>
       </div>
     </div>
   </div>
@@ -33,10 +38,6 @@
     <div class="well" style="padding: 8px 0;">
       <ul class="nav nav-list">
         <li class="nav-header">Komentar Terbaru</li>
-        <li style="font-size: 12px;">Kegiatan: 12</li>
-        <li style="font-size: 12px;">Bantuan Langsung Masyarakat: 123</li>
-        <li style="font-size: 12px;">APBD: 1234</li>
-        <li style="font-size: 12px;">Swadaya Masyarakat: 12345</li>
       </ul>
     </div>
   </div>

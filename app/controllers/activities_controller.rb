@@ -15,7 +15,7 @@ class ActivitiesController < ApplicationController
   def show
     @activity = Activity.find(params[:id])
     @post = Post.new
-    @posts = Post.find(:all, :conditions => {:activity_id => @activity.id})
+    @posts = Post.find(:all, :conditions => {:activity_id => @activity.id}, :order => "created_at DESC")
 
     respond_to do |format|
       format.html # show.html.erb
