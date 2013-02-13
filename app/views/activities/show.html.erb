@@ -29,7 +29,9 @@
   <div class="span6">
     <div class="main-content">
       <div class="well">
-        <%= render "/posts/form" %>
+        <% if current_user != nil %>
+          <%= render "/posts/form" %>
+        <% end %>
         <% @posts.each do |post| %>
           <div class="row">
             <div class="left-side">
