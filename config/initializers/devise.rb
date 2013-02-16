@@ -230,4 +230,5 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
   config.omniauth :twitter, "bbpqaKRjSC86GMUJdkDBQ", "FasHiWtaOb5ChFETUSLv3bIVm7i5GB1oxfxtaav84"
+  config.omniauth :facebook, "472613249471380", "8e83e56216f00514a6af2d1443b7710b", :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}
 end

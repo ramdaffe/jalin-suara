@@ -14,6 +14,7 @@ class SubdistrictsController < ApplicationController
   # GET /subdistricts/1.json
   def show
     @subdistrict = Subdistrict.find(params[:id])
+    @activities = Activity.find(:all, :conditions => {:subdistrict_id => @subdistrict.id})
 
     respond_to do |format|
       format.html # show.html.erb

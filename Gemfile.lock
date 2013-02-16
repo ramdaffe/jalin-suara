@@ -97,6 +97,11 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_search (1.1.3)
+      actionpack (~> 3.1)
+      activerecord (~> 3.1)
+      activesupport (~> 3.1)
+      polyamorous (~> 0.5.0)
     mime-types (1.19)
     multi_json (1.5.0)
     multi_xml (0.5.2)
@@ -113,8 +118,13 @@ GEM
     omniauth (1.1.1)
       hashie (~> 1.2)
       rack
+    omniauth-facebook (1.4.1)
+      omniauth-oauth2 (~> 1.1.0)
     omniauth-oauth (1.0.1)
       oauth
+      omniauth (~> 1.0)
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     omniauth-twitter (0.0.14)
       multi_json (~> 1.3)
@@ -127,6 +137,8 @@ GEM
       cocaine (~> 0.4.0)
       mime-types
     pg (0.14.1)
+    polyamorous (0.5.0)
+      activerecord (~> 3.0)
     polyglot (0.3.3)
     rack (1.4.4)
     rack-cache (1.2)
@@ -217,7 +229,9 @@ DEPENDENCIES
   flickraw
   gmaps4rails
   jquery-rails
+  meta_search
   mysql2
+  omniauth-facebook
   omniauth-twitter
   paperclip (~> 3.4.0)
   pg

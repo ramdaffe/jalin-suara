@@ -13,13 +13,11 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">Jalin Suara</a>
+          <a class="brand" href="/">Jalin Suara [Beta]</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Tentang Jalin Suara", provinces_path %></li>
-              <li><%= link_to "Tentang PNPM Mandiri", districts_path %></li>
-              <li><%= link_to "Tentang PSF", subdistricts_path %></li>
-              <li><%= link_to "Kontak Kami", categories_path %></li>
+              <li><%= link_to "Tentang Jalin Suara", "#" %></li>
+              <li><%= link_to "Kontak Kami", "#" %></li>
             </ul>
             <ul class="nav pull-right">
               <% if user_signed_in? %>
@@ -37,6 +35,7 @@
                 <li><%= link_to "Sign up", new_user_registration_path %></li>
                 <li><%= link_to "Login", new_user_session_path %></li>
                 <li><%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %></li>
+                <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
               <% end %>
               </li>
             </ul>

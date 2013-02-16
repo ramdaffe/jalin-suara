@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :picture
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :picture, :uid, :provider
 
   has_many :posts
 
@@ -15,6 +15,19 @@ class User < ActiveRecord::Base
     thumb: '100x100',
     square: '128x128'
   }
+
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+	  user = User.where(:provider => auth.provider, :uid => auth.uid).first
+	  unless user
+	    user = User.create(username:auth.extra.raw_info.name,
+	    	provider:auth.provider,
+	    	uid:auth.uid,
+	    	email:auth.info.email,
+	    	password:Devise.friendly_token[0,20]
+	    )
+	  end
+	  user
+	end
 
 	def self.from_omniauth(auth)
 	  where(auth.slice(:provider, :uid)).first_or_create do |user|

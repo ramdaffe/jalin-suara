@@ -2,7 +2,7 @@ class ProvincesController < ApplicationController
   # GET /provinces
   # GET /provinces.json
   def index
-    @provinces = Province.all
+    @provinces = Province.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +14,9 @@ class ProvincesController < ApplicationController
   # GET /provinces/1.json
   def show
     @province = Province.find(params[:id])
+    subdistricts = Subdistrict.find(:all, :conditions => ['district_id IN (?)', @province.districts])
+    @activities = Activity.find(:all, :conditions => ['subdistrict_id IN (?)', subdistricts])
+    @json = @activities.to_gmaps4rails
 
     respond_to do |format|
       format.html # show.html.erb

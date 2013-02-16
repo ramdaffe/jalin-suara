@@ -1,25 +1,55 @@
-<%- model_class = Province -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+<div class="row">
+  <div class="span3">
+    <div class="well" style="padding: 8px 0;">
+      <ul class="nav nav-list">
+        <li class="nav-header">Provinsi <%= @province.name %> </li>
+        <li class="divider"></li>
+        <li class="nav-header">Cakupan Jalin Suara</li>
+        <li style="font-size: 12px;">Kabupaten: <%= @province.get_districts_number %></li>
+        <li style="font-size: 12px;">Kecamatan: <%= @province.get_subdistricts_number %></li>
+        <li style="font-size: 12px;">Desa: </li>
+        <li style="font-size: 12px;">Total Aktivitas: <%= @province.get_activities_number %></li>
+        <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat: </li>
+        <li style="font-size: 12px;"><b><%= number_to_currency(@province.get_total_blm_amount, :unit => "Rp ") %></b></li>
+        <li style="font-size: 12px;">Total Dana Swadaya Masyarakat: </li>
+        <li style="font-size: 12px;"><b><%= number_to_currency(@province.get_total_self_fund_amount, :unit => "Rp ") %></b></li>
+      </ul>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="main-content">
+      <div class="well">
+        <%= gmaps4rails(@json) %>
+        <% @activities.each do |activity| %>
+          <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %> - <%= activity.get_subdistrict_name %></h5></div>
+          <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
+          Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
+          Jumlah Dana Bantuan Langsung Masyarakat: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
+          Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
+          <div style="clear:both"></div>
+        <% end %>
+        <%#= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
+        <br/>
+      </div>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="well" style="padding: 8px 0;">
+      <ul class="nav nav-list">
+        <li class="nav-header">Komentar Terbaru</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @province.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:latitude) %>:</strong></dt>
-  <dd><%= @province.latitude %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:longitude) %>:</strong></dt>
-  <dd><%= @province.longitude %></dd>
-</dl>
-
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              provinces_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_province_path(@province), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              province_path(@province),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-</div>
+<% if current_user != nil %>
+  <div class="form-actions">
+    <%= link_to t('.back', :default => t("helpers.links.back")), provinces_path, :class => 'btn'  %>
+    <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_province_path(@province), :class => 'btn' %>
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+      province_path(@province),
+      :method => 'delete',
+      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+      :class => 'btn btn-danger' %>
+  </div>
+<% end %>
