@@ -45,9 +45,15 @@ gem 'thin'
 gem 'simple_form'
 gem 'gmaps4rails'
 gem 'flickraw'
+
+# Authentication
 gem 'devise'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+
+# Social Network Feed
+gem 'koala'
+
 gem 'acts_as_commentable_with_threading'
 gem 'roo'
 gem 'will_paginate', '~> 3.0.3'
