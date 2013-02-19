@@ -59,6 +59,7 @@ gem 'roo'
 gem 'will_paginate', '~> 3.0.3'
 gem 'will_paginate-bootstrap'
 gem 'meta_search'
+gem 'bootstrap_modal_rails', '~> 2.0.0'
 
 # Paperclip and AWS S3
 gem 'aws-sdk', '~> 1.6.0'

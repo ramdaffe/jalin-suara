@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :activity_id, :description, :user_id, :picture
+  attr_accessible :title, :activity_id, :description, :user_id, :picture
   belongs_to :activity
   belongs_to :user
 

@@ -60,6 +60,11 @@
           <%= render "/posts/form" %>
         <% end %>
         <!-- End of Add Post Form -->
+
+        <button href="#responsive" data-toggle="modal" class="demo btn btn-primary">+ Tambah Cerita</button>
+        <br />
+        <br />
+
         
         <!-- Posts -->
         <% @posts.each do |post| %>
@@ -71,7 +76,7 @@
               <div class="content-heading">
                 <h5><%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small></h5>
               </div>
-              <p style="margin: 0 5 0 0px;"><%= post.description %></p>
+              <p style="margin: 0 10px 10px 0px;"><%= truncate post.description, length: 200 %> <%= link_to 'baca selengkapnya', post %></p>
               <% if post.picture_file_name != nil %>
                 <%= image_tag post.picture.url(:large) %>
               <% end %>
