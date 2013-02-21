@@ -69,18 +69,18 @@
         <% @posts.each do |post| %>
           <div class="row">
             <div class="left-side">
-              <%= image_tag post.user.picture.url(:tiny), :style => "float:left; margin-bottom: 10px;" %>
+              <% if post.picture_file_name != nil %>
+                <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+              <% end %>
             </div>
             <div class="right-side">
               <div class="content-heading">
-                <h5><%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small></h5>
+                <h5><%= link_to post.title, post %></h5>
+                oleh <%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small><br/>
               </div>
-              <div class="content">
+              <div class="content-desc">
                 <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %>
               </div>
-              <% if post.picture_file_name != nil %>
-                <%= image_tag post.picture.url(:large) %>
-              <% end %>
             </div>
           </div>
           <br/>
