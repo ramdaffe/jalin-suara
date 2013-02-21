@@ -1,20 +1,56 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Description:</b>
-  <%= @post.description %>
-</p>
-
-<p>
-  <b>Activity:</b>
-  <%= @post.activity_id %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @post.user_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="row">
+  <div class="span3">
+    <div class="well" style="padding: 8px 0;">
+      <h5 class="nav-list"><%= link_to @post.get_subdistrict_name, @post.get_subdistrict %></h5>
+      <h5 class="nav-list"><%= image_tag @post.picture.url(:square)%></h5>
+      <ul class="nav nav-list">
+        <li class="divider"></li>
+        <li class="nav-header">Profil Kecamatan</li>
+        <li style="font-size: 12px;">Nama UPK: </li>
+        <li style="font-size: 12px;">Alamat UPK: </li>
+        <li style="font-size: 12px;">Telepon UPK: </li>
+        <li style="font-size: 12px;">Nama Fasilitator: </li>
+        <li style="font-size: 12px;">Telepon Fasilitator: </li>
+        <li style="font-size: 12px;">Telepon Pengaduan: </li>
+        <li style="font-size: 12px;">Jumlah Desa: </li>
+        <li style="font-size: 12px;">Jumlah Kelurahan: </li>
+        <li style="font-size: 12px;">Jumlah Penerima Manfaat: </li>
+      </ul>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="main-content">
+      <div class="well">
+        <!-- Post Information -->
+        <div class="row">
+          <div class="left-side">
+            <% if @post.picture_file_name != nil %>
+              <%= image_tag @post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+            <% end %>
+          </div>
+          <div class="right-side">
+            <div class="content-heading">
+              <h5><%= link_to @post.title, @post %></h5>
+              oleh <%= @post.user.username %>&nbsp;<small><%= distance_of_time_in_words(@post.created_at, Time.now) %> ago</small><br/>
+            </div>
+          </div>
+        </div>
+        <!-- End of Post Information -->
+        <!--- Post Content -->
+      	<%= raw(@post.description) %>
+        <!--- Post Content -->
+      </div>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="well" style="padding: 8px 0;">
+      <h5 class="nav-list">Media Sosial</h5>
+      <ul class="nav nav-list">
+        <li class="divider"></li>
+        <li class="nav-header">Facebook Feed</li>
+        <li class="divider"></li>
+        <li class="nav-header">Twitter Feed</li>
+      </ul>
+    </div>
+  </div>
+</div>

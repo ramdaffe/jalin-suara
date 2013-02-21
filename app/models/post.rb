@@ -10,4 +10,20 @@ class Post < ActiveRecord::Base
     medium: '300x300>',
     large: '400x400'
   }
+
+  def get_subdistrict_name
+    name = ""
+    if self.activity != nil
+      if self.activity.subdistrict != nil
+        name = self.activity.subdistrict.name
+      end
+    end
+    return name
+  end
+
+  def get_subdistrict
+    if self.activity != nil
+      return self.activity.subdistrict
+    end
+  end
 end
