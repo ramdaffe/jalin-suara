@@ -1,4 +1,5 @@
 <div class="row">
+  <!-- Left Sidebar -->
   <div class="span3">
     <div class="well" style="padding: 8px 0;">
       <h5 class="nav-list"><%= link_to @post.get_subdistrict_name, @post.get_subdistrict %></h5>
@@ -20,6 +21,9 @@
       </ul>
     </div>
   </div>
+  <!-- End of Left Sidebar -->
+
+  <!-- Main column -->
   <div class="span6">
     <div class="main-content">
       <div class="well">
@@ -38,12 +42,19 @@
           </div>
         </div>
         <!-- End of Post Information -->
+        
         <!--- Post Content -->
       	<%= raw(@post.description) %>
-        <!--- Post Content -->
+
+        <!-- Comment -->
+        <%= render_comments_form @post %>
+        <%= render_comments @post %>
       </div>
     </div>
   </div>
+  <!-- End of Main Column -->
+
+  <!-- Right Sidebar -->
   <div class="span3">
     <div class="well" style="padding: 8px 0;">
       <h5 class="nav-list">Media Sosial</h5>
@@ -55,4 +66,5 @@
       </ul>
     </div>
   </div>
+  <!-- End of Right Sidebar -->
 </div>

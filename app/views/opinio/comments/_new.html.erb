@@ -1,0 +1,18 @@
+<div id="new_comment">
+  <h5>Tulis Komentar</h5>
+  <% if send(Opinio.current_user_method) %>
+    <%= form_for Comment.new, :remote => false do |f| %>
+      <%= f.text_area :body, :rows => 3 %>
+      <%= hidden_field_tag :commentable_id, commentable.id %>
+      <%= hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s %>
+      <%= f.submit 'Kirim', :class => 'btn btn-primary' %>
+    <% end %>
+  <% else %>
+    <%= form_for Comment.new, :remote => false do |f| %>
+      <%= f.text_area :body, :rows => 3 %>
+      <%= hidden_field_tag :commentable_id, commentable.id %>
+      <%= hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s %>
+      <%= f.submit 'Kirim Komentar', :class => 'btn btn-primary' %>
+    <% end %>
+  <% end %>
+</div>

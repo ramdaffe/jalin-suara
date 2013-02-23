@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   belongs_to :activity
   belongs_to :user
 
+  opinio_subjectum
+
   has_attached_file :picture, :default_url => "/images/missing/:class_:attachment_:style.jpg", styles: {
   	tiny: '50x50',
     thumb: '100x100>',

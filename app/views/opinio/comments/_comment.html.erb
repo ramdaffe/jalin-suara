@@ -1,0 +1,18 @@
+<% reply = defined?(reply) ? reply : false %>
+<div id="comment_<%= comment.id %>">
+  <div class="row">
+    <div class="left-side-comment">
+      <%= image_tag comment.owner.picture.url(:tiny), :style => "float:left; margin-bottom: 10px;" %>
+    </div>
+    <div class="right-side-comment">
+      <h6><%= comment.owner.username %>&nbsp;<small><%= distance_of_time_in_words(comment.created_at, Time.now) %> ago</small></h6>
+      <%= simple_format(comment.body) %>
+      <!-- Reply -->
+      <% if Opinio.accept_replies && !reply %>
+        <%= link_to t('opinio.actions.reply'), reply_comment_path(comment), :remote => true %>
+        <%= render :partial => "opinio/comments/comment", :collection => comment.comments, :locals => {:reply => true} %>
+      <% end %>
+      <!-- End of Reply -->
+    </div>
+  </div>
+</div>

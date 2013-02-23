@@ -1,8 +1,10 @@
 Mapstories::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
-  resources :posts
-
+  opinio_model
+  resources :posts do
+    opinio
+  end
 
   resources :implementer_units
   resources :excel_files

@@ -13,6 +13,7 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'less-rails'
   gem 'twitter-bootstrap-rails'
 end
 
@@ -54,11 +55,14 @@ gem 'omniauth-facebook'
 # Social Network Feed
 gem 'koala'
 
-gem 'acts_as_commentable_with_threading'
 gem 'roo'
 gem 'will_paginate', '~> 3.0.3'
 gem 'will_paginate-bootstrap'
 gem 'meta_search'
+
+# Comments and Likes
+gem 'opinio'
+gem 'kaminari'
 
 # Form utilities
 gem 'bootstrap_modal_rails', '~> 2.0.0'
