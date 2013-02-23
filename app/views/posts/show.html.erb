@@ -31,9 +31,25 @@
         <h4><%= @post.title %><br/></h4>
         <div class="ribbon">
           oleh <%= link_to @post.user.username, "#" %> pada <%= @post.created_at.strftime("%e-%m-%Y") %>
+          <br />
+
+          <!-- Share to Facebook-->
+          <div id="fb-root"></div>
+          <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=472613249471380";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));</script>
+          <div class="fb-like" data-href="http://www.jalinsuara.com" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+          <!-- End of Share to Facebook-->
+
+          <!-- Share to Twitter-->
           <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://jalinsuara.com" data-text="<%= @post.title %>">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
           </script>
+          <!-- End of Share to Twitter-->
         </div>
         <div style="height: 300px; margin-bottom: 10px; text-align: center;">
           <% if @post.picture_file_name != nil %>
