@@ -27,21 +27,15 @@
   <div class="span6">
     <div class="main-content">
       <div class="well">
-        <!-- Post Information -->
-        <div class="row">
-          <div class="left-side">
-            <% if @post.picture_file_name != nil %>
-              <%= image_tag @post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
-            <% end %>
-          </div>
-          <div class="right-side">
-            <div class="content-heading">
-              <h5><%= link_to @post.title, @post %></h5>
-              oleh <%= @post.user.username %>&nbsp;<small><%= distance_of_time_in_words(@post.created_at, Time.now) %> ago</small><br/>
-            </div>
-          </div>
+        <!-- Post Header -->
+        <h4><%= @post.title %><br/></h4>
+        <div class="ribbon">oleh <%= link_to @post.user.username, "#" %> pada <%= @post.created_at.strftime("%e-%m-%Y") %></div>
+        <div style="height: 300px; margin-bottom: 10px; align: center;">
+          <% if @post.picture_file_name != nil %>
+            <%= image_tag @post.picture.url(:large), :style => "height: 300px;" %>
+          <% end %>
         </div>
-        <!-- End of Post Information -->
+        <!-- End of Post Header -->
         
         <!--- Post Content -->
       	<%= raw(@post.description) %>

@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
     thumb: '100x100>',
     square: '200x200#',
     medium: '300x300>',
-    large: '400x400'
+    large: '500x300>'
   }
 
   def get_subdistrict_name
