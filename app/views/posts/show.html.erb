@@ -1,100 +1,69 @@
-<div class="row">
-  <!-- Left Sidebar -->
-  <div class="span3">
-    <div class="well" style="padding: 8px 0;">
-      <h5 class="nav-list"><%= link_to @post.get_subdistrict_name, @post.get_subdistrict %></h5>
-      <% if @implementer_unit %>
-        <h5 class="nav-list" style="text-align: center;"><%= image_tag @implementer_unit.picture.url(:square)%></h5>
-      <% end %>
-      <ul class="nav nav-list">
-        <li class="divider"></li>
-        <li class="nav-header">Profil Kecamatan</li>
-        <li style="font-size: 12px;">Nama UPK: </li>
-        <li style="font-size: 12px;">Alamat UPK: </li>
-        <li style="font-size: 12px;">Telepon UPK: </li>
-        <li style="font-size: 12px;">Nama Fasilitator: </li>
-        <li style="font-size: 12px;">Telepon Fasilitator: </li>
-        <li style="font-size: 12px;">Telepon Pengaduan: </li>
-        <li style="font-size: 12px;">Jumlah Desa: </li>
-        <li style="font-size: 12px;">Jumlah Kelurahan: </li>
-        <li style="font-size: 12px;">Jumlah Penerima Manfaat: </li>
-      </ul>
-    </div>
+<!-- Left Sidebar -->
+<div class="span3">
+  <div class="well" style="padding: 8px 0;">
+    <h5 class="nav-list"><%= link_to @post.get_subdistrict_name, @post.get_subdistrict %></h5>
+    <% if @implementer_unit %>
+      <h5 class="nav-list" style="text-align: center;"><%= image_tag @implementer_unit.picture.url(:square)%></h5>
+    <% end %>
+    <ul class="nav nav-list">
+      <li class="divider"></li>
+      <li class="nav-header">Profil Kecamatan</li>
+      <li style="font-size: 12px;">Nama UPK: </li>
+      <li style="font-size: 12px;">Alamat UPK: </li>
+      <li style="font-size: 12px;">Telepon UPK: </li>
+      <li style="font-size: 12px;">Nama Fasilitator: </li>
+      <li style="font-size: 12px;">Telepon Fasilitator: </li>
+      <li style="font-size: 12px;">Telepon Pengaduan: </li>
+      <li style="font-size: 12px;">Jumlah Desa: </li>
+      <li style="font-size: 12px;">Jumlah Kelurahan: </li>
+      <li style="font-size: 12px;">Jumlah Penerima Manfaat: </li>
+    </ul>
   </div>
-  <!-- End of Left Sidebar -->
-
-  <!-- Main column -->
-  <div class="span6">
-    <div class="main-content">
-      <div class="well">
-        <!-- Post Header -->
-        <h4><%= @post.title %><br/></h4>
-        <div class="ribbon">
-          oleh <%= link_to @post.user.username, "#" %> pada <%= @post.created_at.strftime("%e-%m-%Y") %>
-          <br />
-
-          <!-- Share to Facebook-->
-          <div id="fb-root"></div>
-          <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=472613249471380";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));</script>
-          <div class="fb-like" data-href="http://www.jalinsuara.com" data-layout="button_count" data-width="450" data-show-faces="true"></div>
-          <!-- End of Share to Facebook-->
-
-          <!-- Share to Twitter-->
-          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://jalinsuara.com" data-text="<%= @post.title %>">Tweet</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-          </script>
-          <!-- End of Share to Twitter-->
-        </div>
-        <div style="height: 300px; margin-bottom: 10px; text-align: center;">
-          <% if @post.picture_file_name != nil %>
-            <%= image_tag @post.picture.url(:large), :style => "height: 300px;" %>
-          <% end %>
-        </div>
-        <!-- End of Post Header -->
-        
-        <!--- Post Content -->
-      	<%= raw(@post.description) %>
-
-        <!-- Comment -->
-        <%= render_comments_form @post %>
-        <%= render_comments @post %>
-      </div>
-    </div>
-  </div>
-  <!-- End of Main Column -->
-
-  <!-- Right Sidebar -->
-  <div class="span3">
-    <div class="well" style="padding: 8px 0;">
-      <h5 class="nav-list">Media Sosial</h5>
-      <ul class="nav nav-list">
-        <li class="divider"></li>
-        <li class="nav-header">Facebook Feed</li>
-        <li>
-          <div id="fb-root"></div>
-          <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=472613249471380";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));</script>
-          <div class="fb-like-box" data-href="http://www.facebook.com/psf.jalin.suara" data-width="238" data-height="375" data-show-faces="true" data-stream="true" data-header="true"></div>
-        </li>
-        <li class="divider"></li>
-        <li class="nav-header">Twitter Feed</li>
-        <li>
-          <a class="twitter-timeline"  href="https://twitter.com/psf_jalinsuara"  data-widget-id="305389197609541632">Tweets by @psf_jalinsuara</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!-- End of Right Sidebar -->
 </div>
+<!-- End of Left Sidebar -->
+
+<!-- Main column -->
+<div class="span6">
+  <div class="main-content">
+    <div class="well">
+      <!-- Post Header -->
+      <h4><%= @post.title %><br/></h4>
+      <div class="ribbon">
+        oleh <%= link_to @post.user.username, "#" %> pada <%= @post.created_at.strftime("%e-%m-%Y") %>
+        <br />
+
+        <!-- Share to Facebook-->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=472613249471380";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-like" data-href="http://www.jalinsuara.com" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+        <!-- End of Share to Facebook-->
+
+        <!-- Share to Twitter-->
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://jalinsuara.com" data-text="<%= @post.title %>">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        </script>
+        <!-- End of Share to Twitter-->
+      </div>
+      <div style="height: 300px; margin-bottom: 10px; text-align: center;">
+        <% if @post.picture_file_name != nil %>
+          <%= image_tag @post.picture.url(:large), :style => "height: 300px;" %>
+        <% end %>
+      </div>
+      <!-- End of Post Header -->
+      
+      <!--- Post Content -->
+    	<%= raw(@post.description) %>
+
+      <!-- Comment -->
+      <%= render_comments_form @post %>
+      <%= render_comments @post %>
+    </div>
+  </div>
+</div>
+<!-- End of Main Column -->

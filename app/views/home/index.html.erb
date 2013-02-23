@@ -1,49 +1,39 @@
-<div class="row">
-  <div class="span3">
-    <div class="well" style="padding: 8px 0;">
-      <ul class="nav nav-list">
-        <li class="nav-header">Cakupan Jalin Suara</li>
-        <li style="font-size: 12px;">Propinsi: <%= link_to(@provinces.size, provinces_path) %></li>
-        <li style="font-size: 12px;">Kabupaten: <%= link_to(@districts.size, districts_path) %></li>
-        <li style="font-size: 12px;">Kecamatan: <%= link_to(@subdistricts.size, subdistricts_path) %></li>
-        <li style="font-size: 12px;">Desa: </li>
-        <li class="divider"></li>
-        <li class="nav-header">Cakupan PNPM Mandiri</li>
-        <li style="font-size: 12px;">Propinsi: </li>
-        <li style="font-size: 12px;">Kabupaten: </li>
-        <li style="font-size: 12px;">Kecamatan: </li>
-        <li style="font-size: 12px;">Desa: </li>
-        <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat:</li>
-        <li style="font-size: 12px;"><b><%= number_to_currency(0, :unit => "Rp ") %></b></li>
-      </ul>
-    </div>
+<div class="span3">
+  <div class="well" style="padding: 8px 0;">
+    <ul class="nav nav-list">
+      <li class="nav-header">Cakupan Jalin Suara</li>
+      <li style="font-size: 12px;">Propinsi: <%= link_to(@provinces.size, provinces_path) %></li>
+      <li style="font-size: 12px;">Kabupaten: <%= link_to(@districts.size, districts_path) %></li>
+      <li style="font-size: 12px;">Kecamatan: <%= link_to(@subdistricts.size, subdistricts_path) %></li>
+      <li style="font-size: 12px;">Desa: </li>
+      <li class="divider"></li>
+      <li class="nav-header">Cakupan PNPM Mandiri</li>
+      <li style="font-size: 12px;">Propinsi: </li>
+      <li style="font-size: 12px;">Kabupaten: </li>
+      <li style="font-size: 12px;">Kecamatan: </li>
+      <li style="font-size: 12px;">Desa: </li>
+      <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat:</li>
+      <li style="font-size: 12px;"><b><%= number_to_currency(0, :unit => "Rp ") %></b></li>
+    </ul>
   </div>
-  <div class="span6">
-    <div class="main-content">
-      <div class="well">
-        <%= gmaps4rails(@json) %>
-        <% @activities.each do |activity| %>
-          <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %> - <%= link_to activity.get_subdistrict_name, subdistrict_path(activity.subdistrict) %></h5></div>
-          <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
-          Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
-          Jumlah Dana Bantuan Langsung Masyarakat: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
-          Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
-          <div style="clear:both"></div>
-        <% end %>
-        <%= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
-        <br/>
-      </div>
-    </div>
-  </div>
-  <div class="span3">
-    <div class="well" style="padding: 8px 0;">
-      <ul class="nav nav-list">
-        <h5>Media Sosial</h5>
-        <li class="divider"></li>
-        <li class="nav-header">Facebook Feed</li>
-        <li class="divider"></li>
-        <li class="nav-header">Twitter Feed</li>
-      </ul>
+</div>
+
+<!-- Main Content -->
+<div class="span6">
+  <div class="main-content">
+    <div class="well">
+      <%= gmaps4rails(@json) %>
+      <% @activities.each do |activity| %>
+        <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %> - <%= link_to activity.get_subdistrict_name, subdistrict_path(activity.subdistrict) %></h5></div>
+        <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
+        Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
+        Jumlah Dana Bantuan Langsung Masyarakat: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
+        Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
+        <div style="clear:both"></div>
+      <% end %>
+      <%= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
+      <br/>
     </div>
   </div>
 </div>
+<!-- End of Main Content -->
