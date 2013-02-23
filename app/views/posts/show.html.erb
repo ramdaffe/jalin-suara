@@ -29,7 +29,12 @@
       <div class="well">
         <!-- Post Header -->
         <h4><%= @post.title %><br/></h4>
-        <div class="ribbon">oleh <%= link_to @post.user.username, "#" %> pada <%= @post.created_at.strftime("%e-%m-%Y") %></div>
+        <div class="ribbon">
+          oleh <%= link_to @post.user.username, "#" %> pada <%= @post.created_at.strftime("%e-%m-%Y") %>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://jalinsuara.com" data-text="<%= @post.title %>">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+          </script>
+        </div>
         <div style="height: 300px; margin-bottom: 10px; text-align: center;">
           <% if @post.picture_file_name != nil %>
             <%= image_tag @post.picture.url(:large), :style => "height: 300px;" %>
