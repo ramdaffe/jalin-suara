@@ -14,6 +14,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @implementer_unit = @post.activity.subdistrict.implementer_unit
 
     respond_to do |format|
       format.html # show.html.erb
