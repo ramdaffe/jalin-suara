@@ -62,7 +62,7 @@ gem 'meta_search'
 
 # Form utilities
 gem 'bootstrap_modal_rails', '~> 2.0.0'
-gem 'ckeditor'
+gem 'ckeditor', '3.7.3'
 
 # Paperclip and AWS S3
 gem 'aws-sdk', '~> 1.6.0'
