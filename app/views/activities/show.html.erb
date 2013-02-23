@@ -58,15 +58,15 @@
         <!-- Add Post Form -->
         <% if current_user != nil %>
           <%= render "/posts/form" %>
-          <button href="#responsive" data-toggle="modal" class="demo btn btn-primary">+ Tambah Cerita</button>
+          <div class="text-center">
+            <button href="#responsive" data-toggle="modal" class="btn btn-primary">+ Tambah Cerita</button>
+          </div>
         <% end %>
         <!-- End of Add Post Form -->
-        <br />
-        <br />
-
         
         <!-- Posts -->
         <% @posts.each do |post| %>
+          <hr />
           <div class="row">
             <div class="left-side">
               <% if post.picture_file_name != nil %>
@@ -83,8 +83,8 @@
               </div>
             </div>
           </div>
-          <br/>
         <% end %>
+        <!-- End of Posts -->
       </div>
     </div>
   </div>
