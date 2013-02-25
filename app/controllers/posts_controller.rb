@@ -2,7 +2,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @subdistrict = Subdistrict.find(params[:subdistrict_id])
+    @activities = @subdistrict.activities
+    @posts = Post.find(:all, :conditions => ["activity_id IN (?)", @activities])
+    @implementer_unit = @subdistrict.implementer_unit
 
     respond_to do |format|
       format.html # index.html.erb

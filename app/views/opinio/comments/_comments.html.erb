@@ -5,7 +5,7 @@
 <% unless comments.empty? %>
 	<%= render :partial => 'opinio/comments/comment', :collection => comments %>
 <% else %>
-	<div id="no_comments"><%= t('opinio.messages.no_comments_found') %></div>
+	<div id="no_comments">Belum ada komentar</div>
 <% end %>
 
 <div>

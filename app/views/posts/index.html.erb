@@ -1,27 +1,62 @@
-<h1>Listing posts</h1>
+<div class="span3">
+  <div class="well" style="padding: 8px 0;">
+    <h5 class="nav-list"><%= @subdistrict.name %></h5>
+    <% if @implementer_unit %>
+      <h5 class="nav-list" style="text-align: center;"><%= image_tag @implementer_unit.picture.url(:square)%></h5>
+    <% end %>
+    <ul class="nav nav-list">
+      <li class="divider"></li>
+      <li class="nav-header">Profil Kecamatan</li>
+      <li style="font-size: 12px;">Nama UPK: </li>
+      <li style="font-size: 12px;">Alamat UPK: </li>
+      <li style="font-size: 12px;">Telepon UPK: </li>
+      <li style="font-size: 12px;">Nama Fasilitator: </li>
+      <li style="font-size: 12px;">Telepon Fasilitator: </li>
+      <li style="font-size: 12px;">Telepon Pengaduan: </li>
+      <li style="font-size: 12px;">Jumlah Desa: </li>
+      <li style="font-size: 12px;">Jumlah Kelurahan: </li>
+      <li style="font-size: 12px;">Jumlah Penerima Manfaat: </li>
+    </ul>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>Description</th>
-    <th>Activity</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<!-- Main Content -->
+<div class="span6">
+  <div class="main-content">
+    <div class="well">
+      <ul class="nav nav-tabs">
+        <li><%= link_to "Aktivitas", subdistrict_path(@subdistrict) %></li>
+        <li class="<%= 'active' if current_page?(posts_path) %>"><%= link_to "Cerita", :controller => 'posts', :action => 'index', :subdistrict_id => @subdistrict.id %></li>
+      </ul>
 
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.description %></td>
-    <td><%= post.activity_id %></td>
-    <td><%= post.user_id %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Post', new_post_path %>
+      <!-- Tab -->
+      <div class="tabbable">
+        <div class="tab-content">
+          <div class="tab-pane active">
+            <% @posts.each do |post| %>
+              <div class="row">
+                <div class="left-side">
+                  <% if post.picture_file_name != nil %>
+                    <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+                  <% end %>
+                </div>
+                <div class="right-side">
+                  <div class="content-heading">
+                    <h5><%= link_to post.title, post %></h5>
+                    oleh <%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small><br/>
+                  </div>
+                  <div class="content-desc">
+                    <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %>
+                  </div>
+                </div>
+              </div>
+              <br />
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- End of Tab -->
+    </div>
+  </div>
+</div>
+<!-- End of Main Content -->
