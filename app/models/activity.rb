@@ -35,5 +35,12 @@ class Activity < ActiveRecord::Base
       thumb: '100x100>',
       square: '200x200#',
       medium: '300x300>'
+    },
+    :bucket => "qbl-paperclip",
+    :s3_protocol => 'http',
+    :s3_credentials => {
+      :bucket => ENV['AWS_BUCKET'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
 end
