@@ -27,10 +27,13 @@ class Activity < ActiveRecord::Base
 	  "#{self.get_subdistrict_name} - #{self.name}" 
 	end
 
-  has_attached_file :picture, :default_url => "/images/missing/:class_:attachment_:style.jpg", styles: {
-  	tiny: '50x50',
-    thumb: '100x100>',
-    square: '200x200#',
-    medium: '300x300>'
-  }
+  has_attached_file :picture, 
+    :storage => :s3,
+    :default_url => "/images/missing/:class_:attachment_:style.jpg", 
+    :styles => {
+    	tiny: '50x50',
+      thumb: '100x100>',
+      square: '200x200#',
+      medium: '300x300>'
+    }
 end

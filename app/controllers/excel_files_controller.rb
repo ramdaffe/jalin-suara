@@ -10,7 +10,7 @@ class ExcelFilesController < ApplicationController
       if @excel_file.save
         redirect_path = activities_path
         file = Excel.new(@excel_file.document.path)
-        12177.upto(file.last_row) do |line|
+        2.upto(file.last_row) do |line|
           province_name = file.cell(line, 'B')
           district_name = file.cell(line, 'D')
           subdistrict_name = file.cell(line, 'F')
