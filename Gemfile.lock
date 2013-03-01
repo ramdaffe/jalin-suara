@@ -108,7 +108,6 @@ GEM
     multi_json (1.6.1)
     multi_xml (0.5.3)
     multipart-post (1.1.5)
-    mysql2 (0.3.11)
     nokogiri (1.5.6)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -236,7 +235,6 @@ DEPENDENCIES
   koala
   less-rails
   meta_search
-  mysql2
   omniauth-facebook
   omniauth-twitter
   opinio

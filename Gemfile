@@ -35,7 +35,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 group :development, :test do
-  gem 'mysql2'
+  gem 'pg'
 end
 
 group :production do
