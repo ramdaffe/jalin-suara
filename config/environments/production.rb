@@ -68,7 +68,7 @@ Mapstories::Application.configure do
   # Amazon S3 settings for Paperclip uploads
   config.paperclip_defaults = {
     :storage => :s3,
-    :default_url => "/images/missing/:class_:attachment_:style.jpg", 
+    :default_url => "https://s3.amazonaws.com/qbl-paperclip/images/missing/:class_:attachment_:style.jpg", 
     :s3_protocol => 'http',
     :s3_credentials => {
       :bucket => ENV['AWS_BUCKET'],
