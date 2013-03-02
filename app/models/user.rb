@@ -10,11 +10,12 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
-  has_attached_file :picture, :default_url => "/images/missing/:class_:attachment_:style.png", styles: {
-  	tiny: '50x50',
-    thumb: '100x100',
-    square: '128x128'
-  }
+  has_attached_file :picture, 
+    styles: {
+    	tiny: '50x50',
+      thumb: '100x100',
+      square: '128x128'
+    }
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
 	  user = User.where(:provider => auth.provider, :uid => auth.uid).first

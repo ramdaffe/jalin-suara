@@ -5,13 +5,14 @@ class Post < ActiveRecord::Base
 
   opinio_subjectum
 
-  has_attached_file :picture, :default_url => "/images/missing/:class_:attachment_:style.jpg", styles: {
-  	tiny: '50x50',
-    thumb: '100x100>',
-    square: '200x200#',
-    medium: '300x300>',
-    large: '500x300>'
-  }
+  has_attached_file :picture, 
+    styles: {
+    	tiny: '50x50',
+      thumb: '100x100>',
+      square: '200x200#',
+      medium: '300x300>',
+      large: '500x300>'
+    }
 
   def get_subdistrict_name
     name = ""
