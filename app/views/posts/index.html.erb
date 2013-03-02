@@ -25,8 +25,8 @@
   <div class="main-content">
     <div class="well">
       <ul class="nav nav-tabs">
-        <li><%= link_to "Aktivitas", subdistrict_path(@subdistrict) %></li>
         <li class="<%= 'active' if current_page?(posts_path) %>"><%= link_to "Cerita", :controller => 'posts', :action => 'index', :subdistrict_id => @subdistrict.id %></li>
+        <li><%= link_to "Sub Proyek", subdistrict_path(@subdistrict) %></li>
       </ul>
 
       <!-- Tab -->

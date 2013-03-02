@@ -15,7 +15,8 @@ class SubdistrictsController < ApplicationController
   def show
     @subdistrict = Subdistrict.find(params[:id])
     @implementer_unit = @subdistrict.implementer_unit
-    @activities = Activity.find(:all, :conditions => {:subdistrict_id => @subdistrict.id})
+    @activities = @subdistrict.activities
+    @posts = Post.find(:all, :conditions => ["activity_id IN (?)", @activities])
 
     respond_to do |format|
       format.html { render layout: 'three_columns'}
