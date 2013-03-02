@@ -5,7 +5,7 @@ class ProvincesController < ApplicationController
     @provinces = Province.paginate(:page => params[:page])
 
     respond_to do |format|
-      format.html { render layout: 'two_columns'}
+      format.html
       format.json { render json: @provinces }
     end
   end
@@ -19,7 +19,7 @@ class ProvincesController < ApplicationController
     @json = @activities.to_gmaps4rails
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render layout: 'three_columns'}
       format.json { render json: @province }
     end
   end

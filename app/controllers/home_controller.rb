@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  layout 'three_columns'
   # GET /
   def index
     @activities = Activity.paginate(:page => params[:page])

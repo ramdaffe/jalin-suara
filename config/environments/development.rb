@@ -37,4 +37,8 @@ Mapstories::Application.configure do
 
   # Devise
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.paperclip_defaults = {
+    :default_url => "/images/missing/:class_:attachment_:style.jpg"
+  }
 end

@@ -5,7 +5,7 @@ class SubdistrictsController < ApplicationController
     @subdistricts = Subdistrict.all
 
     respond_to do |format|
-      format.html { render layout: 'two_columns'}
+      format.html
       format.json { render json: @subdistricts }
     end
   end
@@ -18,7 +18,7 @@ class SubdistrictsController < ApplicationController
     @activities = Activity.find(:all, :conditions => {:subdistrict_id => @subdistrict.id})
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render layout: 'three_columns'}
       format.json { render json: @subdistrict }
     end
   end

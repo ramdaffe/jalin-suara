@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
     @activities = Activity.paginate(:page => params[:page])
 
     respond_to do |format|
-      format.html { render layout: 'two_columns'}
+      format.html
       format.json { render json: @activities }
     end
   end
@@ -18,7 +18,7 @@ class ActivitiesController < ApplicationController
     @posts = Post.find(:all, :conditions => {:activity_id => @activity.id}, :order => "created_at DESC")
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render layout: 'three_columns'}
       format.json { render json: @activity }
     end
   end
