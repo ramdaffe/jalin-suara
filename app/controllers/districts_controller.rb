@@ -5,7 +5,7 @@ class DistrictsController < ApplicationController
     @districts = District.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: 'two_columns'}
       format.json { render json: @districts }
     end
   end

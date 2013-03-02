@@ -5,7 +5,7 @@ class SubdistrictsController < ApplicationController
     @subdistricts = Subdistrict.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: 'two_columns'}
       format.json { render json: @subdistricts }
     end
   end

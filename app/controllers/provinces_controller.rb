@@ -5,7 +5,7 @@ class ProvincesController < ApplicationController
     @provinces = Province.paginate(:page => params[:page])
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: 'two_columns'}
       format.json { render json: @provinces }
     end
   end

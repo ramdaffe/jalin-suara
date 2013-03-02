@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(:version => 20130223074319) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
-    t.decimal  "latitude",             :precision => 11, :scale => 8
-    t.decimal  "longitude",            :precision => 11, :scale => 8
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.decimal  "latitude",                          :precision => 11, :scale => 8
+    t.decimal  "longitude",                         :precision => 11, :scale => 8
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(:version => 20130223074319) do
     t.integer  "project_length"
     t.integer  "project_area"
     t.integer  "project_quantity"
-    t.integer  "blm_amount"
-    t.integer  "self_fund_amount"
+    t.integer  "blm_amount",           :limit => 8
+    t.integer  "self_fund_amount",     :limit => 8
     t.integer  "male_proposal"
     t.integer  "female_proposal"
     t.integer  "male_beneficiary"

@@ -3,8 +3,8 @@ class ChangeActivities < ActiveRecord::Migration
     add_column :activities, :project_length, :integer
     add_column :activities, :project_area, :integer
     add_column :activities, :project_quantity, :integer
-    add_column :activities, :blm_amount, :integer
-    add_column :activities, :self_fund_amount, :integer
+    add_column :activities, :blm_amount, :bigint
+    add_column :activities, :self_fund_amount, :bigint
     add_column :activities, :male_proposal, :integer
     add_column :activities, :female_proposal, :integer
     add_column :activities, :male_beneficiary, :integer
