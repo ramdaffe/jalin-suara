@@ -1,0 +1,31 @@
+<!-- Tab -->
+  <div class="tabbable">
+    <div class="tab-content">
+      <div class="tab-pane active">
+        <% i = 0 %>
+        <% @posts.each do |post| %>
+          <% i += 1%>
+          <% if i != 1 %>
+            <hr />
+          <% end %>
+          <div class="row">
+            <div class="left-side">
+              <% if post.picture_file_name != nil %>
+                <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+              <% end %>
+            </div>
+            <div class="right-side">
+              <div class="content-heading">
+                <h5><%= link_to post.title, post %></h5>
+                oleh <%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small><br/>
+              </div>
+              <div class="content-desc">
+                <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- End of Tab -->

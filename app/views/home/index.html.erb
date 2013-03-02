@@ -23,15 +23,30 @@
   <div class="main-content">
     <div class="well">
       <%= gmaps4rails(@json) %>
-      <% @activities.each do |activity| %>
-        <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %> - <%= link_to activity.get_subdistrict_name, subdistrict_path(activity.subdistrict) %></h5></div>
-        <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
-        Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
-        Jumlah Dana Bantuan Langsung Masyarakat: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
-        Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
-        <div style="clear:both"></div>
-      <% end %>
-      <%= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
+      <br />
+
+      <!-- Activities -->
+      <ul class="nav nav-tabs">
+        <li class="<%= 'active' if params[:tab] == nil %>"><%= link_to "Most Discussed", :controller => 'home', :action => 'index'  %></li>
+        <li class="<%= 'active' if params[:tab] == 'recent' %>"><%= link_to "Most Recent", :controller => 'home', :action => 'index', :tab => "recent" %></li>
+      </ul>
+
+      <div class="tabbable">
+        <div class="tab-content">
+          <div class="tab-pane active">
+            <% @activities.each do |activity| %>
+              <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %> - <%= link_to activity.get_subdistrict_name, subdistrict_path(activity.subdistrict) %></h5></div>
+              <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
+              Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
+              Jumlah Dana Bantuan Langsung Masyarakat: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
+              Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
+              <div style="clear:both"></div>
+            <% end %>
+            <%= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
+          </div>
+        </div>
+      </div>
+      <!-- End of Activities -->
       <br/>
     </div>
   </div>
