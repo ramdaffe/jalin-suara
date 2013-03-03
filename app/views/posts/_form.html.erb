@@ -9,7 +9,13 @@
   	<%= f.input :title %>
     <%= f.input :description, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'} } %>
 	  <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
-	  <%= f.input :activity_id, :as => :hidden, :input_html => { :value => @activity.id } %>
+	  <%= f.input :postable_id, :as => :hidden, :input_html => { :value => @postable.id } %>
+    <%= f.input :postable_type, :as => :hidden, :input_html => { :value => @postable.class } %>
+    <%= f.input :latitude, :as => :hidden, :input_html => { :value => @postable.latitude } %>
+    <%= f.input :longitude, :as => :hidden, :input_html => { :value => @postable.longitude } %>
+    <%= f.input :budget %>
+    <%= f.input :dimension %>
+    <%= f.input :beneficiary %>
 	  <%= f.input :picture %>
   </div>
   <div class="modal-footer">

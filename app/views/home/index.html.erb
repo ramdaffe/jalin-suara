@@ -34,15 +34,30 @@
       <div class="tabbable">
         <div class="tab-content">
           <div class="tab-pane active">
-            <% @activities.each do |activity| %>
-              <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %> - <%= link_to activity.get_subdistrict_name, subdistrict_path(activity.subdistrict) %></h5></div>
-              <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
-              Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
-              Jumlah Dana Bantuan Langsung Masyarakat: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
-              Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
-              <div style="clear:both"></div>
+            <% i = 0 %>
+            <% @listed_posts.each do |post| %>
+              <% i += 1%>
+              <% if i != 1 %>
+                <hr />
+              <% end %>
+              <div class="row">
+                <div class="left-side">
+                  <% if post.picture_file_name != nil %>
+                    <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+                  <% end %>
+                </div>
+                <div class="right-side">
+                  <div class="content-heading">
+                    <h5><%= link_to post.title, post %></h5>
+                    oleh <%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small><br/>
+                    <small style="color: #999999;"><b><%= post.comments_count %> komentar</b></small>
+                  </div>
+                  <div class="content-desc">
+                    <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %>
+                  </div>
+                </div>
+              </div>
             <% end %>
-            <%= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
           </div>
         </div>
       </div>

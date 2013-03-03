@@ -16,7 +16,10 @@ class SubdistrictsController < ApplicationController
     @subdistrict = Subdistrict.find(params[:id])
     @implementer_unit = @subdistrict.implementer_unit
     @activities = @subdistrict.activities
-    @posts = Post.find(:all, :conditions => ["activity_id IN (?)", @activities])
+    @posts = Post.find(:all, :conditions => ["activity_id IN (?) OR (postable_type='Subdistrict' AND postable_id=?)", @activities, @subdistrict.id], :order => "created_at DESC")
+
+    @postable = @subdistrict
+    @post = Post.new
 
     respond_to do |format|
       format.html { render layout: 'three_columns'}

@@ -17,10 +17,14 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @implementer_unit = @post.activity.subdistrict.implementer_unit
+    if @post.postable_type == 'Subdistrict'
+      @implementer_unit = @post.postable.implementer_unit
+    elsif @post.postable_type == 'Activity'
+      @implementer_unit = @post.postable.subdistrict.implementer_unit
+    end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render layout: 'three_columns'}
       format.json { render json: @post }
     end
   end
@@ -48,8 +52,13 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to activity_path(@post.activity), notice: 'Post was successfully created.' }
-        format.json { render json: @post, status: :created, location: @post }
+        if @post.postable_type == 'Subdistrict'
+          format.html { redirect_to subdistrict_path(@post.postable), notice: 'Post was successfully created.' }
+          format.json { render json: @post, status: :created, location: @post }
+        elsif @post.postable_type == 'Activty'
+          format.html { redirect_to activity_path(@post.postable), notice: 'Post was successfully created.' }
+          format.json { render json: @post, status: :created, location: @post }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @post.errors, status: :unprocessable_entity }

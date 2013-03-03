@@ -14,8 +14,9 @@ class ActivitiesController < ApplicationController
   # GET /activities/1.json
   def show
     @activity = Activity.find(params[:id])
+    @postable = @activity
     @post = Post.new
-    @posts = Post.find(:all, :conditions => {:activity_id => @activity.id}, :order => "created_at DESC")
+    @posts = Post.find(:all, :conditions => {:postable_type => 'Activity', :postable_id => @activity.id}, :order => "created_at DESC")
 
     respond_to do |format|
       format.html { render layout: 'three_columns'}

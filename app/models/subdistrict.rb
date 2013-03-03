@@ -3,6 +3,7 @@ class Subdistrict < ActiveRecord::Base
   belongs_to :district
   has_one :implementer_unit
   has_many :activities
+  has_many :posts, :as => :postable
 
   def get_district_name
   	name = ''

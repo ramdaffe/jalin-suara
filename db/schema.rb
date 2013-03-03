@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223074319) do
+ActiveRecord::Schema.define(:version => 20130302142749) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -73,10 +73,10 @@ ActiveRecord::Schema.define(:version => 20130223074319) do
   create_table "districts", :force => true do |t|
     t.string   "name"
     t.integer  "province_id"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.decimal  "latitude",    :precision => 11, :scale => 8
+    t.decimal  "longitude",   :precision => 11, :scale => 8
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "excel_files", :force => true do |t|
@@ -109,30 +109,38 @@ ActiveRecord::Schema.define(:version => 20130223074319) do
     t.text     "description"
     t.integer  "activity_id"
     t.integer  "user_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "title"
+    t.decimal  "latitude",                          :precision => 11, :scale => 8
+    t.decimal  "longitude",                         :precision => 11, :scale => 8
+    t.boolean  "gmaps"
+    t.integer  "budget",               :limit => 8
+    t.integer  "dimension"
+    t.integer  "beneficiary"
+    t.integer  "postable_id"
+    t.string   "postable_type"
   end
 
   create_table "provinces", :force => true do |t|
     t.string   "name"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.decimal  "latitude",   :precision => 11, :scale => 8
+    t.decimal  "longitude",  :precision => 11, :scale => 8
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "subdistricts", :force => true do |t|
     t.string   "name"
     t.integer  "district_id"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.decimal  "latitude",    :precision => 11, :scale => 8
+    t.decimal  "longitude",   :precision => 11, :scale => 8
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -3,7 +3,7 @@ class Activity < ActiveRecord::Base
   acts_as_gmappable validation: false
   belongs_to :subdistrict
   belongs_to :category
-  has_many :posts
+  has_many :posts, :as => :postable
 
   def get_subdistrict_name
     name = ''
