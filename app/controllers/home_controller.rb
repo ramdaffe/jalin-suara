@@ -9,6 +9,7 @@ class HomeController < ApplicationController
       @listed_posts = Post.all.sort_by(&:comments_count).reverse
     end
     
+    # Filter to only show in Gmaps posts that have latitude and longitude 
     @posts = @listed_posts.find(:conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"])
     @json = @posts.to_gmaps4rails
 
@@ -18,7 +19,7 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @activities }
+      format.json { render json: @listed_posts }
     end
   end
 end
