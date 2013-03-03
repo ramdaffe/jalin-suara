@@ -2,7 +2,7 @@ class SubdistrictsController < ApplicationController
   # GET /subdistricts
   # GET /subdistricts.json
   def index
-    @subdistricts = Subdistrict.all
+    @subdistricts = Subdistrict.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html

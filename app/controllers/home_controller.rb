@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     end
     
     # Filter to only show in Gmaps posts that have latitude and longitude 
-    @posts = @listed_posts.find(:conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"])
+    @posts = Post.find(:all, :conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"])
     @json = @posts.to_gmaps4rails
 
     @provinces = Province.all

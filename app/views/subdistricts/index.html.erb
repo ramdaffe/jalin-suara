@@ -37,6 +37,8 @@
   </tbody>
 </table>
 
+<%= will_paginate @subdistricts, :renderer => BootstrapPagination::Rails %>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_subdistrict_path,
             :class => 'btn btn-primary' %>
