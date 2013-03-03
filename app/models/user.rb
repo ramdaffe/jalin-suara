@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
-  has_attached_file :picture, 
+  has_attached_file :picture,
     styles: {
     	tiny: '50x50',
       thumb: '100x100',

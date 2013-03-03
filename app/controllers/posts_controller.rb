@@ -54,11 +54,12 @@ class PostsController < ApplicationController
       if @post.save
         if @post.postable_type == 'Subdistrict'
           format.html { redirect_to subdistrict_path(@post.postable), notice: 'Post was successfully created.' }
-          format.json { render json: @post, status: :created, location: @post }
         elsif @post.postable_type == 'Activty'
           format.html { redirect_to activity_path(@post.postable), notice: 'Post was successfully created.' }
-          format.json { render json: @post, status: :created, location: @post }
+        else
+          format.html { redirect_to post_path(@post), notice: 'Post was successfully created.' }
         end
+        format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
         format.json { render json: @post.errors, status: :unprocessable_entity }
