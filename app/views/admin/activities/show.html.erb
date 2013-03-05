@@ -1,0 +1,92 @@
+<div class="span3">
+  <div class="well" style="padding: 8px 0;">
+    <h5 class="nav-list"><%= link_to @activity.get_subdistrict_name, @activity.subdistrict %></h5>
+    <h5 class="nav-list" style="text-align: center;"><%= image_tag @activity.picture.url(:square)%></h5>
+    <ul class="nav nav-list">
+      <li class="divider"></li>
+      <li class="nav-header">Profil Kecamatan</li>
+      <li style="font-size: 12px;">Nama UPK: </li>
+      <li style="font-size: 12px;">Alamat UPK: </li>
+      <li style="font-size: 12px;">Telepon UPK: </li>
+      <li style="font-size: 12px;">Nama Fasilitator: </li>
+      <li style="font-size: 12px;">Telepon Fasilitator: </li>
+      <li style="font-size: 12px;">Telepon Pengaduan: </li>
+      <li style="font-size: 12px;">Jumlah Desa: </li>
+      <li style="font-size: 12px;">Jumlah Kelurahan: </li>
+      <li style="font-size: 12px;">Jumlah Penerima Manfaat: </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="span6">
+  <div class="main-content">
+    <div class="well">
+      <!-- Activity's Basic Information -->
+      <h4><%= @activity.name %></h4>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Informasi Aktivitas</th>
+            <th>Informasi Dana</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jumlah Proposal (L): <%= @activity.male_proposal %></td>
+            <td>BLM: <%= number_to_currency(@activity.self_fund_amount, :unit => "Rp ") %></td>
+          </tr>
+          <tr>
+            <td>Jumlah Proposal (P): <%= @activity.female_proposal %></td>
+            <td>Swadaya Masyarakat: <%= number_to_currency(@activity.self_fund_amount, :unit => "Rp ") %></td>
+          </tr>
+          <tr>
+            <td>Panjang Proyek: <%= @activity.project_length %></td>
+            <td>Penerima Manfaat (L): <%= @activity.male_beneficiary %></td>
+          </tr>
+          <tr>
+            <td>Luas Proyek: <%= @activity.project_area %></td>
+            <td>Penerima Manfaat (P): <%= @activity.female_beneficiary %></td>
+          </tr>
+          <tr>
+            <td>Jumlah Proyek: <%= @activity.project_quantity %></td>
+            <td>Penerima Manfaat (Miskin): <%= @activity.poor_beneficiary %></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- End of Activity's Basic Information -->
+
+      <!-- Add Post Form -->
+      <% if current_user != nil %>
+        <%= render "/posts/form" %>
+        <div class="text-center">
+          <button href="#responsive" data-toggle="modal" class="btn btn-primary">+ Tambah Cerita</button>
+        </div>
+      <% end %>
+      <!-- End of Add Post Form -->
+      
+      <!-- Posts -->
+      <% @posts.each do |post| %>
+        <hr />
+        <div class="row">
+          <div class="left-side">
+            <% if post.picture_file_name != nil %>
+              <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+            <% end %>
+          </div>
+          <div class="right-side">
+            <div class="content-heading">
+              <h5><%= link_to post.title, post %></h5>
+              oleh <%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small><br/>
+            </div>
+            <div class="content-desc">
+              <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <!-- End of Posts -->
+    </div>
+  </div>
+</div>
+<!-- Main Content -->

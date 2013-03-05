@@ -1,0 +1,50 @@
+<%- model_class = Province -%>
+<div class="page-header">
+  <h1>Daftar Provinsi</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nomor</th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th>Jumlah Kabupaten</th>
+      <th>Jumlah Data Aktivitas Jalin Suara</th>
+      <% if current_user != nil %>
+        <% if current_user.has_role? :admin %>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% i=0 %>
+    <% @provinces.each do |province| %>
+      <% i+= 1 %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= link_to province.name, admin_province_path(province) %></td>
+        <td><%= province.get_districts_number %></td>
+        <td><%= province.get_activities_number %></td>
+        <% if current_user != nil %>
+          <% if current_user.has_role? :admin %>
+            <td>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")), 
+                edit_admin_province_path(province), :class => 'btn btn-mini' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                admin_province_path(province),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-mini btn-danger' %>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if current_user != nil %>
+  <% if current_user.has_role? :admin %>
+    <%= link_to t('.new', :default => t("helpers.links.new")), new_admin_province_path, :class => 'btn btn-primary' %>
+  <% end %>
+<% end %>

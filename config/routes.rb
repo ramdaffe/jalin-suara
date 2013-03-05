@@ -1,23 +1,28 @@
 Mapstories::Application.routes.draw do
   namespace :admin do
+    resources :activities
+    match 'activites/import_excel' => 'activities#import_excel'
+    resources :districts
+    resources :provinces
     resources :roles
+    resources :subdistricts
   end
 
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   mount Ckeditor::Engine => '/ckeditor'
   opinio_model
-  resources :posts do
-    opinio
-  end
-  resources :implementer_units
-  resources :excel_files
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :activities
   match 'activites/import_excel' => 'activities#import_excel'
   resources :categories
   resources :districts
+  resources :excel_files
+  resources :implementer_units
+  resources :posts do
+    opinio
+  end
   resources :projects
-  resources :subdistricts
   resources :provinces
+  resources :subdistricts
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

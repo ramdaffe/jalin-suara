@@ -1,0 +1,37 @@
+<div class="span3">
+  <div class="well" style="padding: 8px 0;">
+    <ul class="nav nav-list">
+      <li class="nav-header">Provinsi <%= @province.name %> </li>
+      <li class="divider"></li>
+      <li class="nav-header">Cakupan Jalin Suara</li>
+      <li style="font-size: 12px;">Kabupaten: <%= @province.get_districts_number %></li>
+      <li style="font-size: 12px;">Kecamatan: <%= @province.get_subdistricts_number %></li>
+      <li style="font-size: 12px;">Desa: </li>
+      <li style="font-size: 12px;">Total Aktivitas: <%= @province.get_activities_number %></li>
+      <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat: </li>
+      <li style="font-size: 12px;"><b><%= number_to_currency(@province.get_total_blm_amount, :unit => "Rp ") %></b></li>
+      <li style="font-size: 12px;">Total Dana Swadaya Masyarakat: </li>
+      <li style="font-size: 12px;"><b><%= number_to_currency(@province.get_total_self_fund_amount, :unit => "Rp ") %></b></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="span6">
+  <div class="main-content">
+    <div class="well">
+      <%= gmaps4rails(@json) %>
+      <% @activities.each do |activity| %>
+        <div class="content-heading"><h5><%= link_to activity.name, admin_activity_path(activity) %> - <%= activity.get_subdistrict_name %></h5></div>
+        <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
+        Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
+        Jumlah Dana Bantuan Langsung Masyarakat: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
+        Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
+        <div style="clear:both"></div>
+      <% end %>
+      <%#= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
+      <br/>
+    </div>
+  </div>
+</div>
+<!-- End of Main Content -->

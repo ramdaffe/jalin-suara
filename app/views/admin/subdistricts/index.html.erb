@@ -1,0 +1,47 @@
+<%- model_class = Subdistrict -%>
+<div class="page-header">
+  <h1>Daftar Kecamatan</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:district_id) %></th>
+      <th><%= model_class.human_attribute_name(:latitude) %></th>
+      <th><%= model_class.human_attribute_name(:longitude) %></th>
+      <% if current_user != nil %>
+        <% if current_user.has_role? :admin %>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subdistricts.each do |subdistrict| %>
+      <tr>
+        <td><%= subdistrict.id %></td>
+        <td><%= link_to subdistrict.name, subdistrict_path(subdistrict) %></td>
+        <td><%= subdistrict.get_district_name %></td>
+        <td><%= subdistrict.latitude %></td>
+        <td><%= subdistrict.longitude %></td>
+        <% if current_user != nil %>
+          <% if current_user.has_role? :admin %>
+            <td>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_subdistrict_path(subdistrict), :class => 'btn btn-mini' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")), subdistrict_path(subdistrict), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @subdistricts, :renderer => BootstrapPagination::Rails %>
+
+<% if current_user != nil %>
+  <% if current_user.has_role? :admin %>
+    <%= link_to t('.new', :default => t("helpers.links.new")), new_subdistrict_path, :class => 'btn btn-primary' %>
+  <% end %>
+<% end %>
