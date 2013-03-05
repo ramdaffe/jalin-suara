@@ -1,11 +1,13 @@
 Mapstories::Application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
+  namespace :admin do
+    resources :roles
+  end
 
+  mount Ckeditor::Engine => '/ckeditor'
   opinio_model
   resources :posts do
     opinio
   end
-
   resources :implementer_units
   resources :excel_files
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}

@@ -47,10 +47,12 @@ gem 'simple_form'
 gem 'gmaps4rails'
 gem 'flickraw'
 
-# Authentication
+# Authentication and Authorization
 gem 'devise'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'cancan'
+gem 'rolify'
 
 # Social Network Feed
 gem 'koala'

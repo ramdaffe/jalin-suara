@@ -39,6 +39,7 @@ GEM
     bootstrap_modal_rails (2.0.3)
       railties (~> 3.1)
     builder (3.0.4)
+    cancan (1.6.8)
     ckeditor (3.7.3)
       mime-types
       orm_adapter
@@ -171,6 +172,7 @@ GEM
     rdoc (3.12.1)
       json (~> 1.4)
     ref (1.0.2)
+    rolify (3.1.0)
     roo (1.10.2)
       nokogiri (>= 1.5.6)
       rubyzip (>= 0.9.9)
@@ -225,6 +227,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk (~> 1.6.0)
   bootstrap_modal_rails (~> 2.0.0)
+  cancan
   ckeditor (= 3.7.3)
   coffee-rails (~> 3.2.1)
   devise
@@ -241,6 +244,7 @@ DEPENDENCIES
   paperclip (~> 3.4.0)
   pg
   rails (= 3.2.11)
+  rolify
   roo
   sass-rails (~> 3.2.3)
   simple_form
