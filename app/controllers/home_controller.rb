@@ -39,4 +39,19 @@ class HomeController < ApplicationController
       format.json { render json: @results }
     end
   end
+
+  def show_map
+    # Filter to only show in Gmaps posts that have latitude and longitude 
+    @posts = Post.find(:all, :conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"])
+    @json = @posts.to_gmaps4rails
+
+    @provinces = Province.all
+    @districts = District.all
+    @subdistricts = Subdistrict.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @posts }
+    end
+  end
 end

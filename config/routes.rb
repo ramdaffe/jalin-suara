@@ -9,6 +9,8 @@ Mapstories::Application.routes.draw do
   end
 
   match 'home/search' => 'home#search'
+  match 'home/show_map' => 'home#show_map'
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   mount Ckeditor::Engine => '/ckeditor'
   opinio_model

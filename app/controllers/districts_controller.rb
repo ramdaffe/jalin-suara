@@ -2,10 +2,14 @@ class DistrictsController < ApplicationController
   # GET /districts
   # GET /districts.json
   def index
+    @province_stats = Province.all
+    @district_stats = District.all
+    @subdistrict_stats = Subdistrict.all
+
     @districts = District.paginate(:page => params[:page])
 
     respond_to do |format|
-      format.html
+      format.html { render layout: 'three_columns'}
       format.json { render json: @districts }
     end
   end

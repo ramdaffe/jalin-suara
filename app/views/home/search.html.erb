@@ -31,38 +31,56 @@
       <% @results.each do |result| %>
         <hr />
         <div class="row">
-          <div class="left-side">
-            <% if result.class == Post && result.class == Activity %>
+          <% if result.class == Post %>
+            <!-- Render Post result -->
+            <div class="left-side">
               <%= image_tag result.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
-            <% elsif result.class ==Subdistrict %>
-              <%= image_tag result.implementer_unit.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
-            <% end %>
-          </div>
-          <div class="right-side">
-            <div class="content-heading">
-              <% if result.class == Post %>
+            </div>
+            <div class="right-side">
+              <div class="content-heading">
                 <h5><%= result.title %></h5>
-              <% elsif result.class == Activity %>
+                oleh <%= result.user.username %>&nbsp;<small><%= distance_of_time_in_words(result.created_at, Time.now) %> ago</small><br/>
+                <small style="color: #999999;"><b><%= result.comments_count %> komentar</b></small>
+              </div>
+              <div class="content-desc">
+                <%= raw(truncate(result.description, length: 200)) %> <%= link_to 'baca selengkapnya', result %>
+              </div>
+            </div>
+            <!-- End of Render Post result -->
+          <% elsif result.class == Activity %>
+            <!-- Render Activity result -->
+            <div class="left-side">
+              <%= image_tag result.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+            </div>
+            <div class="right-side">
+              <div class="content-heading">
                 <h5><%= result.name %></h5>
                 <small style="color: #999999;"><b>di <%= result.get_subdistrict_name %></b></small>
-              <% elsif result.class ==Subdistrict %>
-                <h5><%= result.name %></h5>
-              <% end %>
-            </div>
-            <div class="content-desc">
-              <% if result.class == Post %>
-                <%= raw(truncate(result.description, length: 200)) %> <%= link_to 'baca selengkapnya', result %>
-              <% elsif result.class == Activity %>
+              </div>
+              <div class="content-desc">
                 Jumlah Penerima Manfaat: <%= result.male_beneficiary + result.female_beneficiary %><br/>
-                Jumlah Dana Bantuan Langsung Masyarakat: <br/>
-                <%= number_to_currency(result.blm_amount, :unit => "Rp ") %><br/>
-                Jumlah Dana Swadaya Masyarakat: <br/>
-                <%= number_to_currency(result.self_fund_amount, :unit => "Rp ") %><br/>
-              <% elsif result.class ==Subdistrict %>
-                <%= result.name %>
-              <% end %>
+                Jumlah Dana BLM: <%= number_to_currency(result.blm_amount, :unit => "Rp ") %><br/>
+                <%= link_to 'lihat selengkapnya', activity_path(result) %>
+              </div>
             </div>
-          </div>
+            <!-- End of Render Activity result -->
+          <% elsif result.class == Subdistrict %>
+            <!-- Render Subdistrict result -->
+            <div class="left-side">
+              <%= image_tag result.implementer_unit.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+            </div>
+            <div class="right-side">
+              <div class="content-heading">
+                <h5><%= result.name %></h5>
+              </div>
+              <div class="content-desc">
+                Jumlah Cerita: <%= result.posts.size %><br/>
+                Jumlah Sub Proyek: <%= result.activities.size %><br/>
+                <%= link_to 'lihat selengkapnya', subdistrict_path(result) %>
+              </div>
+            </div>
+            <!-- Render Subdistrict result -->
+          <% end %>
         </div>
       <% end %>
       <br/>

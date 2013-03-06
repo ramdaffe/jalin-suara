@@ -1,44 +1,50 @@
-<%- model_class = Subdistrict -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<div class="span3">
+  <div class="well" style="padding: 8px 0;">
+    <ul class="nav nav-list">
+      <li class="nav-header">Cakupan Jalin Suara</li>
+      <li style="font-size: 12px;">Propinsi: <%= link_to(@province_stats.size, provinces_path) %></li>
+      <li style="font-size: 12px;">Kabupaten: <%= link_to(@district_stats.size, districts_path) %></li>
+      <li style="font-size: 12px;">Kecamatan: <%= link_to(@subdistrict_stats.size, subdistricts_path) %></li>
+      <li style="font-size: 12px;">Desa: </li>
+      <li class="divider"></li>
+      <li class="nav-header">Cakupan PNPM Mandiri</li>
+      <li style="font-size: 12px;">Propinsi: </li>
+      <li style="font-size: 12px;">Kabupaten: </li>
+      <li style="font-size: 12px;">Kecamatan: </li>
+      <li style="font-size: 12px;">Desa: </li>
+      <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat:</li>
+      <li style="font-size: 12px;"><b><%= number_to_currency(0, :unit => "Rp ") %></b></li>
+    </ul>
+  </div>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:district_id) %></th>
-      <th><%= model_class.human_attribute_name(:latitude) %></th>
-      <th><%= model_class.human_attribute_name(:longitude) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @subdistricts.each do |subdistrict| %>
-      <tr>
-        <td><%= subdistrict.id %></td>
-        <td><%= link_to subdistrict.name, subdistrict_path(subdistrict) %></td>
-        <td><%= subdistrict.get_district_name %></td>
-        <td><%= subdistrict.latitude %></td>
-        <td><%= subdistrict.longitude %></td>
-        <td><%=l subdistrict.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_subdistrict_path(subdistrict), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      subdistrict_path(subdistrict),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= will_paginate @subdistricts, :renderer => BootstrapPagination::Rails %>
+<!-- Main Content -->
+<div class="span6">
+  <div class="main-content">
+    <div class="well">
+      <h4>Daftar Kecamatan</h4>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_subdistrict_path,
-            :class => 'btn btn-primary' %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nomor</th>
+            <th>Nama Kecamatan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% i=0 %>
+          <% @subdistricts.each do |subdistrict| %>
+            <% i+= 1 %>
+            <tr>
+              <td><%= i %></td>
+              <td><%= link_to subdistrict.name, subdistrict_path(subdistrict) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      
+      <%= will_paginate @subdistricts, :renderer => BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>
+<!-- End of Main Content -->

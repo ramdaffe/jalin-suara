@@ -1,13 +1,16 @@
 <div class="span3">
   <div class="well" style="padding: 8px 0;">
     <ul class="nav nav-list">
-      <li class="nav-header">Provinsi <%= @province.name %> </li>
+      <li class="nav-header"><%= @province.name %> </li>
+      <li class="divider"></li>
+      <li style="font-size: 12px;">Kabupaten: <%= link_to(@district_stats.size, districts_path) %></li>
+      <li style="font-size: 12px;">Kecamatan: <%= link_to(@subdistrict_stats.size, subdistricts_path) %></li>
       <li class="divider"></li>
       <li class="nav-header">Cakupan Jalin Suara</li>
-      <li style="font-size: 12px;">Kabupaten: <%= @province.get_districts_number %></li>
-      <li style="font-size: 12px;">Kecamatan: <%= @province.get_subdistricts_number %></li>
+      <li style="font-size: 12px;">Kabupaten:</li>
+      <li style="font-size: 12px;">Kecamatan:</li>
       <li style="font-size: 12px;">Desa: </li>
-      <li style="font-size: 12px;">Total Aktivitas: <%= @province.get_activities_number %></li>
+      <li style="font-size: 12px;">Total Aktivitas:</li>
       <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat: </li>
       <li style="font-size: 12px;"><b><%= number_to_currency(@province.get_total_blm_amount, :unit => "Rp ") %></b></li>
       <li style="font-size: 12px;">Total Dana Swadaya Masyarakat: </li>

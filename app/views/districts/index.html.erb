@@ -1,44 +1,50 @@
-<%- model_class = District -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<div class="span3">
+  <div class="well" style="padding: 8px 0;">
+    <ul class="nav nav-list">
+      <li class="nav-header">Cakupan Jalin Suara</li>
+      <li style="font-size: 12px;">Propinsi: <%= link_to(@province_stats.size, provinces_path) %></li>
+      <li style="font-size: 12px;">Kabupaten: <%= link_to(@district_stats.size, districts_path) %></li>
+      <li style="font-size: 12px;">Kecamatan: <%= link_to(@subdistrict_stats.size, subdistricts_path) %></li>
+      <li style="font-size: 12px;">Desa: </li>
+      <li class="divider"></li>
+      <li class="nav-header">Cakupan PNPM Mandiri</li>
+      <li style="font-size: 12px;">Propinsi: </li>
+      <li style="font-size: 12px;">Kabupaten: </li>
+      <li style="font-size: 12px;">Kecamatan: </li>
+      <li style="font-size: 12px;">Desa: </li>
+      <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat:</li>
+      <li style="font-size: 12px;"><b><%= number_to_currency(0, :unit => "Rp ") %></b></li>
+    </ul>
+  </div>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:province_id) %></th>
-      <th><%= model_class.human_attribute_name(:latitude) %></th>
-      <th><%= model_class.human_attribute_name(:longitude) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @districts.each do |district| %>
-      <tr>
-        <td><%= district.id %></td>
-        <td><%= link_to district.name, district_path(district) %></td>
-        <td><%= district.get_province_name %></td>
-        <td><%= district.latitude %></td>
-        <td><%= district.longitude %></td>
-        <td><%=l district.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_district_path(district), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      district_path(district),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= will_paginate @districts, :renderer => BootstrapPagination::Rails %>
+<!-- Main Content -->
+<div class="span6">
+  <div class="main-content">
+    <div class="well">
+      <h4>Daftar Kabupaten</h4>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_district_path,
-            :class => 'btn btn-primary' %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nomor</th>
+            <th>Nama Kabupaten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% i=0 %>
+          <% @districts.each do |district| %>
+            <% i+= 1 %>
+            <tr>
+              <td><%= i %></td>
+              <td><%= link_to district.name, district_path(district) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= will_paginate @districts, :renderer => BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>
+<!-- End of Main Content -->
