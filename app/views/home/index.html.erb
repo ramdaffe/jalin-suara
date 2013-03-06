@@ -25,6 +25,11 @@
       <%= gmaps4rails(@json) %>
       <br />
 
+      <%= form_tag '/home/search' do %>
+        <%= text_field_tag 'query', nil, :class => 'search-query' %>
+        <%= submit_tag 'Cari', :class => 'btn' %>
+      <% end %>
+
       <!-- Activities -->
       <ul class="nav nav-tabs">
         <li class="<%= 'active' if params[:tab] == nil %>"><%= link_to "Terpopuler", :controller => 'home', :action => 'index'  %></li>

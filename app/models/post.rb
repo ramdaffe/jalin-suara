@@ -6,6 +6,10 @@ class Post < ActiveRecord::Base
 
   opinio_subjectum
 
+  searchable do
+    text :title, :description
+  end
+
   has_attached_file :picture, 
     styles: {
     	tiny: '50x50',

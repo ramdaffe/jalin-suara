@@ -1,0 +1,72 @@
+<div class="span3">
+  <div class="well" style="padding: 8px 0;">
+    <ul class="nav nav-list">
+      <li class="nav-header">Cakupan Jalin Suara</li>
+      <li style="font-size: 12px;">Propinsi: <%= link_to(@provinces.size, provinces_path) %></li>
+      <li style="font-size: 12px;">Kabupaten: <%= link_to(@districts.size, districts_path) %></li>
+      <li style="font-size: 12px;">Kecamatan: <%= link_to(@subdistricts.size, subdistricts_path) %></li>
+      <li style="font-size: 12px;">Desa: </li>
+      <li class="divider"></li>
+      <li class="nav-header">Cakupan PNPM Mandiri</li>
+      <li style="font-size: 12px;">Propinsi: </li>
+      <li style="font-size: 12px;">Kabupaten: </li>
+      <li style="font-size: 12px;">Kecamatan: </li>
+      <li style="font-size: 12px;">Desa: </li>
+      <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat:</li>
+      <li style="font-size: 12px;"><b><%= number_to_currency(0, :unit => "Rp ") %></b></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="span6">
+  <div class="main-content">
+    <div class="well">
+      <%= form_tag '/home/search' do %>
+        <%= text_field_tag 'query', nil, :class => 'search-query' %>
+        <%= submit_tag 'Cari', :class => 'btn' %>
+      <% end %>
+
+      <h5>Hasil Pencarian</h5>
+      <% @results.each do |result| %>
+        <hr />
+        <div class="row">
+          <div class="left-side">
+            <% if result.class == Post && result.class == Activity %>
+              <%= image_tag result.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+            <% elsif result.class ==Subdistrict %>
+              <%= image_tag result.implementer_unit.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+            <% end %>
+          </div>
+          <div class="right-side">
+            <div class="content-heading">
+              <% if result.class == Post %>
+                <h5><%= result.title %></h5>
+              <% elsif result.class == Activity %>
+                <h5><%= result.name %></h5>
+                <small style="color: #999999;"><b>di <%= result.get_subdistrict_name %></b></small>
+              <% elsif result.class ==Subdistrict %>
+                <h5><%= result.name %></h5>
+              <% end %>
+            </div>
+            <div class="content-desc">
+              <% if result.class == Post %>
+                <%= raw(truncate(result.description, length: 200)) %> <%= link_to 'baca selengkapnya', result %>
+              <% elsif result.class == Activity %>
+                Jumlah Penerima Manfaat: <%= result.male_beneficiary + result.female_beneficiary %><br/>
+                Jumlah Dana Bantuan Langsung Masyarakat: <br/>
+                <%= number_to_currency(result.blm_amount, :unit => "Rp ") %><br/>
+                Jumlah Dana Swadaya Masyarakat: <br/>
+                <%= number_to_currency(result.self_fund_amount, :unit => "Rp ") %><br/>
+              <% elsif result.class ==Subdistrict %>
+                <%= result.name %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <br/>
+    </div>
+  </div>
+</div>
+<!-- End of Main Content -->

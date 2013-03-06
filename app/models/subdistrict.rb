@@ -5,6 +5,10 @@ class Subdistrict < ActiveRecord::Base
   has_many :activities
   has_many :posts, :as => :postable
 
+  searchable do
+    text :name
+  end
+
   def get_district_name
   	name = ''
   	if self.district != nil

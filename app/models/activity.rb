@@ -5,6 +5,10 @@ class Activity < ActiveRecord::Base
   belongs_to :category
   has_many :posts, :as => :postable
 
+  searchable do
+    text :name, :description
+  end
+
   def get_subdistrict_name
     name = ''
     if self.subdistrict != nil

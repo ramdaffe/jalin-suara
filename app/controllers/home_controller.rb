@@ -22,4 +22,21 @@ class HomeController < ApplicationController
       format.json { render json: @listed_posts }
     end
   end
+
+  def search
+    search_query = params[:query]
+    @search = Sunspot.search(Subdistrict, Activity, Post) do 
+      fulltext search_query 
+    end
+    @results = @search.results
+
+    @provinces = Province.all
+    @districts = District.all
+    @subdistricts = Subdistrict.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @results }
+    end
+  end
 end

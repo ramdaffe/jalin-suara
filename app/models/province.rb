@@ -2,6 +2,10 @@ class Province < ActiveRecord::Base
   attr_accessible :latitude, :longitude, :name
   has_many :districts
 
+  searchable do
+    text :name
+  end
+
   def get_districts_number
   	number = 0
   	if self.districts != nil
