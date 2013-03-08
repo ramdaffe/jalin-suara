@@ -1,6 +1,4 @@
 class HomeController < ApplicationController
-  layout 'three_columns'
-
   # GET /
   def index
     if params[:tab] == "recent"
@@ -18,7 +16,7 @@ class HomeController < ApplicationController
     @subdistricts = Subdistrict.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: 'three_columns' }
       format.json { render json: @listed_posts }
     end
   end
@@ -35,7 +33,7 @@ class HomeController < ApplicationController
     @subdistricts = Subdistrict.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: 'three_columns' }
       format.json { render json: @results }
     end
   end
