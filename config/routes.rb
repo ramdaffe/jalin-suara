@@ -3,6 +3,7 @@ Mapstories::Application.routes.draw do
     resources :activities
     match 'activites/import_excel' => 'activities#import_excel'
     resources :districts
+    resources :posts
     resources :provinces
     resources :roles
     resources :subdistricts
