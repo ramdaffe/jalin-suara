@@ -43,7 +43,7 @@
         </tbody>
       </table>
       
-      <%= will_paginate @subdistricts, :renderer => BootstrapPagination::Rails %>
+      <%= will_paginate @subdistricts, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => '<' %>
     </div>
   </div>
 </div>

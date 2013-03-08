@@ -6,7 +6,7 @@ class SubdistrictsController < ApplicationController
     @district_stats = District.all
     @subdistrict_stats = Subdistrict.all
 
-    @subdistricts = Subdistrict.paginate(:page => params[:page])
+    @subdistricts = Subdistrict.paginate(:page => params[:page], :order => 'name')
 
     respond_to do |format|
       format.html { render layout: 'three_columns'}

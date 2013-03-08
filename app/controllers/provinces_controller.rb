@@ -21,7 +21,7 @@ class ProvincesController < ApplicationController
     @district_stats = District.find(:all, :conditions => {:province_id => @province.id})
     @subdistrict_stats = Subdistrict.find(:all, :conditions => ['district_id IN (?)', @province.districts])
     
-    @activities = Activity.find(:all, :conditions => ['subdistrict_id IN (?)', @subdistrict_stats])
+    @activities = Activity.paginate(:per_page => 20, :page => params[:page], :conditions => ['subdistrict_id IN (?)', @subdistrict_stats])
     @json = @activities.to_gmaps4rails
 
     respond_to do |format|
