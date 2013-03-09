@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
     @subdistrict_stats = Subdistrict.all
     @activities_stats = Activity.all
     
-    @activities = Activity.paginate(:page => params[:page])
+    @activities = Activity.paginate(:page => params[:page], :order => 'name')
 
     respond_to do |format|
       format.html
