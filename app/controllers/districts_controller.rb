@@ -5,11 +5,12 @@ class DistrictsController < ApplicationController
     @province_stats = Province.all
     @district_stats = District.all
     @subdistrict_stats = Subdistrict.all
+    @activities_stats = Activity.all
 
-    @districts = District.paginate(:page => params[:page])
+    @districts = District.paginate(:page => params[:page], :order => 'name')
 
     respond_to do |format|
-      format.html { render layout: 'three_columns'}
+      format.html
       format.json { render json: @districts }
     end
   end

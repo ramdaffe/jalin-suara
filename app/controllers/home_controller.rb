@@ -14,6 +14,7 @@ class HomeController < ApplicationController
     @provinces = Province.all
     @districts = District.all
     @subdistricts = Subdistrict.all
+    @activities = Activity.all
 
     respond_to do |format|
       format.html { render layout: 'three_columns' }

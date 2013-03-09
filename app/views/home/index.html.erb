@@ -2,10 +2,12 @@
   <div class="well" style="padding: 8px 0;">
     <ul class="nav nav-list">
       <li class="nav-header">Cakupan Jalin Suara</li>
-      <li style="font-size: 12px;">Propinsi: <%= link_to(@provinces.size, provinces_path) %></li>
-      <li style="font-size: 12px;">Kabupaten: <%= link_to(@districts.size, districts_path) %></li>
-      <li style="font-size: 12px;">Kecamatan: <%= link_to(@subdistricts.size, subdistricts_path) %></li>
-      <li style="font-size: 12px;">Desa: </li>
+    </ul>
+    <div style="font-size: 12px; margin-left: 15px;">Propinsi: <%= link_to(@provinces.size, provinces_path) %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Kabupaten: <%= link_to(@districts.size, districts_path) %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Kecamatan: <%= link_to(@subdistricts.size, subdistricts_path) %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Sub Proyek: <%= link_to(@activities.size, activities_path) %></div>
+    <ul class="nav nav-list">
       <li class="divider"></li>
       <li class="nav-header">Cakupan PNPM Mandiri</li>
       <li style="font-size: 12px;">Propinsi: </li>
@@ -54,12 +56,18 @@
                 </div>
                 <div class="right-side">
                   <div class="content-heading">
-                    <h5><%= link_to post.title, post %></h5>
-                    oleh <%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small><br/>
-                    <small style="color: #999999;"><b><%= post.comments_count %> komentar</b></small>
+                    <h5 style="margin-bottom: 0px;"><%= link_to post.title, post %></h5>
+                    <small>
+                      Sub Proyek: <b><%= post.get_activity_name %></b> | 
+                      Kecamatan: <b><%= post.get_subdistrict_name %></b>
+                    </small>
+                    <br/>
                   </div>
                   <div class="content-desc">
-                    <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %>
+                    <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %><br/><br/>
+                    <span class="label">oleh <%= post.user.username %></span>
+                    <span class="label"><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</span>
+                    <span class="label"><%= post.comments_count %> komentar</span>
                   </div>
                 </div>
               </div>

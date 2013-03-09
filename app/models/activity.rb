@@ -18,6 +18,26 @@ class Activity < ActiveRecord::Base
     return name
   end
 
+  def get_district_name
+    name = ''
+    if self.subdistrict != nil
+      name = self.subdistrict.get_district_name
+    end
+
+    return name
+  end
+
+  def get_province_name
+    name = ''
+    if self.subdistrict != nil
+      if self.subdistrict.district != nil
+        name = self.subdistrict.district.get_province_name
+      end
+    end
+
+    return name
+  end
+
   def get_category_name
     name = ''
     if self.category != nil

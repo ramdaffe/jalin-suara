@@ -27,8 +27,27 @@ class Post < ActiveRecord::Base
     "#{self.title}" 
   end
 
+  def get_activity_name
+    name = "-"
+    if self.postable_type == 'Activity'
+      name = self.postable.name
+    end
+
+    return name
+  end
+
+  def get_activity
+    if self.postable_type == 'Activity'
+      return self.postable
+    elsif self.postable_type == 'Subdistrict'
+      return nil
+    else
+      return nil
+    end
+  end
+
   def get_subdistrict_name
-    name = ""
+    name = "-"
     if self.postable_type == 'Subdistrict'
       name = self.postable.name
     elsif self.postable_type == 'Activity'
@@ -47,6 +66,8 @@ class Post < ActiveRecord::Base
       if self.postable.subdistrict != nil
         return self.postable.subdistrict
       end
+    else
+      return nil
     end
   end
 end

@@ -17,4 +17,22 @@ class Subdistrict < ActiveRecord::Base
 
   	return name
   end
+
+  def get_province_name
+    name = ''
+    if self.district != nil
+      name = self.district.get_province_name
+    end
+
+    return name
+  end
+
+  def get_activities_number
+    number = 0
+    if self.activities != nil
+      number += self.activities.size
+    end
+    
+    return number
+  end
 end

@@ -2,10 +2,12 @@
   <div class="well" style="padding: 8px 0;">
     <ul class="nav nav-list">
       <li class="nav-header">Cakupan Jalin Suara</li>
-      <li style="font-size: 12px;">Propinsi: <%= link_to(@province_stats.size, provinces_path) %></li>
-      <li style="font-size: 12px;">Kabupaten: <%= link_to(@district_stats.size, districts_path) %></li>
-      <li style="font-size: 12px;">Kecamatan: <%= link_to(@subdistrict_stats.size, subdistricts_path) %></li>
-      <li style="font-size: 12px;">Desa: </li>
+    </ul>
+    <div style="font-size: 12px; margin-left: 15px;">Propinsi: <%= link_to @province_stats.size, provinces_path, :style => 'display: inline;' %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Kabupaten: <%= link_to @district_stats.size, districts_path, :style => 'display: inline;' %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Kecamatan: <%= link_to @subdistrict_stats.size, subdistricts_path, :style => 'display: inline;' %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Sub Proyek: <%= link_to(@activities_stats.size, activities_path) %></div>
+    <ul class="nav nav-list">
       <li class="divider"></li>
       <li class="nav-header">Cakupan PNPM Mandiri</li>
       <li style="font-size: 12px;">Propinsi: </li>
@@ -19,7 +21,7 @@
 </div>
 
 <!-- Main Content -->
-<div class="span6">
+<div class="span9">
   <div class="main-content">
     <div class="well">
       <h4>Daftar Kecamatan</h4>
@@ -27,8 +29,11 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Nomor</th>
+            <th>No</th>
             <th>Nama Kecamatan</th>
+            <th>Kabupaten</th>
+            <th>Propinsi</th>
+            <th>Jumlah Sub Proyek</th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +43,9 @@
             <tr>
               <td><%= i %></td>
               <td><%= link_to subdistrict.name, subdistrict_path(subdistrict) %></td>
+              <td><%= subdistrict.get_district_name %></td>
+              <td><%= subdistrict.get_province_name %></td>
+              <td style='text-align: right;'><%= subdistrict.get_activities_number %></td>
             </tr>
           <% end %>
         </tbody>

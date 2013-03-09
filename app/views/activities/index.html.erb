@@ -1,47 +1,58 @@
-<%- model_class = Activity -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<div class="span3">
+  <div class="well" style="padding: 8px 0;">
+    <ul class="nav nav-list">
+      <li class="nav-header">Cakupan Jalin Suara</li>
+    </ul>
+    <div style="font-size: 12px; margin-left: 15px;">Propinsi: <%= link_to @province_stats.size, provinces_path, :style => 'display: inline;' %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Kabupaten: <%= link_to @district_stats.size, districts_path, :style => 'display: inline;' %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Kecamatan: <%= link_to @subdistrict_stats.size, subdistricts_path, :style => 'display: inline;' %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Sub Proyek: <%= link_to(@activities_stats.size, activities_path) %></div>
+    <ul class="nav nav-list">
+      <li class="divider"></li>
+      <li class="nav-header">Cakupan PNPM Mandiri</li>
+      <li style="font-size: 12px;">Propinsi: </li>
+      <li style="font-size: 12px;">Kabupaten: </li>
+      <li style="font-size: 12px;">Kecamatan: </li>
+      <li style="font-size: 12px;">Desa: </li>
+      <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat:</li>
+      <li style="font-size: 12px;"><b><%= number_to_currency(0, :unit => "Rp ") %></b></li>
+    </ul>
+  </div>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:subdistrict_id) %></th>
-      <th><%= model_class.human_attribute_name(:category_id) %></th>
-      <th><%= model_class.human_attribute_name(:latitude) %></th>
-      <th><%= model_class.human_attribute_name(:longitude) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @activities.each do |activity| %>
-      <tr>
-        <td><%= activity.id %></td>
-        <td><%= link_to activity.name, activity_path(activity) %></td>
-        <td><%= activity.get_subdistrict_name %></td>
-        <td><%= activity.get_category_name %></td>
-        <td><%= activity.latitude %></td>
-        <td><%= activity.longitude %></td>
-        <td><%=l activity.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_activity_path(activity), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      activity_path(activity),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
+<!-- Main Content -->
+<div class="span9">
+  <div class="main-content">
+    <div class="well">
+      <h4>Daftar Sub Proyek</h4>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_activity_path,
-            :class => 'btn btn-primary' %>
-<%= link_to 'Upload Excel', {:action => 'import_excel'}, {:class => 'btn btn-primary'} %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Sub Proyek</th>
+            <th>Kecamatan</th>
+            <th>Kabupaten</th>
+            <th>Propinsi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% i=0 %>
+          <% @activities.each do |activity| %>
+            <% i += 1 %>
+            <tr>
+              <td><%= i %></td>
+              <td><%= link_to activity.name, activity_path(activity) %></td>
+              <td><%= activity.get_subdistrict_name %></td>
+              <td><%= activity.get_district_name %></td>
+              <td><%= activity.get_province_name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      
+      <%= will_paginate @activities, :renderer => BootstrapPagination::Rails, :next_label => '>', :previous_label => '<' %>
+    </div>
+  </div>
+</div>
+<!-- End of Main Content -->

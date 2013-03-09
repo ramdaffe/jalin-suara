@@ -2,6 +2,11 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
+    @province_stats = Province.all
+    @district_stats = District.all
+    @subdistrict_stats = Subdistrict.all
+    @activities_stats = Activity.all
+    
     @activities = Activity.paginate(:page => params[:page])
 
     respond_to do |format|
