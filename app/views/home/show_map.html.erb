@@ -2,10 +2,10 @@
   <div class="well" style="padding: 8px 0;">
     <h5 style="margin-left: 15px;">Pencarian Sub Proyek</h5>
     <%= simple_form_for :search, :controller => 'home', :action => 'show_map', :html => { :style => 'margin-left: 15px;' } do |f| %>
-      <%= f.input :province_name %>
-      <%= f.input :district_name %>
-      <%= f.input :subdistrict_name %>
-      <%= f.input :activity_name %>
+      <%= f.input :subdistrict_district_province_name_contains, :label => 'Nama Propinsi' %>
+      <%= f.input :subdistrict_district_name_contains, :label => 'Nama Kabupaten' %>
+      <%= f.input :subdistrict_name_contains, :label => 'Nama Kecamatan' %>
+      <%= f.input :name_contains, :label => 'Nama Sub Proyek' %>
       <%= f.button :submit, 'Cari', :class => 'btn-primary' %>
     <% end %>
   </div>

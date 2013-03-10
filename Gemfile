@@ -60,7 +60,7 @@ gem 'koala'
 gem 'roo'
 gem 'will_paginate', '~> 3.0.3'
 gem 'will_paginate-bootstrap'
-# gem 'meta_search'
+gem 'meta_search'
 gem 'sunspot_rails', '~> 1.3.0'
 gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 

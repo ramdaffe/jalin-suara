@@ -40,15 +40,9 @@ class HomeController < ApplicationController
   end
 
   def show_map
-    # @activities = Activity.all
     if params[:search] != nil
-      province_name = params[:search][:province_name]
-      district_name = params[:search][:district_name]
-      subdistrict_name = params[:search][:subdistrict_name]
-      activity_name = params[:search][:activity_name]
-
-      # @activities = Activity.find_by_filter(province_name, district_name, subdistrict_name, activity_name)
-      @activities = Activity.find(:all, :conditions => ["subdistrict_id in (?)", District.find(100).subdistricts])
+      @search = Activity.search(params[:search])
+      @activities = @search.all
     else
       @activities = Activity.find(:all, :conditions => ["subdistrict_id in (?)", District.find(100).subdistricts])
     end
