@@ -40,9 +40,19 @@ class HomeController < ApplicationController
   end
 
   def show_map
-    # Filter to only show in Gmaps posts that have latitude and longitude 
-    @posts = Post.find(:all, :conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"])
-    @json = @posts.to_gmaps4rails
+    # @activities = Activity.all
+    if params[:search] != nil
+      province_name = params[:search][:province_name]
+      district_name = params[:search][:district_name]
+      subdistrict_name = params[:search][:subdistrict_name]
+      activity_name = params[:search][:activity_name]
+
+      # @activities = Activity.find_by_filter(province_name, district_name, subdistrict_name, activity_name)
+      @activities = Activity.find(:all, :conditions => ["subdistrict_id in (?)", District.find(100).subdistricts])
+    else
+      @activities = Activity.find(:all, :conditions => ["subdistrict_id in (?)", District.find(100).subdistricts])
+    end
+    @json = @activities.to_gmaps4rails
 
     @provinces = Province.all
     @districts = District.all
@@ -50,7 +60,7 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @posts }
+      format.json { render json: @activities }
     end
   end
 end

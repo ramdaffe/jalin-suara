@@ -56,8 +56,10 @@
           <% if current_user != nil %>
             <%= render "/posts/form" %>
           <% end %>
-        <!-- End of Add Post Form -->
+          <!-- End of Add Post Form -->
+
           <%= yield %>
+          
           <!-- Right Sidebar -->
           <div class="span3">
             <div class="well" style="padding: 8px 0;">

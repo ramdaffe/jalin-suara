@@ -1,74 +1,22 @@
 <div class="span3">
   <div class="well" style="padding: 8px 0;">
-    <ul class="nav nav-list">
-      <li class="nav-header">Cakupan Jalin Suara</li>
-      <li style="font-size: 12px;">Propinsi: <%= link_to(@provinces.size, provinces_path) %></li>
-      <li style="font-size: 12px;">Kabupaten: <%= link_to(@districts.size, districts_path) %></li>
-      <li style="font-size: 12px;">Kecamatan: <%= link_to(@subdistricts.size, subdistricts_path) %></li>
-      <li style="font-size: 12px;">Desa: </li>
-      <li class="divider"></li>
-      <li class="nav-header">Cakupan PNPM Mandiri</li>
-      <li style="font-size: 12px;">Propinsi: </li>
-      <li style="font-size: 12px;">Kabupaten: </li>
-      <li style="font-size: 12px;">Kecamatan: </li>
-      <li style="font-size: 12px;">Desa: </li>
-      <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat:</li>
-      <li style="font-size: 12px;"><b><%= number_to_currency(0, :unit => "Rp ") %></b></li>
-    </ul>
+    <h5 style="margin-left: 15px;">Pencarian Sub Proyek</h5>
+    <%= simple_form_for :search, :controller => 'home', :action => 'show_map', :html => { :style => 'margin-left: 15px;' } do |f| %>
+      <%= f.input :province_name %>
+      <%= f.input :district_name %>
+      <%= f.input :subdistrict_name %>
+      <%= f.input :activity_name %>
+      <%= f.button :submit, 'Cari', :class => 'btn-primary' %>
+    <% end %>
   </div>
 </div>
 
 <!-- Main Content -->
-<div class="span6">
+<div class="span9">
   <div class="main-content">
     <div class="well">
+      <h5>Peta Sub Proyek</h5>
       <%= gmaps4rails(@json) %>
-      <br />
-
-      <%= form_tag '/home/search' do %>
-        <%= text_field_tag 'query', nil, :class => 'search-query' %>
-        <%= submit_tag 'Cari', :class => 'btn' %>
-        <%= link_to 'Lihat Peta Interaktif', '/home/show_map', :class => 'btn pull-right' %>
-      <% end %>
-
-      <!-- Activities -->
-      <ul class="nav nav-tabs">
-        <li class="<%= 'active' if params[:tab] == nil %>"><%= link_to "Terpopuler", :controller => 'home', :action => 'index'  %></li>
-        <li class="<%= 'active' if params[:tab] == 'recent' %>"><%= link_to "Terkini", :controller => 'home', :action => 'index', :tab => "recent" %></li>
-      </ul>
-
-      <div class="tabbable">
-        <div class="tab-content">
-          <div class="tab-pane active">
-            <% i = 0 %>
-            <% @posts.each do |post| %>
-              <% i += 1%>
-              <% if i != 1 %>
-                <hr />
-              <% end %>
-              <div class="row">
-                <div class="left-side">
-                  <% if post.picture_file_name != nil %>
-                    <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
-                  <% end %>
-                </div>
-                <div class="right-side">
-                  <div class="content-heading">
-                    <h5><%= link_to post.title, post %></h5>
-                    oleh <%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small><br/>
-                    <small style="color: #999999;"><b><%= post.comments_count %> komentar</b></small>
-                  </div>
-                  <div class="content-desc">
-                    <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <!-- End of Activities -->
-      <br/>
     </div>
   </div>
 </div>

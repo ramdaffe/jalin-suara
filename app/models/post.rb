@@ -27,6 +27,27 @@ class Post < ActiveRecord::Base
     "#{self.title}" 
   end
 
+  def gmaps4rails_infowindow
+    info = ""
+    info << "<h5>#{self.get_subdistrict_name}</h5>"
+    if self.get_subdistrict != nil
+      if self.get_subdistrict.activities != nil
+        self.get_subdistrict.activities.each do |activity|
+          info << "#{activity.name}<br/>"
+          info << "<a href='localhost:3000/activities/#{activity.id}'>Lihat selengkapnya</a><br/>"
+        end
+      end
+    end
+    info << "#{self.title}<br/>"
+    info << "<a href='localhost:3000/posts/#{self.id}'>Lihat cerita</a>"
+
+    return info
+  end
+
+  def gmaps4rails_title
+    self.get_subdistrict_name
+  end
+
   def get_activity_name
     name = "-"
     if self.postable_type == 'Activity'
