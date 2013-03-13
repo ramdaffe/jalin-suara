@@ -53,8 +53,19 @@ class HomeController < ApplicationController
     @subdistricts = Subdistrict.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @activities }
+    end
+  end
+
+  def about
+    @provinces = Province.all
+    @districts = District.all
+    @subdistricts = Subdistrict.all
+    @activities = Activity.all
+    
+    respond_to do |format|
+      format.html { render layout: 'three_columns' }
     end
   end
 end
