@@ -44,7 +44,7 @@ class HomeController < ApplicationController
       @search = Activity.search(params[:search])
       @activities = @search.all
     else
-      @activities = Activity.find(:all, :conditions => ["subdistrict_id in (?)", District.find(100).subdistricts])
+      @activities = Activity.all
     end
     @json = @activities.to_gmaps4rails
 

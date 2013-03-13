@@ -8,12 +8,21 @@
         <% if i != 1 %>
           <hr />
         <% end %>
-        <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %></h5></div>
-        <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
-        Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
-        Jumlah Dana Bantuan Langsung Masyarakat: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
-        Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
-        <div style="clear:both"></div>
+        <div class="row">
+          <div class="left-side">
+            <%= image_tag activity.picture.url(:medium), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
+          </div>
+          <div class="right-side">
+            <div class="content-heading">
+              <h5><%= link_to activity.name, activity_path(activity) %></h5>
+            </div>
+            <div class="content-desc">
+              Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
+              Jumlah Dana BLM: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
+              Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

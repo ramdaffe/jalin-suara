@@ -6,9 +6,7 @@
           <hr />
           <div class="row">
             <div class="left-side">
-              <% if post.picture_file_name != nil %>
-                <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
-              <% end %>
+              <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
             </div>
             <div class="right-side">
               <div class="content-heading">
