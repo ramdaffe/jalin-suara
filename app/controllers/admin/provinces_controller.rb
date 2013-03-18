@@ -5,7 +5,7 @@ class Admin::ProvincesController < ApplicationController
     @provinces = Province.paginate(:page => params[:page])
 
     respond_to do |format|
-      format.html
+      format.html { render layout: "admin" }
       format.json { render json: @provinces }
     end
   end
@@ -16,10 +16,9 @@ class Admin::ProvincesController < ApplicationController
     @province = Province.find(params[:id])
     subdistricts = Subdistrict.find(:all, :conditions => ['district_id IN (?)', @province.districts])
     @activities = Activity.find(:all, :conditions => ['subdistrict_id IN (?)', subdistricts])
-    @json = @activities.to_gmaps4rails
 
     respond_to do |format|
-      format.html
+      format.html { render layout: "admin" }
       format.json { render json: @province }
     end
   end
@@ -30,7 +29,7 @@ class Admin::ProvincesController < ApplicationController
     @province = Province.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render layout: "admin" }
       format.json { render json: @province }
     end
   end
@@ -38,6 +37,11 @@ class Admin::ProvincesController < ApplicationController
   # GET /provinces/1/edit
   def edit
     @province = Province.find(params[:id])
+
+    respond_to do |format|
+      format.html { render layout: "admin" }
+      format.json { render json: @province }
+    end
   end
 
   # POST /provinces

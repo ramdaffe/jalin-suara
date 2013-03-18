@@ -1,47 +1,52 @@
-<%- model_class = District -%>
-<div class="page-header">
-  <h1>Daftar Kabupaten/Kotamadya</h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:province_id) %></th>
-      <th><%= model_class.human_attribute_name(:latitude) %></th>
-      <th><%= model_class.human_attribute_name(:longitude) %></th>
+<div class="span9">
+  <div class="main-content">
+    <div class="well">
+      <%- model_class = District -%>
+      <h4>Daftar Kabupaten/Kotamadya</h4>
+      <hr/>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><%= model_class.human_attribute_name(:id) %></th>
+            <th><%= model_class.human_attribute_name(:name) %></th>
+            <th><%= model_class.human_attribute_name(:province_id) %></th>
+            <th><%= model_class.human_attribute_name(:latitude) %></th>
+            <th><%= model_class.human_attribute_name(:longitude) %></th>
+            <% if current_user != nil %>
+              <% if current_user.has_role? :admin %>
+                <th><%=t '.actions', :default => t("helpers.actions") %></th>
+              <% end %>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @districts.each do |district| %>
+            <tr>
+              <td><%= district.id %></td>
+              <td><%= link_to district.name, admin_district_path(district) %></td>
+              <td><%= district.get_province_name %></td>
+              <td><%= district.latitude %></td>
+              <td><%= district.longitude %></td>
+              <% if current_user != nil %>
+                <% if current_user.has_role? :admin %>
+                  <td>
+                    <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_district_path(district), :class => 'btn btn-mini' %>
+                    <%= link_to t('.destroy', :default => t("helpers.links.destroy")), admin_district_path(district), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
+                  </td>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= will_paginate @districts, :renderer => BootstrapPagination::Rails %>
+
       <% if current_user != nil %>
         <% if current_user.has_role? :admin %>
-          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+          <%= link_to "Tambah Kabupaten/Kotamadya", new_admin_district_path, :class => 'btn btn-primary' %>
         <% end %>
       <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @districts.each do |district| %>
-      <tr>
-        <td><%= district.id %></td>
-        <td><%= link_to district.name, admin_district_path(district) %></td>
-        <td><%= district.get_province_name %></td>
-        <td><%= district.latitude %></td>
-        <td><%= district.longitude %></td>
-        <% if current_user != nil %>
-          <% if current_user.has_role? :admin %>
-            <td>
-              <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_district_path(district), :class => 'btn btn-mini' %>
-              <%= link_to t('.destroy', :default => t("helpers.links.destroy")), admin_district_path(district), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
-            </td>
-          <% end %>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= will_paginate @districts, :renderer => BootstrapPagination::Rails %>
-
-<% if current_user != nil %>
-  <% if current_user.has_role? :admin %>
-    <%= link_to t('.new', :default => t("helpers.links.new")), new_admin_district_path, :class => 'btn btn-primary' %>
-  <% end %>
-<% end %>
+    </div>
+  </div>
+</div>

@@ -20,7 +20,6 @@
   <%= f.input :poor_beneficiary %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                activities_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), admin_activities_path, :class => 'btn' %>
   </div>
 <% end %>

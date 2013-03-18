@@ -5,7 +5,7 @@ class Admin::DistrictsController < ApplicationController
     @districts = District.paginate(:page => params[:page])
 
     respond_to do |format|
-      format.html
+      format.html { render layout: 'admin' }
       format.json { render json: @districts }
     end
   end
@@ -27,7 +27,7 @@ class Admin::DistrictsController < ApplicationController
     @district = District.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render layout: 'admin' }
       format.json { render json: @district }
     end
   end
@@ -35,6 +35,11 @@ class Admin::DistrictsController < ApplicationController
   # GET /districts/1/edit
   def edit
     @district = District.find(params[:id])
+
+    respond_to do |format|
+      format.html { render layout: 'admin' }
+      format.json { render json: @district }
+    end
   end
 
   # POST /districts

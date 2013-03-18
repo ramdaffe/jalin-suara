@@ -1,4 +1,5 @@
 Mapstories::Application.routes.draw do
+  match '/admin' => 'admin/home#index'
   namespace :admin do
     resources :activities
     match 'activites/import_excel' => 'activities#import_excel'
@@ -7,6 +8,7 @@ Mapstories::Application.routes.draw do
     resources :provinces
     resources :roles
     resources :subdistricts
+    resources :users
   end
 
   match 'home/search' => 'home#search'

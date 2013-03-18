@@ -1,0 +1,52 @@
+<!-- Main Content -->
+<div class="span9">
+  <div class="main-content">
+    <div class="well">
+      <!-- Activities -->
+      <ul class="nav nav-tabs">
+        <li class="<%= 'active' if params[:tab] == nil %>"><%= link_to "Terpopuler", :controller => 'home', :action => 'index'  %></li>
+        <li class="<%= 'active' if params[:tab] == 'recent' %>"><%= link_to "Terkini", :controller => 'home', :action => 'index', :tab => "recent" %></li>
+      </ul>
+
+      <div class="tabbable">
+        <div class="tab-content">
+          <div class="tab-pane active">
+            <% i = 0 %>
+            <% @listed_posts.each do |post| %>
+              <% i += 1%>
+              <% if i != 1 %>
+                <hr />
+              <% end %>
+              <div class="row">
+                <div class="left-side">
+                  <% if post.picture_file_name != nil %>
+                    <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
+                  <% end %>
+                </div>
+                <div class="right-side">
+                  <div class="content-heading">
+                    <h5 style="margin-bottom: 0px;"><%= link_to post.title, post %></h5>
+                    <small>
+                      Sub Proyek: <b><%= post.get_activity_name %></b> | 
+                      Kecamatan: <b><%= post.get_subdistrict_name %></b>
+                    </small>
+                    <br/>
+                  </div>
+                  <div class="content-desc">
+                    <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %><br/><br/>
+                    <span class="label">oleh <%= post.user.username %></span>
+                    <span class="label"><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</span>
+                    <span class="label"><%= post.comments_count %> komentar</span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- End of Activities -->
+      <br/>
+    </div>
+  </div>
+</div>
+<!-- End of Main Content -->

@@ -5,7 +5,7 @@ class Admin::SubdistrictsController < ApplicationController
     @subdistricts = Subdistrict.paginate(:page => params[:page])
 
     respond_to do |format|
-      format.html
+      format.html { render layout: 'admin' }
       format.json { render json: @subdistricts }
     end
   end
@@ -33,7 +33,7 @@ class Admin::SubdistrictsController < ApplicationController
     @subdistrict = Subdistrict.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render layout: 'admin' }
       format.json { render json: @subdistrict }
     end
   end
@@ -41,6 +41,11 @@ class Admin::SubdistrictsController < ApplicationController
   # GET /subdistricts/1/edit
   def edit
     @subdistrict = Subdistrict.find(params[:id])
+
+    respond_to do |format|
+      format.html { render layout: 'admin' }
+      format.json { render json: @subdistrict }
+    end
   end
 
   # POST /subdistricts

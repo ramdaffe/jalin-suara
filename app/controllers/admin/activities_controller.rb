@@ -5,7 +5,7 @@ class Admin::ActivitiesController < ApplicationController
     @activities = Activity.paginate(:page => params[:page])
 
     respond_to do |format|
-      format.html
+      format.html { render layout: 'admin' }
       format.json { render json: @activities }
     end
   end
@@ -30,7 +30,7 @@ class Admin::ActivitiesController < ApplicationController
     @activity = Activity.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render layout: 'admin' }
       format.json { render json: @activity }
     end
   end
@@ -38,6 +38,11 @@ class Admin::ActivitiesController < ApplicationController
   # GET /activities/1/edit
   def edit
     @activity = Activity.find(params[:id])
+
+    respond_to do |format|
+      format.html { render layout: 'admin' }
+      format.json { render json: @activity }
+    end
   end
 
   # POST /activities
