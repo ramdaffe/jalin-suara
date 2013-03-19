@@ -54,9 +54,6 @@ gem 'omniauth-facebook'
 gem 'cancan'
 gem 'rolify'
 
-# Social Network Feed
-gem 'koala'
-
 gem 'roo'
 gem 'will_paginate', '~> 3.0.3'
 gem 'will_paginate-bootstrap'
