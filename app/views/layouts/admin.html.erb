@@ -67,7 +67,7 @@
                 <li <%= "class=active" if params[:controller] == "admin/subdistricts" %>><%= link_to "Kelola Kecamatan", admin_subdistricts_path %></li>
                 <li <%= "class=active" if params[:controller] == "admin/activities" %>><%= link_to "Kelola Sub Proyek", admin_activities_path %></li>
                 <li <%= "class=active" if params[:controller] == "admin/posts" %>><%= link_to "Kelola Cerita", admin_posts_path %></li>
-                <li><%= link_to "Kelola Komentar", "#" %></li>
+                <li <%= "class=active" if params[:controller] == "admin/comments" %>><%= link_to "Kelola Komentar", admin_comments_path %></li>
                 <li <%= "class=active" if params[:controller] == "admin/users" %>><%= link_to "Kelola Pengguna", admin_users_path %></li>
               </ul>
             </div>

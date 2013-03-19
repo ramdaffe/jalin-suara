@@ -1,47 +1,52 @@
-<%- model_class = Post -%>
-<div class="page-header">
-  <h1>Daftar Cerita</h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:budget) %></th>
-      <th><%= model_class.human_attribute_name(:dimension) %></th>
-      <th><%= model_class.human_attribute_name(:beneficiary) %></th>
-      <% if current_user != nil %>
-        <% if current_user.has_role? :admin %>
-          <th><%=t '.actions', :default => t("helpers.actions") %></th>
-        <% end %>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.id %></td>
-        <td><%= link_to post.title, admin_post_path(post) %></td>
-        <td><%= post.budget %></td>
-        <td><%= post.dimension %></td>
-        <td><%= post.beneficiary %></td>
-        <% if current_user != nil %>
-          <% if current_user.has_role? :admin %>
-            <td>
-              <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_post_path(post), :class => 'btn btn-mini' %>
-              <%= link_to t('.destroy', :default => t("helpers.links.destroy")), admin_post_path(post), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
-            </td>
+<div class="span9">
+  <div class="main-content">
+    <div class="well">
+    <%- model_class = Post -%>
+    <h4>Daftar Cerita</h4>
+    <hr/>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= model_class.human_attribute_name(:id) %></th>
+          <th><%= model_class.human_attribute_name(:title) %></th>
+          <th><%= model_class.human_attribute_name(:budget) %></th>
+          <th><%= model_class.human_attribute_name(:dimension) %></th>
+          <th><%= model_class.human_attribute_name(:beneficiary) %></th>
+          <% if current_user != nil %>
+            <% if current_user.has_role? :admin %>
+              <th><%=t '.actions', :default => t("helpers.actions") %></th>
+            <% end %>
           <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.id %></td>
+            <td><%= link_to post.title, admin_post_path(post) %></td>
+            <td><%= post.budget %></td>
+            <td><%= post.dimension %></td>
+            <td><%= post.beneficiary %></td>
+            <% if current_user != nil %>
+              <% if current_user.has_role? :admin %>
+                <td>
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_post_path(post), :class => 'btn btn-mini' %>
+                  <%= link_to "Hapus", admin_post_path(post), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
+                </td>
+              <% end %>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
+      </tbody>
+    </table>
+
+    <%= will_paginate @posts, :renderer => BootstrapPagination::Rails %>
+
+    <% if current_user != nil %>
+      <% if current_user.has_role? :admin %>
+        <%= link_to "Tambah Cerita", new_admin_post_path, :class => 'btn btn-primary' %>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
-
-<%= will_paginate @posts, :renderer => BootstrapPagination::Rails %>
-
-<% if current_user != nil %>
-  <% if current_user.has_role? :admin %>
-    <%= link_to t('.new', :default => t("helpers.links.new")), new_admin_post_path, :class => 'btn btn-primary' %>
-  <% end %>
-<% end %>
+    </div>
+  </div>
+</div>

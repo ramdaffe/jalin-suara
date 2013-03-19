@@ -3,6 +3,7 @@ Mapstories::Application.routes.draw do
   namespace :admin do
     resources :activities
     match 'activites/import_excel' => 'activities#import_excel'
+    resources :comments
     resources :districts
     resources :posts
     resources :provinces

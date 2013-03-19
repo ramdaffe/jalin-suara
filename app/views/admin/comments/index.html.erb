@@ -1,0 +1,48 @@
+<div class="span9">
+  <div class="main-content">
+    <div class="well">
+    <%- model_class = Comment -%>
+    <h4>Daftar Komentar</h4>
+    <hr/>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nomor</th>
+          <th>Cerita</th>
+          <th>Komentar</th>
+          <th>Penulis Komentar</th>
+          <th>Tanggal</th>
+          <% if current_user != nil %>
+            <% if current_user.has_role? :admin %>
+              <th><%=t '.actions', :default => t("helpers.actions") %></th>
+            <% end %>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% i = 0 %>
+        <% @comments.each do |comment| %>
+          <% i += 1 %>
+          <tr>
+            <td><%= i %></td>
+            <td title="<%= comment.get_story_title %>"><%= truncate(comment.get_story_title, length: 20) %></td>
+            <td><%= comment.body %></td>
+            <td><%= comment.get_commenter_name %></td>
+            <td><%= comment.created_at %></td>
+            <% if current_user != nil %>
+              <% if current_user.has_role? :admin %>
+                <td>
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_comment_path(comment), :class => 'btn btn-mini' %>
+                  <%= link_to "Hapus", admin_comment_path(comment), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
+                </td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= will_paginate @comments, :renderer => BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

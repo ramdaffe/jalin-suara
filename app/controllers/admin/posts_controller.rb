@@ -5,7 +5,7 @@ class Admin::PostsController < ApplicationController
     @posts = Post.paginate(:page => params[:page])
 
     respond_to do |format|
-      format.html
+      format.html { render layout: "admin" }
       format.json { render json: @posts }
     end
   end
@@ -16,7 +16,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     respond_to do |format|
-      format.html
+      format.html { render layout: "admin" }
       format.json { render json: @post }
     end
   end
@@ -27,7 +27,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render layout: "admin" }
       format.json { render json: @post }
     end
   end
@@ -35,6 +35,11 @@ class Admin::PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+
+    respond_to do |format|
+      format.html { render layout: "admin" }
+      format.json { render json: @post }
+    end
   end
 
   # POST /posts
