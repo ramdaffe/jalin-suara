@@ -1,0 +1,48 @@
+<div class="span9">
+  <div class="main-content">
+    <div class="well">
+    <%- model_class = User -%>
+    <h4>Daftar Pengguna</h4>
+    <hr/>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nomor</th>
+          <th>Username</th>
+          <th>Peran</th>
+          <% if current_user != nil %>
+            <% if current_user.has_role? :admin %>
+              <th><%=t '.actions', :default => t("helpers.actions") %></th>
+            <% end %>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% i = 0 %>
+        <% @users.each do |user| %>
+          <% i += 1 %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= link_to user.username, admin_user_path(user) %></td>
+            <td>
+              <% user.roles.each do |role| %>
+                <%= role.name %> <%= role.get_subdistrict_name %><br/>
+              <% end %>
+            </td>
+            <% if current_user != nil %>
+              <% if current_user.has_role? :admin %>
+                <td>
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_user_path(user), :class => 'btn btn-mini' %>
+                  <%= link_to "Hapus", admin_user_path(user), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
+                </td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= will_paginate @users, :renderer => BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

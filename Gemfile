@@ -52,7 +52,7 @@ gem 'devise'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'cancan'
-gem 'rolify'
+gem 'rolify', '~> 3.1.0'
 
 gem 'roo'
 gem 'will_paginate', '~> 3.0.3'

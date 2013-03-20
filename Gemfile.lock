@@ -168,7 +168,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.3)
-    rolify (3.2.0)
+    rolify (3.1.0)
     roo (1.11.1)
       nokogiri
       rubyzip
@@ -248,7 +248,7 @@ DEPENDENCIES
   paperclip (~> 3.4.0)
   pg
   rails (= 3.2.11)
-  rolify
+  rolify (~> 3.1.0)
   roo
   sass-rails (~> 3.2.3)
   simple_form
