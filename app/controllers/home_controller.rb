@@ -42,15 +42,15 @@ class HomeController < ApplicationController
   def show_map
     if params[:search] != nil
       @search = Activity.search(params[:search])
-      @activities = @search.all
+      activities = @search.all
     else
-      @activities = Activity.all
+      activities = Activity.all
     end
-    @json = @activities.to_gmaps4rails
+    @json = activities.to_gmaps4rails
 
     respond_to do |format|
       format.html
-      format.json { render json: @activities }
+      format.json { render json: @json }
     end
   end
 
