@@ -1,27 +1,39 @@
-<%- model_class = District -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+<div class="span3">
+  <div class="well" style="padding: 8px 0;">
+    <ul class="nav nav-list">
+      <li class="nav-header"><h5 style='margin-bottom: 0px;'><%= @district.name %></h5></li>
+      <li class="divider"></li>
+      <li class="nav-header">Cakupan Jalin Suara</li>
+    </ul>
+    <div style="font-size: 12px; margin-left: 15px;">Kecamatan: <%= link_to @district.get_subdistricts_number, {:controller => 'subdistricts', :action => 'index', :district_id => @district.id}, {:style => 'display: inline;'} %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Total Aktivitas: <%= link_to @district.get_activities_number, {:controller => 'activities', :action => 'index', :district_id => @district.id}, {:style => 'display: inline;'} %></div>
+    <ul class="nav nav-list">
+      <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat: </li>
+      <li style="font-size: 12px;"><b></b></li>
+      <li style="font-size: 12px;">Total Dana Swadaya Masyarakat: </li>
+      <li style="font-size: 12px;"><b></b></li>
+    </ul>
+  </div>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @district.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:province_id) %>:</strong></dt>
-  <dd><%= @district.get_province_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:latitude) %>:</strong></dt>
-  <dd><%= @district.latitude %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:longitude) %>:</strong></dt>
-  <dd><%= @district.longitude %></dd>
-</dl>
+<!-- Main Content -->
+<div class="span6">
+  <div class="main-content">
+    <div class="well">
+      <%= gmaps4rails(@json) %>
+      <% @activities.each do |activity| %>
+        <div class="content-heading"><h5><%= link_to activity.name, activity_path(activity) %> - <%= activity.get_subdistrict_name %></h5></div>
+        <%= image_tag activity.picture.url(:thumb), :style => "float:left; margin-right: 10px; margin-bottom: 10px;" %>
+        Jumlah Penerima Manfaat: <%= activity.male_beneficiary + activity.female_beneficiary %><br/>
+        Jumlah Dana Bantuan Langsung Masyarakat: <%= number_to_currency(activity.blm_amount, :unit => "Rp ") %><br/>
+        Jumlah Dana Swadaya Masyarakat: <%= number_to_currency(activity.self_fund_amount, :unit => "Rp ") %><br>
+        <div style="clear:both"></div>
+      <% end %>
+      <%#= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
+      <br/>
 
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              districts_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_district_path(@district), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              district_path(@district),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+      <%= will_paginate @activities, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => '<' %>
+    </div>
+  </div>
 </div>
+<!-- End of Main Content -->

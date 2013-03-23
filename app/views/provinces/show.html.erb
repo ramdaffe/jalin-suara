@@ -5,9 +5,9 @@
       <li class="divider"></li>
       <li class="nav-header">Cakupan Jalin Suara</li>
     </ul>
-    <div style="font-size: 12px; margin-left: 15px;">Kabupaten: <%= link_to @district_stats.size, districts_path, :style => 'display: inline;' %></div>
-    <div style="font-size: 12px; margin-left: 15px;">Kecamatan: <%= link_to @subdistrict_stats.size, subdistricts_path, :style => 'display: inline;' %></div>
-    <div style="font-size: 12px; margin-left: 15px;">Total Aktivitas: <%= link_to @province.get_activities_number, activities_path, :style => 'display: inline;' %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Kabupaten: <%= link_to @district_stats.size, {:controller => 'districts', :action => 'index', :province_id => @province.id}, {:style => 'display: inline;'} %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Kecamatan: <%= link_to @subdistrict_stats.size, {:controller => 'subdistricts', :action => 'index', :province_id => @province.id}, {:style => 'display: inline;'} %></div>
+    <div style="font-size: 12px; margin-left: 15px;">Total Aktivitas: <%= link_to @province.get_activities_number, {:controller => 'activities', :action => 'index', :province_id => @province.id}, {:style => 'display: inline;'} %></div>
     <ul class="nav nav-list">
       <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat: </li>
       <li style="font-size: 12px;"><b><%= number_to_currency(@province.get_total_blm_amount, :unit => "Rp ") %></b></li>

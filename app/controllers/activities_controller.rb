@@ -7,7 +7,16 @@ class ActivitiesController < ApplicationController
     @subdistrict_stats = Subdistrict.all
     @activities_stats = Activity.all
     
-    @activities = Activity.paginate(:page => params[:page], :order => 'name')
+    if params[:province_id] != nil
+      districts = District.find(:all, :conditions => ['province_id = ?', params[:province_id]])
+      subdistricts = Subdistrict.find(:all, :conditions => ['district_id in (?)', districts])
+      @activities = Activity.paginate(:page => params[:page], :order => 'name', :conditions => ['subdistrict_id in (?)', subdistricts])
+    elsif params[:district_id] != nil
+      subdistricts = Subdistrict.find(:all, :conditions => ['district_id = ?', params[:district_id]])
+      @activities = Activity.paginate(:page => params[:page], :order => 'name', :conditions => ['subdistrict_id in (?)', subdistricts])
+    else
+      @activities = Activity.paginate(:page => params[:page], :order => 'name')
+    end
 
     respond_to do |format|
       format.html

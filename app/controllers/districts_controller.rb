@@ -7,7 +7,11 @@ class DistrictsController < ApplicationController
     @subdistrict_stats = Subdistrict.all
     @activities_stats = Activity.all
 
-    @districts = District.paginate(:page => params[:page], :order => 'name')
+    if params[:province_id] != nil
+      @districts = District.paginate(:page => params[:page], :order => 'name', :conditions => ['province_id = ?', params[:province_id]])  
+    else
+      @districts = District.paginate(:page => params[:page], :order => 'name')
+    end
 
     respond_to do |format|
       format.html
@@ -19,6 +23,9 @@ class DistrictsController < ApplicationController
   # GET /districts/1.json
   def show
     @district = District.find(params[:id])
+    subdistricts = Subdistrict.find(:all, :conditions => ['district_id = ?', @district])
+    @activities = Activity.paginate(:per_page => 20, :page => params[:page], :conditions => ['subdistrict_id IN (?)', subdistricts])
+    @json = @activities.to_gmaps4rails
 
     respond_to do |format|
       format.html { render layout: 'three_columns'}
