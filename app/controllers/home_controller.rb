@@ -48,10 +48,6 @@ class HomeController < ApplicationController
     end
     @json = @activities.to_gmaps4rails
 
-    @provinces = Province.all
-    @districts = District.all
-    @subdistricts = Subdistrict.all
-
     respond_to do |format|
       format.html
       format.json { render json: @activities }
