@@ -11,10 +11,10 @@ class HomeController < ApplicationController
     @posts = Post.find(:all, :conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"])
     @json = @posts.to_gmaps4rails
 
-    @provinces = Province.all
-    @districts = District.all
-    @subdistricts = Subdistrict.all
-    @activities = Activity.all
+    @provinces_number = Province.all.size
+    @districts_number = District.all.size
+    @subdistricts_number = Subdistrict.all.size
+    @activities_number = Activity.all.size
 
     respond_to do |format|
       format.html { render layout: 'three_columns' }

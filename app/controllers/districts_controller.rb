@@ -2,10 +2,10 @@ class DistrictsController < ApplicationController
   # GET /districts
   # GET /districts.json
   def index
-    @province_stats = Province.all
-    @district_stats = District.all
-    @subdistrict_stats = Subdistrict.all
-    @activities_stats = Activity.all
+    @provinces_number = Province.all.size
+    @districts_number = District.all.size
+    @subdistricts_number = Subdistrict.all.size
+    @activities_number = Activity.all.size
 
     if params[:province_id] != nil
       @districts = District.paginate(:page => params[:page], :order => 'name', :conditions => ['province_id = ?', params[:province_id]])  
