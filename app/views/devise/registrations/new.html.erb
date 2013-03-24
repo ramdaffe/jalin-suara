@@ -1,20 +1,37 @@
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<section id="deviseauth">
+  <h2>Daftar</h2>
+
+  Login dengan akun-akun media sosial Anda atau daftarkan akun baru di Jalin Suara
+  <br/>
+  <br/>
+
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-horizontal well">
-  	<fieldset>
-  		<legend>Sign Up</legend>
-	  	<%= f.input :username, :required => true, :autofocus => true %>
-	    <%= f.input :email %>
+    <fieldset>
+      <legend>Form Pendaftaran</legend>
+      <%= f.input :username, :required => true, :autofocus => true %>
+      <%= f.input :email %>
       <% if f.object.password_required? %>
-	    	<%= f.input :password, :required => true %>
-	    	<%= f.input :password_confirmation, :required => true %>
-    	<% end %>
-	    <div class="form-actions">
-		    <%= f.button :submit, "Sign up", :class => "btn btn-primary" %>
-		  </div>
-	  </fieldset>
+        <%= f.input :password, :required => true %>
+        <%= f.input :password_confirmation, :required => true %>
+      <% end %>
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up", :class => "btn btn-primary" %>
+      </div>
+    </fieldset>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+  <div id="remote2">
+    <div id="services" class="box">
+      <a href="users/auth/facebook" class="services"><%= image_tag "facebook_64.jpg", :size => "64x64",  :alt => "Facebook" %></a>
+      <a href="users/auth/twitter" class="services"><%= image_tag "twitter_64.jpg", :size => "64x64",  :alt => "Twitter" %></a>
+    </div>
+  </div>
+
+  <div id="devise_links">
+      <%= render :partial => "devise/shared/links" %>
+  </div>
+</section>

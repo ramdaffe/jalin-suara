@@ -1,15 +1,32 @@
-<h2>Sign in</h2>
+<section id="deviseauth">
+  <h2>Login</h2>
 
-<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, :required => false, :autofocus => true %>
-    <%= f.input :password, :required => false %>
-    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+  Login dengan akun-akun media sosial Anda atau gunakan akun Jalin Suara Anda
+  <br/>
+  <br/>
+
+  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <div class="form-horizontal well">
+      <fieldset>
+        <legend>Login</legend>
+        <%= f.input :email, :required => false, :autofocus => true %>
+        <%= f.input :password, :required => false %>
+        <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+      </fieldset>
+      <div class="form-actions">
+        <%= f.button :submit, "Sign in", :class => "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div id="remote">
+    <div id="services" class="box">
+      <a href="users/auth/facebook" class="services"><%= image_tag "facebook_64.jpg", :size => "64x64",  :alt => "Facebook" %></a>
+      <a href="users/auth/twitter" class="services"><%= image_tag "twitter_64.jpg", :size => "64x64",  :alt => "Twitter" %></a>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign in" %>
+  <div id="devise_links">
+    <%= render :partial => "devise/shared/links" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>

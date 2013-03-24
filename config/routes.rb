@@ -16,7 +16,11 @@ Mapstories::Application.routes.draw do
   match 'home/show_map' => 'home#show_map'
   match 'home/about' => 'home#about'
 
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  # devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  match 'users/auth/:service/callback' => 'services#create'
+  devise_for :users
+  resources :services, :only => [:index, :create, :destroy]
+  
   mount Ckeditor::Engine => '/ckeditor'
   opinio_model
   resources :activities
