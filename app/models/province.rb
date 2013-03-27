@@ -9,7 +9,7 @@ class Province < ActiveRecord::Base
   def get_districts_number
   	number = 0
   	if self.districts != nil
-  		number = self.districts.size
+  		number = self.districts.count
   	end
 
   	return number
@@ -19,7 +19,7 @@ class Province < ActiveRecord::Base
   	number = 0
   	self.districts.each do |district|
   		if district.subdistricts != nil
-  			number += district.subdistricts.size
+  			number += district.subdistricts.count
 			end
 		end
 
@@ -31,7 +31,7 @@ class Province < ActiveRecord::Base
 		self.districts.each do |district|
 			district.subdistricts.each do |subdistrict|
 				if subdistrict.activities != nil
-					number += subdistrict.activities.size
+					number += subdistrict.activities.count
 				end
 			end
 		end
