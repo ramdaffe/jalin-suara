@@ -2,10 +2,10 @@ class ProvincesController < ApplicationController
   # GET /provinces
   # GET /provinces.json
   def index
-    @provinces_number = Province.all.size
-    @districts_number = District.all.size
-    @subdistricts_number = Subdistrict.all.size
-    @activities_number = Activity.all.size
+    @provinces_number = Province.count
+    @districts_number = District.count
+    @subdistricts_number = Subdistrict.count
+    @activities_number = Activity.count
 
     @provinces = Province.paginate(:page => params[:page], :order => 'name')
 

@@ -2,10 +2,10 @@ class SubdistrictsController < ApplicationController
   # GET /subdistricts
   # GET /subdistricts.json
   def index
-    @provinces_number = Province.all.size
-    @districts_number = District.all.size
-    @subdistricts_number = Subdistrict.all.size
-    @activities_number = Activity.all.size
+    @provinces_number = Province.count
+    @districts_number = District.count
+    @subdistricts_number = Subdistrict.count
+    @activities_number = Activity.count
 
     if params[:province_id] != nil
       districts = District.find(:all, :conditions => ['province_id = ?', params[:province_id]])
