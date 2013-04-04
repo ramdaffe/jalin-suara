@@ -44,7 +44,7 @@ class HomeController < ApplicationController
       @search = Activity.search(params[:search])
       activities = @search.all
     else
-      activities = Activity.all
+      activities = Activity.find(:all, :limit => 1000)
     end
     @json = activities.to_gmaps4rails
 
