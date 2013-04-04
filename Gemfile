@@ -42,7 +42,7 @@ group :production do
   gem 'pg'
 end
 
-gem 'thin'
+gem 'unicorn'
 gem 'simple_form'
 gem 'gmaps4rails'
 gem 'flickraw'
