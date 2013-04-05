@@ -58,12 +58,14 @@ class ImplementerUnitsController < ApplicationController
   def update
     @implementer_unit = ImplementerUnit.find(params[:id])
 
+    # TO DO
+    # 1. Evaluate the else condition, should have returned user to the form page
+    # 2. Evaluate is it needed to make this method consider update from other sources than Subdistrict show page
     respond_to do |format|
       if @implementer_unit.update_attributes(params[:implementer_unit])
-        format.html { redirect_to @implementer_unit, notice: 'Implementer unit was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to subdistrict_path(@implementer_unit.subdistrict), notice: 'Post was successfully created.' }
       else
-        format.html { render action: "edit" }
+        format.html { redirect_to subdistrict_path(@implementer_unit.subdistrict), notice: 'Post was successfully created.' }
         format.json { render json: @implementer_unit.errors, status: :unprocessable_entity }
       end
     end

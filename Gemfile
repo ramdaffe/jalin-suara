@@ -36,13 +36,14 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'pg'
+  gem 'thin'
 end
 
 group :production do
   gem 'pg'
+  gem 'unicorn'
 end
 
-gem 'unicorn'
 gem 'simple_form'
 gem 'gmaps4rails'
 gem 'flickraw'
