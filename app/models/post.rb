@@ -67,6 +67,15 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def get_author_name
+    name = ""
+    if self.user != nil
+      name = self.user.username
+    end
+
+    return name
+  end
+
   def get_subdistrict_name
     name = "-"
     if self.postable_type == 'Subdistrict'

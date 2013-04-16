@@ -8,12 +8,11 @@
     <ul class="nav nav-list">
       <li class="divider"></li>
       <li class="nav-header">Profil Kecamatan</li>
-      <li style="font-size: 12px;">Nama UPK: </li>
-      <li style="font-size: 12px;">Alamat UPK: </li>
-      <li style="font-size: 12px;">Telepon UPK: </li>
-      <li style="font-size: 12px;">Nama Fasilitator: </li>
-      <li style="font-size: 12px;">Telepon Fasilitator: </li>
-      <li style="font-size: 12px;">Telepon Pengaduan: </li>
+      <li style="font-size: 12px;">Alamat UPK: <b><%= @implementer_unit.address %></b></li>
+      <li style="font-size: 12px;">Telepon UPK: <b><%= @implementer_unit.phone %></b></li>
+      <li style="font-size: 12px;">Nama Fasilitator: <b><%= @implementer_unit.facilitator %></b></li>
+      <li style="font-size: 12px;">Telepon Fasilitator: <b><%= @implementer_unit.facilitator_phone %></b></li>
+      <li style="font-size: 12px;">Telepon Pengaduan: <b><%= @implementer_unit.call_center %></b></li>
       <li style="font-size: 12px;">Jumlah Desa: </li>
       <li style="font-size: 12px;">Jumlah Kelurahan: </li>
       <li style="font-size: 12px;">Jumlah Penerima Manfaat: </li>

@@ -12,6 +12,13 @@ class Comment < ActiveRecord::Base
     return commenter_name
   end
 
+  def get_story
+    story = Post.find(self.commentable_id)
+    if story != nil
+      return story
+    end
+  end
+
   def get_story_title
     story_title = ""
 

@@ -1,24 +1,17 @@
 class Admin::HomeController < ApplicationController
   # GET /
   def index
-    if params[:tab] == "recent"
-      @listed_posts = Post.find(:all, :order => 'created_at DESC')
+    if params[:tab] == "comments"
+      @entries = Comment.paginate(:page => params[:page], :order => 'created_at DESC')
+    elsif params[:tab] == "users"
+      @entries = User.paginate(:page => params[:page], :order => 'created_at DESC')  
     else
-      @listed_posts = Post.all.sort_by(&:comments_count).reverse
+      @entries = Post.paginate(:page => params[:page], :order => 'created_at DESC')  
     end
-    
-    # Filter to only show in Gmaps posts that have latitude and longitude 
-    @posts = Post.find(:all, :conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"])
-    @json = @posts.to_gmaps4rails
-
-    @provinces = Province.all
-    @districts = District.all
-    @subdistricts = Subdistrict.all
-    @activities = Activity.all
 
     respond_to do |format|
       format.html { render layout: 'admin'}
-      format.json { render json: @listed_posts }
+      format.json { render json: @entries }
     end
   end
 
