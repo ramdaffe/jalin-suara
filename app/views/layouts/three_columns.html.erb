@@ -8,89 +8,104 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <div class="container">
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="/">Jalin Suara [Beta]</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Tentang Jalin Suara", "/home/about" %></li>
-            </ul>
-            <ul class="nav pull-right">
-              <% if user_signed_in? %>
-                <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <%= current_user.email %>
-                    <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to 'Edit Profil', edit_user_registration_path %></li>
-                    <li><a href="#responsive" data-toggle="modal">Tambah Cerita</a></li>
-                    <li class="divider"></li>
-                    <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
-                  </ul>
-              <% else %>
-                <li><%= link_to "Sign up", new_user_registration_path %></li>
-                <li><%= link_to "Login", new_user_session_path %></li>
-                <li><%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %></li>
-                <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
-              <% end %>
-              </li>
-            </ul>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="span4">
+          <!-- Logo and site link -->
+          <div class="logo">
+             <h1><a href="/">Jalin Suara</a></h1>
           </div>
+       </div>
+    </div>
+  </header>
+  <!-- End of Header -->
+
+  <!-- Navigation -->
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          Menu
+        </a>
+        <div class="nav-collapse collapse">
+          <!-- Navigation Links -->
+          <ul class="nav">
+            <!-- Main menu -->
+            <li><a href="/">Beranda</a></li>
+            <li><a href="/provinces">Data Propinsi</a></li>
+            <li><a href="/districts">Data Kabupaten</a></li>
+            <li><a href="/subdistricts">Data Kecamatan</a></li>
+            <li><a href="/activities">Data Sub Proyek</a></li>
+            <li><a href="/posts">Cerita</a></li>
+            <li><a href="/home/show_map">Peta Interaktif</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Daftar/Masuk<b class="caret"></b></a>
+              <!-- Submenus -->
+              <ul class="dropdown-menu">
+                <li><a href="404.html">Daftar</a></li>
+                <li><a href="comingsoon.html">Masuk</a></li>
+                <li><a href="resume.html">Masuk dengan akun Facebook</a></li>
+                <li><a href="sitemap.html">Masuk dengan akun Twitter</a></li>
+              </ul>
+            </li>            
+          </ul>
+          <!-- End of Navigation Links -->
         </div>
       </div>
     </div>
   </div>
-  <!-- End of Navigation Bar -->
+  <!-- End of Navigation -->
 
   <!-- Content -->
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="row">
-          <!-- Add Post Form -->
-          <% if current_user != nil %>
-            <%= render "/posts/form" %>
-          <% end %>
-          <!-- End of Add Post Form -->
+  <div class="content">
+    <div class="container">
+      <div class="row">
+      </div>
+    </div>
+  </div>   
+  <!-- End of Content-->
 
-          <%= yield %>
-          
-          <!-- Right Sidebar -->
-          <div class="span3">
-            <div class="well" style="padding: 8px 0;">
-              <h5 class="nav-list">Media Sosial</h5>
-              <ul class="nav nav-list">
-                <li class="divider"></li>
-                <li class="nav-header">Facebook Feed</li>
-                <li>
-                  <div id="fb-root"></div>
-                  <script>(function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                    js = d.createElement(s); js.id = id;
-                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=472613249471380";
-                    fjs.parentNode.insertBefore(js, fjs);
-                  }(document, 'script', 'facebook-jssdk'));</script>
-                  <div class="fb-like-box" data-href="http://www.facebook.com/psf.jalin.suara" data-width="238" data-height="425" data-show-faces="true" data-stream="true" data-header="true"></div>
-                </li>
-                <li class="divider"></li>
-                <li class="nav-header">Twitter Feed</li>
-                <li>
-                  <a class="twitter-timeline"  href="https://twitter.com/PNPM_Support"  data-widget-id="309930710523846656">Tweets by @PNPM_Support</a>
-                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                </li>
+  <!-- Footer-->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+           <!-- Widget 1 -->
+           <div class="widget">
+              <h4>Twitter</h4>
+              <!-- Too add twitter widget, goto "js" folder and open "custom.js" file and search for the word "ashokramesh90". This is my twitter username. Just replace the word with your twitter username. You are done. -->
+              <div class="tweet"></div>
+           </div>
+        </div>
+        <div class="span4">
+           <!-- widget 2 -->
+           <div class="widget">
+              <h4>Recent Posts</h4>
+                 <ul>
+                    <li><a href="#">Sed eu leo orci, in rhoncus puru condimentum gravida metus</a></li>
+                    <li><a href="#">Etiam at in rhoncus puru nulla ipsum, in rhoncus purus</a></li>
+                    <li><a href="#">Fusce vel magnain rhoncus puru faucibus felis dapibus facilisis</a></li>
+                 </ul>
+           </div>
+        </div>
+        <div class="span4">
+           <!-- Widget 3 -->
+           <div class="widget">
+              <h4>Categories</h4>
+              <ul>
+                 <li><a href="#">Condimentum</a></li>
+                 <li><a href="#">Etiam at</a></li>
+                 <li><a href="#">Fusce vel</a></li>
+                 <li><a href="#">Vivamus</a></li>
+                 <li><a href="#">Pellentesque</a></li>
               </ul>
-            </div>
-          </div>
-          <!-- End of Right Sidebar -->
+           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- End of Content-->
+  </footer> 
+  <!-- End of Footer -->
 </body>
 </html>
