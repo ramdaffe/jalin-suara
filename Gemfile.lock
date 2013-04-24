@@ -70,6 +70,8 @@ GEM
     font-awesome-rails (3.0.2.0)
       railties (>= 3.1)
     gmaps4rails (1.5.6)
+    google-webfonts (0.1.2)
+      actionpack (>= 3.0.0)
     hashie (1.2.0)
     hike (1.2.1)
     httparty (0.10.2)
@@ -247,6 +249,7 @@ DEPENDENCIES
   flickraw
   font-awesome-rails
   gmaps4rails
+  google-webfonts
   jquery-rails
   kaminari
   less-rails

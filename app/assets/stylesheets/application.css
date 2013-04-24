@@ -9,15 +9,14 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require font-awesome
  *= require_tree .
  *= require gmaps4rails
  *= require bootstrap
- *= require bootstrap-responsive
- *= require flexslider
- *= require font-awesome-ie7
- *= require orange
- *= require prettyPhoto
  *= require slider
+ *= require prettyPhoto
+ *= require font-awesome
+ *= require font-awesome-ie7
  *= require style
+ *= require orange
+ *= require bootstrap-responsive
  */

@@ -56,7 +56,6 @@ module Mapstories
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     # Heroku requires this to be false
     config.assets.initialize_on_precompile=false
