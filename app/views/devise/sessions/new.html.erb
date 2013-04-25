@@ -1,32 +1,36 @@
-<section id="deviseauth">
-  <h2>Login</h2>
+<div class="span12">
+  <!-- Register starts -->
+  <div class="logreg">
+    <div class="row">
+      <div class="span12">
+        <div class="logreg-page">
+          
+          <h3>Login <span class="color">Jalin Suara</span></h3>
+          <hr />
 
-  Login dengan akun-akun media sosial Anda atau gunakan akun Jalin Suara Anda
-  <br/>
-  <br/>
+          <div class="form-horizontal">
+            <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+              <%= f.input :email, :required => false, :autofocus => true %>
+              <%= f.input :password, :required => false %>
+              <div class="form-actions">
+                <%= f.button :submit, "Masuk", :class => "btn" %>
+              </div>
+            <% end %>
+            <hr />
+            <div class="lregister">
+              Belum memiliki akun? <%= link_to "Daftar", new_user_registration_path %>
+            </div>
+            <div id="remote2">
+              <div id="services" class="box">
+                <a href="users/auth/facebook" class="services"><%= image_tag "facebook_64.jpg", :size => "64x64",  :alt => "Facebook" %></a>
+                <a href="users/auth/twitter" class="services"><%= image_tag "twitter_64.jpg", :size => "64x64",  :alt => "Twitter" %></a>
+              </div>
+            </div>
+          </div>
 
-  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <div class="form-horizontal well">
-      <fieldset>
-        <legend>Login</legend>
-        <%= f.input :email, :required => false, :autofocus => true %>
-        <%= f.input :password, :required => false %>
-        <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-      </fieldset>
-      <div class="form-actions">
-        <%= f.button :submit, "Sign in", :class => "btn btn-primary" %>
+        </div>
       </div>
     </div>
-  <% end %>
-
-  <div id="remote">
-    <div id="services" class="box">
-      <a href="users/auth/facebook" class="services"><%= image_tag "facebook_64.jpg", :size => "64x64",  :alt => "Facebook" %></a>
-      <a href="users/auth/twitter" class="services"><%= image_tag "twitter_64.jpg", :size => "64x64",  :alt => "Twitter" %></a>
-    </div>
   </div>
-
-  <div id="devise_links">
-    <%= render :partial => "devise/shared/links" %>
-  </div>
-</section>
+  <!-- Login ends -->
+</div>
