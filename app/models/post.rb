@@ -14,6 +14,7 @@ class Post < ActiveRecord::Base
     styles: {
     	tiny: '50x50',
       thumb: '100x100>',
+      thumbnail: '220x130',
       square: '200x200#',
       medium: '300x300>',
       large: '500x300>'

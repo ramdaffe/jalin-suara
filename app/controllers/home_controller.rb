@@ -1,11 +1,8 @@
 class HomeController < ApplicationController
   # GET /
   def index
-    if params[:tab] == "recent"
-      @listed_posts = Post.find(:all, :order => 'created_at DESC')
-    else
-      @listed_posts = Post.all.sort_by(&:comments_count).reverse
-    end
+    @recent_posts = Post.find(:all, :order => 'created_at DESC', :limit => 5)
+    @popular_posts = Post.all.sort_by(&:comments_count).reverse.first(5)
     
     # Filter to only show in Gmaps posts that have latitude and longitude 
     @posts = Post.find(:all, :conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"])

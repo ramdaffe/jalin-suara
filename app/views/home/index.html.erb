@@ -1,82 +1,85 @@
-<div class="span3">
-  <div class="well" style="padding: 8px 0;">
-    <ul class="nav nav-list">
-      <li class="nav-header">Cakupan Jalin Suara</li>
-    </ul>
-    <div style="font-size: 12px; margin-left: 15px;">Propinsi: <%= link_to(@provinces_number, provinces_path) %></div>
-    <div style="font-size: 12px; margin-left: 15px;">Kabupaten: <%= link_to(@districts_number, districts_path) %></div>
-    <div style="font-size: 12px; margin-left: 15px;">Kecamatan: <%= link_to(@subdistricts_number, subdistricts_path) %></div>
-    <div style="font-size: 12px; margin-left: 15px;">Sub Proyek: <%= link_to(@activities_number, activities_path) %></div>
-    <ul class="nav nav-list">
-      <li class="divider"></li>
-      <li class="nav-header">Cakupan PNPM Mandiri</li>
-      <li style="font-size: 12px;">Propinsi: 33</li>
-      <li style="font-size: 12px;">Kecamatan: 6.752</li>
-      <li style="font-size: 12px;">Total Dana Bantuan Langsung Masyarakat: 9,7 Triliun Rupiah</li>
-      <li style="font-size: 12px;">Total Dana APBN: 8,9 Triliun Rupiah</li>
-      <li style="font-size: 12px;">Total Dana APBD: 8 Miliar Rupiah</li>
-    </ul>
+<div class="span12">
+  <!-- Slider (Parallax Slider) -->
+  <div id="da-slider" class="da-slider">
+    <%= gmaps4rails(@json) %>
   </div>
-</div>
+  <!-- Slider ends -->
 
-<!-- Main Content -->
-<div class="span6">
-  <div class="main-content">
-    <div class="well">
-      <%= gmaps4rails(@json) %>
-      <br />
+  <div class="bor"></div>
+  
+  <div class="blog">
+    <div class="row">
+      <div class="span12">
 
-      <%= form_tag '/home/search' do %>
-        <%= text_field_tag 'query', nil, :class => 'search-query' %>
-        <%= submit_tag 'Cari', :class => 'btn' %>
-        <%= link_to 'Lihat Peta Interaktif', '/home/show_map', :class => 'btn pull-right' %>
-      <% end %>
-
-      <!-- Activities -->
-      <ul class="nav nav-tabs">
-        <li class="<%= 'active' if params[:tab] == nil %>"><%= link_to "Terpopuler", :controller => 'home', :action => 'index'  %></li>
-        <li class="<%= 'active' if params[:tab] == 'recent' %>"><%= link_to "Terkini", :controller => 'home', :action => 'index', :tab => "recent" %></li>
-      </ul>
-
-      <div class="tabbable">
-        <div class="tab-content">
-          <div class="tab-pane active">
-            <% i = 0 %>
-            <% @listed_posts.each do |post| %>
-              <% i += 1%>
-              <% if i != 1 %>
-                <hr />
+        <div class="row">
+          <!-- Posts -->
+          <div class="span8">
+            <div class="rposts">
+              <h2>Cerita Terpopuler</h2>
+            </div>
+            <div class="posts">
+              <!-- Post Entry -->
+              <% @popular_posts.each do |post| %>
+                <div class="entry">
+                   <h3><%= link_to post.title, post %></h3>
+                   
+                   <!-- Meta details -->
+                   <div class="meta">
+                      <i class="icon-calendar"></i> <%= post.created_at.strftime("%d-%m-%Y") %> 
+                      <i class="icon-user"></i> <%= post.user.username %> 
+                      <span class="pull-right"><i class="icon-comment"></i> <%= post.comments_count %> Komentar</span>
+                   </div>
+                   
+                   <!-- Thumbnail -->
+                   <div class="bthumb2">
+                      <a href="#"><img src="assets/images/photos/r1.jpg" alt="" /></a>
+                   </div>
+                   
+                   <div style="min-height: 100px">
+                    <%= raw(truncate(post.description, length: 250)) %>
+                   </div>
+                   <div class="button"><%= link_to "Baca selengkapnya...", post_path(post) %></div>
+                </div>
               <% end %>
-              <div class="row">
-                <div class="left-side">
-                  <% if post.picture_file_name != nil %>
-                    <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
-                  <% end %>
-                </div>
-                <div class="right-side">
-                  <div class="content-heading">
-                    <h5 style="margin-bottom: 0px;"><%= link_to post.title, post %></h5>
-                    <small>
-                      Sub Proyek: <b><%= post.get_activity_name %></b> | 
-                      Kecamatan: <b><%= post.get_subdistrict_name %></b>
-                    </small>
-                    <br/>
-                  </div>
-                  <div class="content-desc">
-                    <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %><br/><br/>
-                    <span class="label">oleh <%= post.user.username %></span>
-                    <span class="label"><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</span>
-                    <span class="label"><%= post.comments_count %> komentar</span>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+              <!-- End of Post Entry -->
+            </div>
           </div>
+          <!-- End of Posts -->
+          <!-- Widgets -->
+          <div class="span4">
+            <div class="sidebar">
+              <div class="widget">
+                <h4>Cakupan PNPM Mandiri</h4>
+                <ul>
+                  <li>Propinsi: 33</li>
+                  <li>Kecamatan: 6.752</li>
+                  <li>Total Dana BLM: 9,7 Triliun Rupiah</li>
+                  <li>Total Dana APBN: 8,9 Triliun Rupiah</li>
+                  <li>Total Dana APBD: 8 Miliar Rupiah</li>
+                </ul>
+              </div>
+              <!-- Widget -->
+              <div class="widget">
+                <h4>Pencarian</h4>
+                <%= form_tag '/home/search', :class => 'form-search' do %>
+                  <%= text_field_tag 'query', nil, :class => 'input-medium' %>
+                  <%= submit_tag 'Cari', :class => 'btn' %>
+                <% end %>
+              </div>
+              <div class="widget">
+                <h4>Cerita Terbaru</h4>
+                <ul>
+                  <% @recent_posts.each do |post| %>
+                    <li><%= link_to post.title, post %></li>
+                  <% end %>
+                 </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End of Widgets -->
         </div>
+
       </div>
-      <!-- End of Activities -->
-      <br/>
     </div>
   </div>
 </div>
-<!-- End of Main Content -->
