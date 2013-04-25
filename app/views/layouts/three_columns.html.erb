@@ -47,8 +47,8 @@
               </ul>
             </li>
             <li><%= link_to "Cerita", posts_path %></li>
-            <li><%= link_to "Peta Interaktif", :controller => 'home', :action => 'show_map' %></li>
-            <li><%= link_to "Tentang Jalin Suara", :controller => 'home', :action => 'about' %></li>
+            <li><%= link_to "Peta Interaktif", 'home/show_map' %></li>
+            <li><%= link_to "Tentang Jalin Suara", 'home/about' %></li>
           </ul>
           <!-- End of Main menu -->
 
@@ -88,6 +88,11 @@
   <div class="content">
     <div class="container">
       <div class="row">
+        <!-- Add Post Form -->
+        <% if current_user != nil %>
+          <%= render "/posts/form" %>
+        <% end %>
+        <!-- End of Add Post Form -->
         <%= yield %>
       </div>
     </div>

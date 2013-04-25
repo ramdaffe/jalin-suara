@@ -1,37 +1,40 @@
-<section id="deviseauth">
-  <h2>Daftar</h2>
+<div class="span12">
+  <!-- Register starts -->
+  <div class="logreg">
+    <div class="row">
+      <div class="span12">
+        <div class="logreg-page">
+          
+          <h3>Daftar akun <span class="color">Jalin Suara</span></h3>
+          <hr />
 
-  Login dengan akun-akun media sosial Anda atau daftarkan akun baru di Jalin Suara
-  <br/>
-  <br/>
+          <div class="form-horizontal">
+            <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+              <%= f.error_notification %>
+              <!-- Register -->
+              <%= f.input :username, :required => true, :autofocus => true %>
+              <%= f.input :email %>
+              <%= f.input :password, :required => true %>
+              <%= f.input :password_confirmation, :required => true %>
+              <div class="form-actions">
+                <%= f.button :submit, "Sign up", :class => "btn" %>
+              </div>
+            <% end %>
+            <hr />
+            <div class="lregister">
+              Already have account with us? <a href="login.html">Login</a>
+            </div>
+            <div id="remote2">
+              <div id="services" class="box">
+                <a href="users/auth/facebook" class="services"><%= image_tag "facebook_64.jpg", :size => "64x64",  :alt => "Facebook" %></a>
+                <a href="users/auth/twitter" class="services"><%= image_tag "twitter_64.jpg", :size => "64x64",  :alt => "Twitter" %></a>
+              </div>
+            </div>
+          </div>
 
-  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-horizontal well">
-    <fieldset>
-      <legend>Form Pendaftaran</legend>
-      <%= f.input :username, :required => true, :autofocus => true %>
-      <%= f.input :email %>
-      <% if f.object.password_required? %>
-        <%= f.input :password, :required => true %>
-        <%= f.input :password_confirmation, :required => true %>
-      <% end %>
-      <div class="form-actions">
-        <%= f.button :submit, "Sign up", :class => "btn btn-primary" %>
+        </div>
       </div>
-    </fieldset>
-  </div>
-<% end %>
-
-  <div id="remote2">
-    <div id="services" class="box">
-      <a href="users/auth/facebook" class="services"><%= image_tag "facebook_64.jpg", :size => "64x64",  :alt => "Facebook" %></a>
-      <a href="users/auth/twitter" class="services"><%= image_tag "twitter_64.jpg", :size => "64x64",  :alt => "Twitter" %></a>
     </div>
   </div>
-
-  <div id="devise_links">
-      <%= render :partial => "devise/shared/links" %>
-  </div>
-</section>
+  <!-- Login ends -->
+</div>
