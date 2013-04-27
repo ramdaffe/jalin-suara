@@ -20,10 +20,10 @@ class ProvincesController < ApplicationController
   def show
     @province = Province.find(params[:id])
     @district_stats = District.find(:all, :conditions => {:province_id => @province.id})
-    @subdistrict_stats = Subdistrict.find(:all, :conditions => ['district_id IN (?)', @province.districts])
+    @subdistrict_stats = Subdistrict.find(:all, :conditions => ['district_id IN (?)', @province.districts], :order => 'name ASC')
     
-    @activities = Activity.paginate(:per_page => 20, :page => params[:page], :conditions => ['subdistrict_id IN (?)', @subdistrict_stats])
-    @json = @activities.to_gmaps4rails
+    @activities = Activity.joins(:subdistrict).order('subdistricts.name, activities.name').paginate(:per_page => 10, :page => params[:page], :conditions => ['subdistrict_id IN (?)', @subdistrict_stats])
+    @json = Activity.find(:all, :conditions => ['subdistrict_id IN (?)', @subdistrict_stats]).to_gmaps4rails
 
     respond_to do |format|
       format.html { render layout: 'three_columns'}

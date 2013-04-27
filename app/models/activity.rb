@@ -17,6 +17,15 @@ class Activity < ActiveRecord::Base
     text :name, :description
   end
 
+  def get_posts_number
+    number = 0
+    if self.posts != nil
+      number = self.posts.size
+    end
+
+    return number
+  end
+
   def get_subdistrict_name
     name = ''
     if self.subdistrict != nil
