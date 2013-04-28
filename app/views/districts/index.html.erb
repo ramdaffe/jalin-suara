@@ -1,39 +1,21 @@
-<div class="span3">
-  <div class="well" style="padding: 8px 0;">
-    <ul class="nav nav-list">
-      <li class="nav-header">Cakupan Jalin Suara</li>
-    </ul>
-    <div style="font-size: 12px; margin-left: 15px;">Propinsi: <%= link_to @provinces_number, provinces_path, :style => 'display: inline;' %></div>
-    <div style="font-size: 12px; margin-left: 15px;">Kabupaten: <%= link_to @districts_number, districts_path, :style => 'display: inline;' %></div>
-    <div style="font-size: 12px; margin-left: 15px;">Kecamatan: <%= link_to @subdistricts_number, subdistricts_path, :style => 'display: inline;' %></div>
-    <div style="font-size: 12px; margin-left: 15px;">Sub Proyek: <%= link_to(@activities_number, activities_path) %></div>
-    <ul class="nav nav-list">
-      <li class="divider"></li>
-      <li class="nav-header">Cakupan PNPM Mandiri</li>
-      <li style="font-size: 12px;">Propinsi: </li>
-      <li style="font-size: 12px;">Kabupaten: </li>
-      <li style="font-size: 12px;">Kecamatan: </li>
-      <li style="font-size: 12px;">Desa: </li>
-      <li style="font-size: 12px;">Total Bantuan Langsung Masyarakat:</li>
-      <li style="font-size: 12px;"><b><%= number_to_currency(0, :unit => "Rp ") %></b></li>
-    </ul>
-  </div>
-</div>
-
-<!-- Main Content -->
-<div class="span9">
-  <div class="main-content">
-    <div class="well">
-      <h4>Daftar Kabupaten</h4>
-
-      <table class="table table-striped">
+<div class="span12">
+  <!-- Content -->
+  <div class="row">
+    <!-- Main Content -->
+    <div class="span8">
+      <div class="support-page">
+        <h2>Daftar Kabupaten</h2>
+        <% if @province != nil %>
+          <h4><%= @province.name %></h4>
+        <% end %>
+        <table class="table table-striped">
         <thead>
           <tr>
             <th>No</th>
             <th>Nama Kabupaten</th>
-            <th>Propinsi</th>
-            <th>Jumlah Kecamatan</th>
-            <th>Jumlah Sub Proyek</th>
+            <th>Nama Propinsi</th>
+            <th>Kecamatan</th>
+            <th>Sub Proyek</th>
           </tr>
         </thead>
         <tbody>
@@ -50,9 +32,35 @@
           <% end %>
         </tbody>
       </table>
-
-      <%= will_paginate @districts, :renderer => BootstrapPagination::Rails %>
+      </div>
     </div>
+    <!-- End of Main Content -->
+    <!-- Widgets -->
+    <div class="span4">
+      <div class="sidebar", style="margin-top: 0px;">
+        <div class="widget">
+          <h4>Cakupan Jalin Suara</h4>
+          <ul>
+            <li>Propinsi: 33</li>
+            <li>Propinsi: <%= link_to @provinces_number, provinces_path %></li>
+            <li>Kabupaten: <%= link_to @districts_number, districts_path %></li>
+            <li>Kecamatan: <%= link_to @subdistricts_number, subdistricts_path %></li>
+            <li>Sub Proyek: <%= link_to @activities_number, activities_path %></li>
+          </ul>
+        </div>
+        <div class="widget">
+          <h4>Cakupan PNPM Mandiri</h4>
+          <ul>
+            <li>Propinsi: 33</li>
+            <li>Kecamatan: 6.752</li>
+            <li>Total Dana BLM: 9,7 Triliun Rupiah</li>
+            <li>Total Dana APBN: 8,9 Triliun Rupiah</li>
+            <li>Total Dana APBD: 8 Miliar Rupiah</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      <!-- End of Widgets -->
   </div>
+  <!-- End of Content -->
 </div>
-<!-- End of Main Content -->

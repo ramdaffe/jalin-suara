@@ -35,4 +35,24 @@ class District < ActiveRecord::Base
 
   	return name;
   end
+
+  def get_total_blm_amount
+    amount = 0
+    self.subdistricts.each do |subdistrict|
+      subdistrict.activities.each do |activity|
+        amount += activity.blm_amount
+      end
+    end
+    return amount
+  end
+
+  def get_total_self_fund_amount
+    amount = 0
+    self.subdistricts.each do |subdistrict|
+      subdistrict.activities.each do |activity|
+        amount += activity.self_fund_amount
+      end
+    end
+    return amount
+  end
 end
