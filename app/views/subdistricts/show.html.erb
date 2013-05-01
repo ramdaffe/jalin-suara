@@ -1,54 +1,72 @@
-<div class="span3">
-  <div class="well" style="padding: 8px 0;">
-    <h5 class="nav-list"><%= @subdistrict.name %></h5>
-    <% if @implementer_unit %>
-      <h5 class="nav-list" style="text-align: center;"><%= image_tag @implementer_unit.picture.url(:square)%></h5>
-    <% end %>
-    <ul class="nav nav-list">
-      <li class="divider"></li>
-      <li class="nav-header">Profil Kecamatan</li>
-      <li style="font-size: 12px;">Alamat UPK: <b><%= @implementer_unit.address %></b></li>
-      <li style="font-size: 12px;">Telepon UPK: <b><%= @implementer_unit.phone %></b></li>
-      <li style="font-size: 12px;">Nama Fasilitator: <b><%= @implementer_unit.facilitator %></b></li>
-      <li style="font-size: 12px;">Telepon Fasilitator: <b><%= @implementer_unit.facilitator_phone %></b></li>
-      <li style="font-size: 12px;">Telepon Pengaduan: <b><%= @implementer_unit.call_center %></b></li>
-      <li style="font-size: 12px;">Jumlah Desa: </li>
-      <li style="font-size: 12px;">Jumlah Kelurahan: </li>
-      <li style="font-size: 12px;">Jumlah Penerima Manfaat: </li>
-      <li class="divider"></li>
-      <% if current_user != nil %>
-        <% if current_user.has_role? :fasilitator, @implementer_unit %>
-          <li style="font-size: 12px;"><button href="#upk_form" data-toggle="modal" class="btn btn-primary">Edit Data UPK</button></li>
-          <%= render "/implementer_units/form" %>
-        <% end %>
-      <% end %>
-    </ul>
-  </div>
-</div>
+<div class="span12">
+  <!-- Content -->
+  <div class="blog">
+    <div class="row">
+      <div class="span12">
 
-<!-- Main Content -->
-<div class="span6">
-  <div class="main-content">
-    <div class="well">
-      <ul class="nav nav-tabs">
-        <li class="<%= 'active' if params[:tab] == nil %>"><%= link_to "Cerita", subdistrict_path(@subdistrict) %></li>
-        <li class="<%= 'active' if params[:tab] == 'activities' %>"><%= link_to "Sub Proyek", :controller => 'subdistricts', :action => 'show', :tab => "activities" %></li>
-      </ul>
-      
-      <% if params[:tab] == nil %>
-        <!-- Add Post Form -->
-        <% if current_user != nil %>
-          <div class="text-center">
-            <button href="#responsive" data-toggle="modal" class="btn btn-primary">+ Tambah Cerita</button>
+        <div class="row">
+          <!-- Main Content -->
+          <div class="span8">
+            <!-- Navigation Tabs -->
+            <ul class="nav nav-tabs">
+              <li class="<%= 'active' if params[:tab] == nil %>" style="background-image: none; margin-bottom: -5px; margin-left: -20px;">
+                <% if params[:tab] == nil %>
+                  <%= link_to "Cerita", subdistrict_path(@subdistrict), :style => "background-color: #fcfcfc;" %>
+                <% else %>
+                  <%= link_to "Cerita", subdistrict_path(@subdistrict) %>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if params[:tab] == 'activities' %>" style="background-image: none; margin-bottom: -5px; margin-left: -20px;">
+                <% if params[:tab] == 'activities' %>
+                  <%= link_to "Sub Proyek", {:controller => 'subdistricts', :action => 'show', :tab => "activities"}, {:style => "background-color: #fcfcfc;"} %>
+                <% else %>
+                  <%= link_to "Sub Proyek", :controller => 'subdistricts', :action => 'show', :tab => "activities" %>
+                <% end %>
+              </li>
+            </ul>
+            <!-- End of Navigation Tabs -->
+            <br />
+            <% if params[:tab] == nil %>
+              <!-- Add Post Form -->
+              <% if current_user != nil %>
+                <div class="text-center">
+                  <button href="#responsive" data-toggle="modal" class="btn btn-primary">+ Tambah Cerita</button>
+                </div>
+              <% end %>
+              <!-- End of Add Post Form -->
+
+              <%= render "stories_tab" %>
+            <% else %>
+              <%= render "activities_tab" %>
+            <% end %>
           </div>
-        <% end %>
-        <!-- End of Add Post Form -->
-
-        <%= render "stories_tab" %>
-      <% else %>
-        <%= render "activities_tab" %>
-      <% end %>
+          <!-- End of Main Content -->
+          <!-- Widgets -->
+          <div class="span4">
+            <div class="sidebar", style="margin-top: 0px;">
+              <div class="widget">
+                <h4><%= @subdistrict.name %></h4>
+                <% if @implementer_unit %>
+                  <h5 class="nav-list" style="text-align: center; border-bottom: 1px solid #eee;"><%= image_tag @implementer_unit.picture.url(:square) %></h5>
+                <% end %>
+                <br />
+                <ul>
+                  <li>Alamat UPK: <b><%= @implementer_unit.address %></b></li>
+                  <li>Telepon UPK: <b><%= @implementer_unit.phone %></b></li>
+                  <li>Nama Fasilitator: <b><%= @implementer_unit.facilitator %></b></li>
+                  <li>Telepon Fasilitator: <b><%= @implementer_unit.facilitator_phone %></b></li>
+                  <li>Telepon Pengaduan: <b><%= @implementer_unit.call_center %></b></li>
+                  <li>Jumlah Desa: </li>
+                  <li>Jumlah Kelurahan: </li>
+                  <li>Jumlah Penerima Manfaat: </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End of Widgets -->
+        </div>
+      </div>
     </div>
   </div>
+  <!-- End of Content -->
 </div>
-<!-- End of Main Content -->

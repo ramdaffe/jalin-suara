@@ -11,9 +11,10 @@ class SubdistrictsController < ApplicationController
       districts = District.find(:all, :conditions => ['province_id = ?', params[:province_id]])
       @subdistricts = Subdistrict.paginate(:page => params[:page], :order => 'name', :conditions => ['district_id in (?)', districts])
     elsif params[:district_id] != nil
+      @district = District.find(params[:district_id])
       @subdistricts = Subdistrict.paginate(:page => params[:page], :order => 'name', :conditions => ['district_id = ?', params[:district_id]])
     else
-      @subdistricts = Subdistrict.paginate(:page => params[:page], :order => 'name')
+      @subdistricts = Subdistrict.joins(:district => :province).order('provinces.name', 'subdistricts.name').paginate(:page => params[:page], :order => 'name')
     end
 
     respond_to do |format|

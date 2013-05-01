@@ -12,8 +12,8 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Nama Kabupaten</th>
             <th>Nama Propinsi</th>
+            <th>Nama Kabupaten</th>
             <th>Kecamatan</th>
             <th>Sub Proyek</th>
           </tr>
@@ -24,8 +24,8 @@
             <% i+= 1 %>
             <tr>
               <td><%= i %></td>
-              <td><%= link_to district.name, district_path(district) %></td>
               <td><%= district.get_province_name %></td>
+              <td><%= link_to district.name, district_path(district) %></td>
               <td style='text-align: right;'><%= district.get_subdistricts_number %></td>
               <td style='text-align: right;'><%= district.get_activities_number %></td>
             </tr>
@@ -33,6 +33,7 @@
         </tbody>
       </table>
       </div>
+      <%= will_paginate @activities, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => '<' %>
     </div>
     <!-- End of Main Content -->
     <!-- Widgets -->

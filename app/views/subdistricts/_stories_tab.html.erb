@@ -1,26 +1,33 @@
 <!-- Tab -->
-  <div class="tabbable">
-    <div class="tab-content">
-      <div class="tab-pane active">
-        <% @posts.each do |post| %>
-          <hr />
-          <div class="row">
-            <div class="left-side">
-              <%= image_tag post.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
-            </div>
-            <div class="right-side">
-              <div class="content-heading">
-                <h5><%= link_to post.title, post %></h5>
-                oleh <%= post.user.username %>&nbsp;<small><%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small><br/>
-                <small style="color: #999999;"><b><%= post.comments_count %> komentar</b></small>
-              </div>
-              <div class="content-desc">
-                <%= raw(truncate(post.description, length: 200)) %> <%= link_to 'baca selengkapnya', post %>
-              </div>
-            </div>
-          </div>
-        <% end %>
+<% if !@posts.empty? %>
+  <div class="posts">
+    <!-- Post Entry -->
+    <% @posts.each do |post| %>
+      <div class="entry">
+         <h3><%= link_to post.title, post %></h3>
+         
+         <!-- Meta details -->
+         <div class="meta">
+            <i class="icon-calendar"></i> <%= post.created_at.strftime("%d-%m-%Y") %>&nbsp;
+            <i class="icon-map-marker"></i> <%= post.get_subdistrict_name %>&nbsp;
+            <i class="icon-user"></i> <%= post.user.username %> 
+            <span class="pull-right"><i class="icon-comment"></i> <%= post.comments_count %> Komentar</span>
+         </div>
+         
+         <!-- Thumbnail -->
+         <div class="bthumb2">
+            <%= image_tag post.picture.url(:thumbnail) %>
+         </div>
+         
+         <div style="min-height: 100px">
+          <%= raw(truncate(post.description, length: 250)) %>
+         </div>
+         <div class="button"><%= link_to "Baca selengkapnya...", post_path(post) %></div>
       </div>
-    </div>
+    <% end %>
+    <!-- End of Post Entry -->
   </div>
-  <!-- End of Tab -->
+<% else %>
+  Belum ada cerita yang dipublikasikan dari kecamatan ini.
+<% end %>
+<!-- End of Tab -->

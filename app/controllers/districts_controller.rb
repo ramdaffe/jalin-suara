@@ -11,7 +11,7 @@ class DistrictsController < ApplicationController
       @province = Province.find(params[:province_id])
       @districts = District.paginate(:page => params[:page], :order => 'name', :conditions => ['province_id = ?', params[:province_id]])  
     else
-      @districts = District.paginate(:page => params[:page], :order => 'name')
+      @districts = District.joins(:province).order('provinces.name, districts.name').paginate(:page => params[:page], :order => 'name')
     end
 
     respond_to do |format|
