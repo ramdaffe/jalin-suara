@@ -33,7 +33,7 @@
         </tbody>
       </table>
       </div>
-      <%= will_paginate @activities, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => '<' %>
+      <%= will_paginate @districts, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => '<' %>
     </div>
     <!-- End of Main Content -->
     <!-- Widgets -->
@@ -42,7 +42,6 @@
         <div class="widget">
           <h4>Cakupan Jalin Suara</h4>
           <ul>
-            <li>Propinsi: 33</li>
             <li>Propinsi: <%= link_to @provinces_number, provinces_path %></li>
             <li>Kabupaten: <%= link_to @districts_number, districts_path %></li>
             <li>Kecamatan: <%= link_to @subdistricts_number, subdistricts_path %></li>

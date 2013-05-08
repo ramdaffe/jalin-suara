@@ -1,19 +1,22 @@
 <% reply = defined?(reply) ? reply : false %>
-<hr class="carved" />
-<div id="comment_<%= comment.id %>">
-  <div class="row">
-    <div class="left-side-comment">
-      <%= image_tag comment.owner.picture.url(:tiny), :style => "float:left; margin-bottom: 10px;" %>
-    </div>
-    <div class="right-side-comment">
-      <h6><%= comment.owner.username %>&nbsp;<small><%= distance_of_time_in_words(comment.created_at, Time.now) %> ago</small></h6>
-      <%= simple_format(comment.body) %>
-      <!-- Reply -->
-      <% if Opinio.accept_replies && !reply %>
-        <%= link_to 'Balas Komentar', reply_comment_path(comment), :remote => true, :class => 'btn btn-small' %>
-        <%= render :partial => "opinio/comments/comment", :collection => comment.comments, :locals => {:reply => true} %>
-      <% end %>
-      <!-- End of Reply -->
-    </div>
-  </div>
-</div>
+<% if reply %>
+  <li class="comment reply">
+<% else %>
+  <li class="comment">
+<% end %>
+  <a class="pull-left" href="#">
+    <%= image_tag comment.owner.picture.url(:tiny), :class => "avatar" %>
+  </a>
+  <div class="comment-author"><%= link_to comment.owner.username, "#" %></div>
+  <div class="cmeta">Dibuat pada <%= comment.created_at.strftime("%e-%m-%Y") %></div>
+  <%= simple_format(comment.body) %>
+  <% if Opinio.accept_replies && !reply %>
+    <%= link_to 'Balas Komentar', reply_comment_path(comment), :remote => true, :class => 'btn btn-small', :style => 'margin-left: 60px;' %>
+  <% end %>
+  <div class="clearfix"></div>
+</li>
+<!-- Reply -->
+<% if Opinio.accept_replies && !reply %>
+  <%= render :partial => "opinio/comments/comment", :collection => comment.comments, :locals => {:reply => true} %>
+<% end %>
+<!-- End of Reply -->

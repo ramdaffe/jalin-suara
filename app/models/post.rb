@@ -17,11 +17,20 @@ class Post < ActiveRecord::Base
       thumbnail: '220x130',
       square: '200x200#',
       medium: '300x300>',
-      large: '500x300>'
+      large: '620x266>'
     }
 
   def comments_count
-    comments.count
+    count = 0
+
+    self.comments.each do |comment|
+      count += 1
+      if comment.comments != nil
+        count += comment.comments.count
+      end
+    end
+
+    return count
   end
 
   def gmaps4rails_address

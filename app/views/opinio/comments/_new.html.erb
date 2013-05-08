@@ -1,19 +1,31 @@
-<hr class="carved" />
-<div id="new_comment">
-  <h5>Tulis Komentar</h5>
+<div class="form">
   <% if send(Opinio.current_user_method) %>
-    <%= form_for Comment.new, :remote => false do |f| %>
-      <%= f.text_area :body, :rows => 3 %>
+    <%= form_for Comment.new, :remote => false, :html => {:class => "form-horizontal"} do |f| %>
+      <div class="control-group">
+        <label class="control-label" for="comment">Komentar</label>
+        <div class="controls">
+          <%= f.text_area :body, :rows => 5 %>
+        </div>
+      </div>
       <%= hidden_field_tag :commentable_id, commentable.id %>
       <%= hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s %>
-      <%= f.submit 'Kirim', :class => 'btn btn-primary' %>
+      <div class="form-actions">
+        <%= f.submit 'Kirim', :class => 'btn' %>
+      </div>
     <% end %>
   <% else %>
     <%= form_for Comment.new, :remote => false do |f| %>
-      <%= f.text_area :body, :rows => 3 %>
+      <div class="control-group">
+        <label class="control-label" for="comment">Komentar</label>
+        <div class="controls">
+          <%= f.text_area :body, :rows => 5 %>
+        </div>
+      </div>
       <%= hidden_field_tag :commentable_id, commentable.id %>
       <%= hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s %>
-      <%= f.submit 'Kirim Komentar', :class => 'btn btn-primary' %>
+      <div class="form-actions">
+        <%= f.submit 'Kirim', :class => 'btn' %>
+      </div>
     <% end %>
   <% end %>
 </div>

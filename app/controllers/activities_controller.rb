@@ -15,7 +15,8 @@ class ActivitiesController < ApplicationController
       subdistricts = Subdistrict.find(:all, :conditions => ['district_id = ?', params[:district_id]])
       @activities = Activity.paginate(:page => params[:page], :order => 'name', :conditions => ['subdistrict_id in (?)', subdistricts])
     else
-      @activities = Activity.paginate(:page => params[:page], :order => 'name')
+      @activities = Activity.joins(:subdistrict => {:district => :province}).order('provinces.name', 'subdistricts.name', 'activities.name').paginate(:page => params[:page], :order => 'name')
+      #@activities = Activity.paginate(:page => params[:page], :order => 'name')
     end
 
     respond_to do |format|
@@ -31,6 +32,7 @@ class ActivitiesController < ApplicationController
     @postable = @activity
     @post = Post.new
     @posts = Post.find(:all, :conditions => {:postable_type => 'Activity', :postable_id => @activity.id}, :order => "created_at DESC")
+    @implementer_unit = @activity.subdistrict.implementer_unit
 
     respond_to do |format|
       format.html { render layout: 'three_columns'}

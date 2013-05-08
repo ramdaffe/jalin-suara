@@ -3,7 +3,9 @@
 </div>
 
 <% unless comments.empty? %>
-	<%= render :partial => 'opinio/comments/comment', :collection => comments %>
+  <ul class="comment-list">
+    <%= render :partial => 'opinio/comments/comment', :collection => comments %>
+  </ul>
 <% else %>
 	<div id="no_comments">Belum ada komentar</div>
 <% end %>

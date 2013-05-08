@@ -1,68 +1,93 @@
-<!-- Left Sidebar -->
-<div class="span3">
-  <div class="well" style="padding: 8px 0;">
-    <h5 class="nav-list"><%= link_to @post.get_subdistrict_name, @post.get_subdistrict %></h5>
-    <% if @implementer_unit %>
-      <h5 class="nav-list" style="text-align: center;"><%= image_tag @implementer_unit.picture.url(:square)%></h5>
-    <% end %>
-    <ul class="nav nav-list">
-      <li class="divider"></li>
-      <li class="nav-header">Profil Kecamatan</li>
-      <li style="font-size: 12px;">Alamat UPK: <b><%= @implementer_unit.address %></b></li>
-      <li style="font-size: 12px;">Telepon UPK: <b><%= @implementer_unit.phone %></b></li>
-      <li style="font-size: 12px;">Nama Fasilitator: <b><%= @implementer_unit.facilitator %></b></li>
-      <li style="font-size: 12px;">Telepon Fasilitator: <b><%= @implementer_unit.facilitator_phone %></b></li>
-      <li style="font-size: 12px;">Telepon Pengaduan: <b><%= @implementer_unit.call_center %></b></li>
-      <li style="font-size: 12px;">Jumlah Desa: </li>
-      <li style="font-size: 12px;">Jumlah Kelurahan: </li>
-      <li style="font-size: 12px;">Jumlah Penerima Manfaat: </li>
-    </ul>
-  </div>
-</div>
-<!-- End of Left Sidebar -->
+<div class="span12">
+  <!-- Content -->
+  <div class="blog">
+    <div class="row">
+      <div class="span12">
 
-<!-- Main column -->
-<div class="span6">
-  <div class="main-content">
-    <div class="well">
-      <!-- Post Header -->
-      <h4><%= @post.title %><br/></h4>
-      <div class="ribbon">
-        oleh <%= link_to @post.user.username, "#" %> pada <%= @post.created_at.strftime("%e-%m-%Y") %>
-        <br />
+        <div class="row">
+          <!-- Main Content -->
+          <div class="span8">
+            <div class="posts">
+              <!-- Post Entry -->
+              <div class="entry">
+                <h2><%= @post.title %></h2>
 
-        <!-- Share to Facebook-->
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=472613249471380";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-        <div class="fb-like" data-href="http://www.jalinsuara.com" data-layout="button_count" data-width="450" data-show-faces="true"></div>
-        <!-- End of Share to Facebook-->
+                <div class="meta">
+                  <i class="icon-calendar"></i> <%= @post.created_at.strftime("%e-%m-%Y") %> 
+                  <i class="icon-user"></i> <%= link_to @post.user.username, "#" %> 
+                  <span class="pull-right"><i class="icon-comment"></i> <%= @post.comments_count %> Komentar</span>
+                </div>
 
-        <!-- Share to Twitter-->
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://jalinsuara.com" data-text="<%= @post.title %>">Tweet</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-        </script>
-        <!-- End of Share to Twitter-->
+                <div class="bthumb">
+                  <%= image_tag @post.picture.url(:large) %>
+                </div>
+
+                <%= raw(@post.description) %>
+              </div>
+              <!-- End of Post Entry -->
+              <!-- Share -->
+              <div class="well">
+                <!-- Social media icons -->
+                <div class="social pull-left">
+                  <h5>Bagikan cerita ini: </h5>
+                  <a href="#"><i class="icon-facebook facebook"></i></a>
+                  <a href="#"><i class="icon-twitter twitter"></i></a>
+                  <a href="#"><i class="icon-linkedin linkedin"></i></a>
+                  <a href="#"><i class="icon-pinterest pinterest"></i></a>
+                  <a href="#"><i class="icon-google-plus google-plus"></i></a>
+                </div>
+                <!-- Tags -->
+                <div class="tags pull-right">
+                  <h5>Label: </h5>
+                  <a href="#">PNPM</a>
+                  <a href="#">Anggaran</a>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <!-- End of Share -->
+              <!-- Comment Form -->
+              <div class="respond well">
+                <div class="title"><h4>Tulis Komentar</h4></div>
+                <%= render_comments_form @post %>
+              </div>
+              <!-- End of Comment Form -->
+              <!-- Comment -->
+              <div class="comments well">
+                <div class="title">
+                  <h4><%= @post.comments_count %> Komentar</h4>
+                </div>
+                <%= render_comments @post %>
+              </div>
+              <!-- End of Comment -->
+            </div>
+          </div>
+          <!-- End of Main Content -->
+          <!-- Widgets -->
+          <div class="span4">
+            <div class="sidebar", style="margin-top: 0px;">
+              <div class="widget">
+                <h4><%= @post.get_subdistrict_name %></h4>
+                <% if @implementer_unit %>
+                  <h5 class="nav-list" style="text-align: center; border-bottom: 1px solid #eee;"><%= image_tag @implementer_unit.picture.url(:square) %></h5>
+                <% end %>
+                <br />
+                <ul>
+                  <li>Alamat UPK: <b><%= @implementer_unit.address %></b></li>
+                  <li>Telepon UPK: <b><%= @implementer_unit.phone %></b></li>
+                  <li>Nama Fasilitator: <b><%= @implementer_unit.facilitator %></b></li>
+                  <li>Telepon Fasilitator: <b><%= @implementer_unit.facilitator_phone %></b></li>
+                  <li>Telepon Pengaduan: <b><%= @implementer_unit.call_center %></b></li>
+                  <li>Jumlah Desa: </li>
+                  <li>Jumlah Kelurahan: </li>
+                  <li>Jumlah Penerima Manfaat: </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End of Widgets -->
+        </div>
       </div>
-      <div style="height: 300px; margin-bottom: 10px; text-align: center;">
-        <% if @post.picture_file_name != nil %>
-          <%= image_tag @post.picture.url(:large), :style => "height: 300px;" %>
-        <% end %>
-      </div>
-      <!-- End of Post Header -->
-      
-      <!--- Post Content -->
-    	<%= raw(@post.description) %>
-
-      <!-- Comment -->
-      <%= render_comments_form @post %>
-      <%= render_comments @post %>
     </div>
   </div>
+  <!-- End of Content -->
 </div>
-<!-- End of Main Column -->
