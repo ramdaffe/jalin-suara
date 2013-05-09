@@ -12,6 +12,7 @@
  *= require_tree .
  *= require gmaps4rails
  *= require bootstrap
+ *= require bootstrap-modal
  *= require slider
  *= require prettyPhoto
  *= require font-awesome
