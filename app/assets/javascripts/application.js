@@ -11,9 +11,18 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require ckeditor/init
-//= require jquery
-//= require jquery_ujs
 //= require twitter/bootstrap
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
+//= require bootstrap
+//= require bootstrap.min-old
+//= require bootstrap.old
+//= require custom
+//= require filter
+//= require html5shim
+//= require jquery.cslider
+//= require jquery.flexslider-min
+//= require jquery.isotope
+//= require jquery.prettyPhoto
+//= require jquery.tweet
 //= require_tree .
