@@ -6,6 +6,8 @@ ssh_options[:forward_agent] = true
 server "ec2-50-19-205-190.compute-1.amazonaws.com", :app, :web, :db, :primary => true
 set :deploy_to, "/var/www/jalinsuara"
 
+set :use_sudo, false
+
 set :user, "ubuntu"
 ssh_options[:keys] = "~/.ssh/jalinsuara.pem"
 
