@@ -16,6 +16,7 @@ Mapstories::Application.configure do
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
+  config.assets.precompile += %w( bootstrap.js bootstrap.min-old.js boostrap.old.js custom.js filter.js html5shim.js jquery.slider.js jquery.flexslider.min.js jquery.isotope.js jquery.prettyPhoto.js jquery.tweet.js modernizr.custom.28468.js)
 
   # Generate digests for assets URLs
   config.assets.digest = true
