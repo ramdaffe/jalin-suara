@@ -10,19 +10,7 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require ckeditor/init
 //= require twitter/bootstrap
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
-//= require bootstrap
-//= require bootstrap.min-old
-//= require bootstrap.old
-//= require custom
-//= require filter
-//= require html5shim
-//= require jquery.cslider
-//= require jquery.flexslider-min
-//= require jquery.isotope
-//= require jquery.prettyPhoto
-//= require jquery.tweet
 //= require_tree .
