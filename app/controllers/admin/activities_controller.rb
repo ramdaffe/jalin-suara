@@ -2,7 +2,7 @@ class Admin::ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    @activities = Activity.paginate(:page => params[:page])
+    @activities = Activity.joins(:subdistrict => {:district => :province}).order('provinces.name', 'subdistricts.name', 'activities.name').paginate(:page => params[:page], :order => 'name')
 
     respond_to do |format|
       format.html { render layout: 'admin' }

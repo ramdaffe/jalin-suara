@@ -1,17 +1,16 @@
-<div class="span9">
-  <div class="main-content">
-    <div class="well">
-      <%- model_class = Activity -%>
-      <h4>Daftar Sub Proyek</h4>
-      <hr/>
-      <table class="table table-striped">
+<div class="span12">
+  <!-- Content -->
+  <div class="row">
+    <!-- Main Content -->
+    <div class="span12">
+      <div class="support-page">
+        <table class="table table-striped">
         <thead>
           <tr>
-            <th>Nomor</th>
-            <th>Nama Sub Proyek</th>
+            <th>No</th>
+            <th>Nama Propinsi</th>
             <th>Nama Kecamatan</th>
-            <th><%= model_class.human_attribute_name(:latitude) %></th>
-            <th><%= model_class.human_attribute_name(:longitude) %></th>
+            <th>Nama Sub Proyek</th>
             <% if current_user != nil %>
               <% if current_user.has_role? :admin %>
                 <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -20,13 +19,14 @@
           </tr>
         </thead>
         <tbody>
+          <% i=0 %>
           <% @activities.each do |activity| %>
+            <% i+= 1 %>
             <tr>
-              <td><%= activity.id %></td>
-              <td><%= link_to activity.name, admin_activity_path(activity) %></td>
+              <td><%= i %></td>
+              <td><%= activity.get_province_name %></td>
               <td><%= activity.get_subdistrict_name %></td>
-              <td><%= activity.latitude %></td>
-              <td><%= activity.longitude %></td>
+              <td><%= link_to activity.name, admin_activity_path(activity) %></td>
               <% if current_user != nil %>
                 <% if current_user.has_role? :admin %>
                   <td>
@@ -39,15 +39,18 @@
           <% end %>
         </tbody>
       </table>
-
-      <%= will_paginate @activities, :renderer => BootstrapPagination::Rails %>
+      </div>
+      
+      <%= will_paginate @activities, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => '<' %>
 
       <% if current_user != nil %>
         <% if current_user.has_role? :admin %>
-          <%= link_to "Tambah Sub Proyek", new_admin_activity_path, :class => 'btn btn-primary' %>
-          <%= link_to 'Upload Excel', {:action => 'import_excel'}, {:class => 'btn btn-primary'} %>
+          <%= link_to "Tambah Sub Proyek", new_admin_activity_path, :class => 'btn btn-primary pull-right' %>
+          <%= link_to 'Upload Excel', {:action => 'import_excel'}, {:class => 'btn btn-primary pull-right'} %>
         <% end %>
       <% end %>
     </div>
+    <!-- End of Main Content -->
   </div>
+  <!-- End of Content -->
 </div>

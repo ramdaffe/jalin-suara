@@ -2,7 +2,7 @@ class Admin::DistrictsController < ApplicationController
   # GET /districts
   # GET /districts.json
   def index
-    @districts = District.paginate(:page => params[:page])
+    @districts = District.joins(:province).order('provinces.name, districts.name').paginate(:page => params[:page], :order => 'name')
 
     respond_to do |format|
       format.html { render layout: 'admin' }

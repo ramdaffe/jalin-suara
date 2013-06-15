@@ -2,7 +2,7 @@ class Admin::ProvincesController < ApplicationController
   # GET /provinces
   # GET /provinces.json
   def index
-    @provinces = Province.paginate(:page => params[:page])
+    @provinces = Province.paginate(:page => params[:page], :order => 'name')
 
     respond_to do |format|
       format.html { render layout: "admin" }
