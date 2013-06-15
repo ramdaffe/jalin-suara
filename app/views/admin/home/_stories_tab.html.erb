@@ -7,8 +7,8 @@
             <th>No</th>
             <th>Judul Cerita</th>
             <th>Penulis Cerita</th>
-            <th>Kecamatan</th>
             <th>Sub Proyek</th>
+            <th>Kecamatan</th>
             <% if current_user != nil %>
               <% if current_user.has_role? :admin %>
                 <th>Aksi</th>
@@ -24,8 +24,8 @@
               <td><%= i %></td>
               <td><%= link_to post.title, admin_post_path(post) %></td>
               <td><%= post.get_author_name %></td>
-              <td><%= post.get_subdistrict_name %></td>
               <td><%= post.get_activity_name %></td>
+              <td><%= post.get_subdistrict_name %></td>
               <% if current_user != nil %>
                 <% if current_user.has_role? :admin %>
                   <td>

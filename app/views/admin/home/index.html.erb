@@ -1,26 +1,50 @@
-<!-- Main Content -->
-<div class="span9">
-  <div class="main-content">
-    <div class="well">
-      <!-- Tabs -->
-      <ul class="nav nav-tabs">
-        <li class="<%= 'active' if params[:tab] == nil %>"><%= link_to "Cerita Terbaru", :controller => 'home', :action => 'index'  %></li>
-        <li class="<%= 'active' if params[:tab] == 'comments' %>"><%= link_to "Komentar Terbaru", :controller => 'home', :action => 'index', :tab => "comments" %></li>
-        <li class="<%= 'active' if params[:tab] == 'users' %>"><%= link_to "Pengguna Terbaru", :controller => 'home', :action => 'index', :tab => "users" %></li>
-      </ul>
-      <!-- End of Tabs -->
+<div class="span12">
+  <!-- Content -->
+  <div class="blog">
+    <div class="row">
+      <div class="span12">
 
-      <!-- Tab Content -->
-      <% if params[:tab] == nil %>
-        <%= render "stories_tab" %>
-      <% elsif params[:tab] == 'comments' %>
-        <%= render "comments_tab" %>
-      <% elsif params[:tab] == 'users' %>
-        <%= render "users_tab" %>
-      <% end %>
-      <!-- End of Tab Content -->
-      <br/>
+        <div class="row">
+          <!-- Main Content -->
+          <div class="span12">
+            <!-- Navigation Tabs -->
+            <ul class="nav nav-tabs">
+              <li class="<%= 'active' if params[:tab] == nil %>" style="background-image: none; margin-bottom: -5px; margin-left: -20px;">
+                <% if params[:tab] == nil %>
+                  <%= link_to "Cerita Terbaru", {:controller => 'home', :action => 'index'}, {:style => "background-color: #fcfcfc;"}  %>
+                <% else %>
+                  <%= link_to "Cerita Terbaru", :controller => 'home', :action => 'index'  %>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if params[:tab] == 'comments' %>" style="background-image: none; margin-bottom: -5px; margin-left: -20px;">
+                <% if params[:tab] == 'comments' %>
+                  <%= link_to "Komentar Terbaru", {:controller => 'home', :action => 'index', :tab => "comments"}, {:style => "background-color: #fcfcfc;"} %>
+                <% else %>
+                  <%= link_to "Komentar Terbaru", :controller => 'home', :action => 'index', :tab => "comments" %>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if params[:tab] == 'users' %>" style="background-image: none; margin-bottom: -5px; margin-left: -20px;">
+                <% if params[:tab] == 'users' %>
+                  <%= link_to "Pengguna Terbaru", {:controller => 'home', :action => 'index', :tab => "users"}, {:style => "background-color: #fcfcfc;"} %>
+                <% else %>
+                  <%= link_to "Pengguna Terbaru", :controller => 'home', :action => 'index', :tab => "users" %>
+                <% end %>
+              </li>
+            </ul>
+            <!-- End of Navigation Tabs -->
+            <br />
+            <% if params[:tab] == nil %>
+              <%= render "stories_tab" %>
+            <% elsif params[:tab] == 'comments' %>
+              <%= render "comments_tab" %>
+            <% elsif params[:tab] == 'users' %>
+              <%= render "users_tab" %>
+            <% end %>
+          </div>
+          <!-- End of Main Content -->
+        </div>
+      </div>
     </div>
   </div>
+  <!-- End of Content -->
 </div>
-<!-- End of Main Content -->
