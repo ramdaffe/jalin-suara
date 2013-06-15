@@ -1,17 +1,21 @@
-<div class="span9">
-  <div class="main-content">
-    <div class="well">
-      <%- model_class = District -%>
-      <h4>Daftar Kabupaten/Kotamadya</h4>
-      <hr/>
-      <table class="table table-striped">
+<div class="span12">
+  <!-- Content -->
+  <div class="row">
+    <!-- Main Content -->
+    <div class="span12">
+      <div class="support-page">
+        <h2>Daftar Kabupaten</h2>
+        <% if @province != nil %>
+          <h4><%= @province.name %></h4>
+        <% end %>
+        <table class="table table-striped">
         <thead>
           <tr>
-            <th><%= model_class.human_attribute_name(:id) %></th>
-            <th><%= model_class.human_attribute_name(:name) %></th>
-            <th><%= model_class.human_attribute_name(:province_id) %></th>
-            <th><%= model_class.human_attribute_name(:latitude) %></th>
-            <th><%= model_class.human_attribute_name(:longitude) %></th>
+            <th>No</th>
+            <th>Nama Propinsi</th>
+            <th>Nama Kabupaten</th>
+            <th>Kecamatan</th>
+            <th>Sub Proyek</th>
             <% if current_user != nil %>
               <% if current_user.has_role? :admin %>
                 <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -20,13 +24,15 @@
           </tr>
         </thead>
         <tbody>
+          <% i=0 %>
           <% @districts.each do |district| %>
+            <% i+= 1 %>
             <tr>
-              <td><%= district.id %></td>
-              <td><%= link_to district.name, admin_district_path(district) %></td>
+              <td><%= i %></td>
               <td><%= district.get_province_name %></td>
-              <td><%= district.latitude %></td>
-              <td><%= district.longitude %></td>
+              <td><%= link_to district.name, admin_district_path(district) %></td>
+              <td style='text-align: right;'><%= district.get_subdistricts_number %></td>
+              <td style='text-align: right;'><%= district.get_activities_number %></td>
               <% if current_user != nil %>
                 <% if current_user.has_role? :admin %>
                   <td>
@@ -39,14 +45,17 @@
           <% end %>
         </tbody>
       </table>
+      </div>
 
-      <%= will_paginate @districts, :renderer => BootstrapPagination::Rails %>
+      <%= will_paginate @districts, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => '<' %>
 
       <% if current_user != nil %>
         <% if current_user.has_role? :admin %>
-          <%= link_to "Tambah Kabupaten/Kotamadya", new_admin_district_path, :class => 'btn btn-primary' %>
+          <%= link_to "Tambah Kabupaten/Kotamadya", new_admin_district_path, :class => 'btn btn-primary pull-right' %>
         <% end %>
       <% end %>
     </div>
+    <!-- End of Main Content -->
   </div>
+  <!-- End of Content -->
 </div>
