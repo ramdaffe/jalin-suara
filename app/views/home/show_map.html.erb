@@ -1,23 +1,40 @@
-<div class="span3">
-  <div class="well" style="padding: 8px 0;">
-    <h5 style="margin-left: 15px;">Pencarian Sub Proyek</h5>
-    <%= simple_form_for :search, :controller => 'home', :action => 'show_map', :html => { :style => 'margin-left: 15px;' } do |f| %>
-      <%= f.input :subdistrict_district_province_name_contains, :label => 'Nama Propinsi' %>
-      <%= f.input :subdistrict_district_name_contains, :label => 'Nama Kabupaten' %>
-      <%= f.input :subdistrict_name_contains, :label => 'Nama Kecamatan' %>
-      <%= f.input :name_contains, :label => 'Nama Sub Proyek' %>
-      <%= f.button :submit, 'Cari', :class => 'btn-primary' %>
-    <% end %>
-  </div>
-</div>
+<div class="span12">
+  <div class="blog">
+    <div class="row">
+      <div class="span12">
 
-<!-- Main Content -->
-<div class="span9">
-  <div class="main-content">
-    <div class="well">
-      <h5>Peta Sub Proyek</h5>
-      <%= gmaps4rails(@json) %>
+        <div class="row">
+          <!-- Posts -->
+          <div class="span8">
+            <div class="rposts">
+              <h2>Peta Sub Proyek</h2>
+            </div>
+            <!-- GMaps -->
+            <div id="da-slider" class="da-slider">
+              <%= gmaps4rails(@json) %>
+            </div>
+            <!-- GMaps -->
+          </div>
+          <!-- End of Posts -->
+          <!-- Widgets -->
+          <div class="span4">
+            <div class="sidebar" style="margin-top: 0px;">
+              <div class="widget">
+                <h4>Pencarian Sub Proyek</h4>
+                <%= simple_form_for :search, :controller => 'home', :action => 'show_map', :html => { :style => 'margin-left: 15px;' } do |f| %>
+                  <%= f.input :subdistrict_district_province_name_contains, :label => 'Nama Propinsi' %>
+                  <%= f.input :subdistrict_district_name_contains, :label => 'Nama Kabupaten' %>
+                  <%= f.input :subdistrict_name_contains, :label => 'Nama Kecamatan' %>
+                  <%= f.input :name_contains, :label => 'Nama Sub Proyek' %>
+                  <%= f.button :submit, 'Cari', :class => 'btn-primary' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <!-- End of Widgets -->
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
-<!-- End of Main Content -->
