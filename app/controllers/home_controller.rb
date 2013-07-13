@@ -21,7 +21,7 @@ class HomeController < ApplicationController
 
   def search
     search_query = params[:query]
-    @search = Sunspot.search(Subdistrict, Activity, Post) do 
+    @search = Sunspot.search(Province, District, Subdistrict, Activity, Post) do 
       fulltext search_query 
     end
     @results = @search.results

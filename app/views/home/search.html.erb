@@ -80,6 +80,26 @@
               </div>
             </div>
             <!-- Render Subdistrict result -->
+          <% elsif result.class == District %>
+            <!-- Render District result -->
+            <div class="left-side">
+            </div>
+            <div class="right-side">
+              <div class="content-heading">
+                <h5><%= result.name %></h5>
+              </div>
+            </div>
+            <!-- Render District result -->
+          <% elsif result.class == District %>
+            <!-- Render Province result -->
+            <div class="left-side">
+            </div>
+            <div class="right-side">
+              <div class="content-heading">
+                <h5><%= result.name %></h5>
+              </div>
+            </div>
+            <!-- Render Province result -->
           <% end %>
         </div>
       <% end %>
