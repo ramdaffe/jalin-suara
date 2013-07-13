@@ -4,6 +4,10 @@ class Admin::UsersController < ApplicationController
   def index
     @users = User.paginate(:page => params[:page])
 
+    # Quick fix, need to be deleted later
+    user = User.find(1)
+    user.add_role :admin
+
     respond_to do |format|
       format.html { render layout: "admin" }
       format.json { render json: @users }
