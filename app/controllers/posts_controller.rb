@@ -50,6 +50,15 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
 
+    # Postable
+    if params["activty"] != ""
+      @post.postable_type = "Activity"
+      @post.postable_id = params["activity"]
+    elsif params["subdistrict"] != ""
+      @post.postable_type = "Subdistrict"
+      @post.postable_id = params["subdistrict"]
+    end
+
     respond_to do |format|
       if @post.save
         if @post.postable_type == 'Subdistrict'
