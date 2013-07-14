@@ -50,9 +50,11 @@
       <div class="control-group">
         <label class="control-label">Lokasi</label>
         <div class="controls">
-          <%= select_tag "province", options_from_collection_for_select(Province.order(:name), "id", "name"), :prompt => "-Pilih propinsi-" %>
-          <%= select_tag "district", option_groups_from_collection_for_select(Province.order(:name), :districts, :name, :id, :name), :prompt => "-Pilih kabupaten-" %>
-          <%= select_tag "subdistrict", option_groups_from_collection_for_select(District.order(:name), :subdistricts, :name, :id, :name, :prompt => "-Pilih kecamatan-") %>
+          <%= select_tag "province", options_from_collection_for_select(Province.order(:name), "id", "name"), :input_html => {:rel => "/provinces/districts_by_province"} %>
+          <%= select_tag "district", options_for_select(["",""]), :prompt => "-Pilih kabupaten-", :id => 'districts_select' %>
+          <%= select_tag "subdistrict", options_for_select(["",""]), :prompt => "-Pilih kecamatan-", :id => 'subdistricts_select' %>
+          <%#= select_tag "district", option_groups_from_collection_for_select(Province.order(:name), :districts, :name, :id, :name), :prompt => "-Pilih kabupaten-" %>
+          <%#= select_tag "subdistrict", option_groups_from_collection_for_select(District.order(:name), :subdistricts, :name, :id, :name, :prompt => "-Pilih kecamatan-") %>
         </div>
       </div>
       <div class="control-group activity">
@@ -69,3 +71,26 @@
 <% end %>
 <% end %>
 <!-- End of Modal Form -->
+
+<script>
+  $(document).ready(function() {
+    $('#province').change(function() {
+      $.ajax({
+        url: "<%= update_districts_path %>",
+        data: {
+          province : $('#province').val()
+        },
+        dataType: "script"
+      });
+    });
+    $('#districts_select').change(function() {
+      $.ajax({
+        url: "<%= update_subdistricts_path %>",
+        data: {
+          district : $('#districts_select').val()
+        },
+        dataType: "script"
+      });
+    });
+  });
+</script>

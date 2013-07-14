@@ -103,4 +103,18 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def update_districts
+    province = Province.find(params[:province])
+    @districts = province.districts.map{|a| [a.name, a.id]}.insert(0, "-Pilih kabupaten-")
+
+    respond_to do |format|
+      format.js
+    end
+  end
+ 
+  def update_subdistricts
+    district = District.find(params[:district])
+    @subdistricts = district.subdistricts.map{|s| [s.name, s.id]}.insert(0, "-Pilih kecamatan-")
+  end
 end

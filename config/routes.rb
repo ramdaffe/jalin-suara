@@ -29,6 +29,8 @@ Mapstories::Application.routes.draw do
   resources :districts
   resources :excel_files
   resources :implementer_units
+  match 'posts/update_districts' => 'posts#update_districts'
+  match 'posts/update_subdistricts' => 'posts#update_subdistricts'
   resources :posts do
     opinio
   end
