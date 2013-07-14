@@ -26,9 +26,10 @@ class HomeController < ApplicationController
     end
     @results = @search.results
 
-    @provinces = Province.all
-    @districts = District.all
-    @subdistricts = Subdistrict.all
+    @provinces_number = Province.all.size
+    @districts_number = District.all.size
+    @subdistricts_number = Subdistrict.all.size
+    @activities_number = Activity.all.size
 
     respond_to do |format|
       format.html { render layout: 'three_columns' }

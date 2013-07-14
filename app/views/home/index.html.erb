@@ -50,6 +50,13 @@
           <div class="span4">
             <div class="sidebar" style="margin-top: 0px;">
               <div class="widget">
+                <h4>Pencarian</h4>
+                <%= form_tag '/home/search', :class => 'form-search' do %>
+                  <%= text_field_tag 'query', nil, :class => 'input-medium' %>
+                  <%= submit_tag 'Cari', :class => 'btn' %>
+                <% end %>
+              </div>
+              <div class="widget">
                 <h4>Cakupan PNPM Mandiri</h4>
                 <ul>
                   <li>Propinsi: 33</li>
@@ -58,14 +65,6 @@
                   <li>Total Dana APBN: 8,9 Triliun Rupiah</li>
                   <li>Total Dana APBD: 8 Miliar Rupiah</li>
                 </ul>
-              </div>
-              <!-- Widget -->
-              <div class="widget">
-                <h4>Pencarian</h4>
-                <%= form_tag '/home/search', :class => 'form-search' do %>
-                  <%= text_field_tag 'query', nil, :class => 'input-medium' %>
-                  <%= submit_tag 'Cari', :class => 'btn' %>
-                <% end %>
               </div>
               <div class="widget">
                 <h4>Cerita Terbaru</h4>
