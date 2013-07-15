@@ -1,4 +1,5 @@
 require 'roo'
+require 'csv'
 
 class ExcelFilesController < ApplicationController
   # POST /admin/excel_files
@@ -56,7 +57,7 @@ class ExcelFilesController < ApplicationController
           end
         end
 
-        format.html { redirect_to activities_path }
+        format.html { redirect_to admin_activities_path }
       else
         format.html { render :action => "new" }
       end
