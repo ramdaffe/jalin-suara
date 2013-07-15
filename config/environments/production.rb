@@ -71,9 +71,9 @@ Mapstories::Application.configure do
     :default_url => "https://s3.amazonaws.com/qbl-paperclip/images/missing/:class_:attachment_:style.jpg", 
     :s3_protocol => 'http',
     :s3_credentials => {
-      :bucket => ENV['AWS_BUCKET'],
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+      :bucket => 'qbl-paperclip',
+      :access_key_id => 'AKIAJQVBIBHGZN5RQXQQ',
+      :secret_access_key => '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'
     }
   }
 end
