@@ -9,8 +9,8 @@ class ExcelFilesController < ApplicationController
     respond_to do |format|
       if @excel_file.save
         redirect_path = activities_path
-        csv_file = File.read(@excel_file.document)
-        csv = CSV.parse(csv_file, :headers => true)
+        csv_file = open(@excel_file.document)
+        csv = CSV.parse(csv_file.read, :headers => true)
         csv.each do |row|
           province_name = row[1]
           district_name = row[3]
