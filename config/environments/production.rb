@@ -68,12 +68,12 @@ Mapstories::Application.configure do
   # Amazon S3 settings for Paperclip uploads
   config.paperclip_defaults = {
     :storage => :s3,
-    # :default_url => "https://s3.amazonaws.com/qbl-paperclip/images/missing/:class_:attachment_:style.jpg", 
+    :default_url => "https://s3.amazonaws.com/qbl-paperclip/images/missing/:class_:attachment_:style.jpg", 
     :s3_protocol => 'http',
     :s3_credentials => {
-      :bucket => 'elasticbeanstalk-us-east-1-286930140752',
-      :access_key_id => 'AKIAITOHITQO55L27ITA',
-      :secret_access_key => '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'
+      :bucket => 'qbl-paperclip',
+      :access_key_id => 'AKIAJQVBIBHGZN5RQXQQ',
+      :secret_access_key => '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'
     }
   }
 end
