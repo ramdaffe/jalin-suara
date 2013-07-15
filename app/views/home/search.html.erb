@@ -1,120 +1,80 @@
 <div class="span12">
-  <!-- Content -->
-  <div class="row">
-    <!-- Main Content -->
-    <div class="span8">
-      <div class="support-page">
-        <h2>Hasil Pencarian</h2>
-        <% @results.each do |result| %>
-          <hr />
-          <div class="row">
-            <% if result.class == Post %>
-              <!-- Render Post result -->
-              <div class="left-side">
-                <%= image_tag result.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
-              </div>
-              <div class="right-side">
-                <div class="content-heading">
-                  <h5><%= result.title %></h5>
-                  oleh <%= result.user.username %>&nbsp;<small><%= distance_of_time_in_words(result.created_at, Time.now) %> ago</small><br/>
-                  <small style="color: #999999;"><b><%= result.comments_count %> komentar</b></small>
+  <div class="blog">
+    <div class="row">
+      <div class="span12">
+        <!-- Content -->
+        <div class="row">
+          <!-- Main Content -->
+          <div class="span8">
+            <!-- Search Result -->
+            <div class="rposts">
+              <h2>Hasil Pencarian</h2>
+            </div>
+            <div class="posts">
+              <% @results.each do |result| %>
+                <div class="entry">
+                  <% if result.class == Post %>
+                    <!-- Render Post result -->
+                    <%= render :partial => 'post_result', :locals => {:result => result} %>
+                    <!-- End of Render Post result -->
+                  <% elsif result.class == Activity %>
+                    <!-- Render Activity result -->
+                    <%= render :partial => 'activity_result', :locals => {:result => result} %>
+                    <!-- End of Render Activity result -->
+                  <% elsif result.class == Subdistrict %>
+                    <!-- Render Subdistrict result -->
+                    <%= render :partial => 'subdistrict_result', :locals => {:result => result} %>
+                    <!-- Render Subdistrict result -->
+                  <% elsif result.class == District %>
+                    <!-- Render District result -->
+                    <%= render :partial => 'district_result', :locals => {:result => result} %>
+                    <!-- Render District result -->
+                  <% elsif result.class == Province %>
+                    <!-- Render Province result -->
+                    <%= render :partial => 'province_result', :locals => {:result => result} %>
+                    <!-- Render Province result -->
+                  <% end %>
                 </div>
-                <div class="content-desc">
-                  <%= raw(truncate(result.description, length: 200)) %> <%= link_to 'baca selengkapnya', result %>
-                </div>
-              </div>
-              <!-- End of Render Post result -->
-            <% elsif result.class == Activity %>
-              <!-- Render Activity result -->
-              <div class="left-side">
-                <%= image_tag result.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
-              </div>
-              <div class="right-side">
-                <div class="content-heading">
-                  <h5><%= result.name %></h5>
-                  <small style="color: #999999;"><b>di <%= result.get_subdistrict_name %></b></small>
-                </div>
-                <div class="content-desc">
-                  Jumlah Penerima Manfaat: <%= result.male_beneficiary + result.female_beneficiary %><br/>
-                  Jumlah Dana BLM: <%= number_to_currency(result.blm_amount, :unit => "Rp ") %><br/>
-                  <%= link_to 'lihat selengkapnya', activity_path(result) %>
-                </div>
-              </div>
-              <!-- End of Render Activity result -->
-            <% elsif result.class == Subdistrict %>
-              <!-- Render Subdistrict result -->
-              <div class="left-side">
-                <%= image_tag result.implementer_unit.picture.url(:medium), :style => "float:left; margin-bottom: 10px;" %>
-              </div>
-              <div class="right-side">
-                <div class="content-heading">
-                  <h5><%= result.name %></h5>
-                </div>
-                <div class="content-desc">
-                  Jumlah Cerita: <%= result.posts.size %><br/>
-                  Jumlah Sub Proyek: <%= result.activities.size %><br/>
-                  <%= link_to 'lihat selengkapnya', subdistrict_path(result) %>
-                </div>
-              </div>
-              <!-- Render Subdistrict result -->
-            <% elsif result.class == District %>
-              <!-- Render District result -->
-              <div class="left-side">
-              </div>
-              <div class="right-side">
-                <div class="content-heading">
-                  <h5><%= result.name %></h5>
-                </div>
-              </div>
-              <!-- Render District result -->
-            <% elsif result.class == Province %>
-              <!-- Render Province result -->
-              <div class="left-side">
-              </div>
-              <div class="right-side">
-                <div class="content-heading">
-                  <h5><%= result.name %></h5>
-                </div>
-              </div>
-              <!-- Render Province result -->
-            <% end %>
+              <% end %>
+            </div>
+            <!-- End of Search Result -->
           </div>
-        <% end %>
+          <!-- End of Main Content -->
+          <!-- Widgets -->
+          <div class="span4">
+            <div class="sidebar", style="margin-top: 0px;">
+              <div class="widget">
+                <h4>Pencarian</h4>
+                <%= form_tag '/home/search', :class => 'form-search' do %>
+                  <%= text_field_tag 'query', nil, :class => 'input-medium' %>
+                  <%= submit_tag 'Cari', :class => 'btn' %>
+                <% end %>
+              </div>
+              <div class="widget">
+                <h4>Cakupan Jalin Suara</h4>
+                <ul>
+                  <li>Propinsi: <%= link_to @provinces_number, provinces_path %></li>
+                  <li>Kabupaten: <%= link_to @districts_number, districts_path %></li>
+                  <li>Kecamatan: <%= link_to @subdistricts_number, subdistricts_path %></li>
+                  <li>Sub Proyek: <%= link_to @activities_number, activities_path %></li>
+                </ul>
+              </div>
+              <div class="widget">
+                <h4>Cakupan PNPM Mandiri</h4>
+                <ul>
+                  <li>Propinsi: 33</li>
+                  <li>Kecamatan: 6.752</li>
+                  <li>Total Dana BLM: 9,7 Triliun Rupiah</li>
+                  <li>Total Dana APBN: 8,9 Triliun Rupiah</li>
+                  <li>Total Dana APBD: 8 Miliar Rupiah</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End of Widgets -->
+        </div>
+        <!-- End of Content -->
       </div>
     </div>
-    <!-- End of Main Content -->
-    <!-- Widgets -->
-    <div class="span4">
-      <div class="sidebar", style="margin-top: 0px;">
-        <div class="widget">
-          <h4>Pencarian</h4>
-          <%= form_tag '/home/search', :class => 'form-search' do %>
-            <%= text_field_tag 'query', nil, :class => 'input-medium' %>
-            <%= submit_tag 'Cari', :class => 'btn' %>
-          <% end %>
-        </div>
-        <div class="widget">
-          <h4>Cakupan Jalin Suara</h4>
-          <ul>
-            <li>Propinsi: <%= link_to @provinces_number, provinces_path %></li>
-            <li>Kabupaten: <%= link_to @districts_number, districts_path %></li>
-            <li>Kecamatan: <%= link_to @subdistricts_number, subdistricts_path %></li>
-            <li>Sub Proyek: <%= link_to @activities_number, activities_path %></li>
-          </ul>
-        </div>
-        <div class="widget">
-          <h4>Cakupan PNPM Mandiri</h4>
-          <ul>
-            <li>Propinsi: 33</li>
-            <li>Kecamatan: 6.752</li>
-            <li>Total Dana BLM: 9,7 Triliun Rupiah</li>
-            <li>Total Dana APBN: 8,9 Triliun Rupiah</li>
-            <li>Total Dana APBD: 8 Miliar Rupiah</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- End of Widgets -->
   </div>
-  <!-- End of Content -->
 </div>

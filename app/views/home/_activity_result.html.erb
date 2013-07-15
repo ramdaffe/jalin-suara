@@ -1,0 +1,19 @@
+<h3><%= link_to result.name, result %></h3>
+
+<!-- Meta details -->
+<div class="meta">
+  <b>Propinsi:</b> <%= result.get_province_name %> |
+  <b>Kecamatan:</b> <%= result.get_subdistrict_name %>&nbsp;
+</div>
+
+<!-- Thumbnail -->
+<div class="bthumb2">
+  <%= image_tag result.subdistrict.implementer_unit.picture.url(:thumbnail) %>
+</div>
+
+<div style="min-height: 100px">
+  Jumlah Penerima Manfaat: <%= result.male_beneficiary + result.female_beneficiary %><br/>
+  Jumlah Dana BLM: <%= number_to_currency(result.blm_amount, :unit => "Rp ") %><br/>
+</div>
+
+<div class="button"><%= link_to "Lihat selengkapnya...", activity_path(result) %></div>

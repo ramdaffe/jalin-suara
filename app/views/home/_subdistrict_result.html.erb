@@ -1,0 +1,19 @@
+<h3><%= link_to result.name, result %></h3>
+
+<!-- Meta details -->
+<div class="meta">
+  <b>Propinsi:</b> <%= result.get_province_name %> |
+  <b>Kabupaten:</b> <%= result.get_district_name %>&nbsp;
+</div>
+
+<!-- Thumbnail -->
+<div class="bthumb2">
+  <%= image_tag result.implementer_unit.picture.url(:thumbnail) %>
+</div>
+
+<div style="min-height: 100px">
+  Jumlah Cerita: <%= result.posts.size %><br/>
+  Jumlah Sub Proyek: <%= result.activities.size %><br/>
+</div>
+
+<div class="button"><%= link_to "Lihat selengkapnya...", subdistrict_path(result) %></div>
