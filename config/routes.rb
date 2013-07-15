@@ -31,6 +31,7 @@ Mapstories::Application.routes.draw do
   resources :implementer_units
   match 'posts/update_districts' => 'posts#update_districts'
   match 'posts/update_subdistricts' => 'posts#update_subdistricts'
+  match 'posts/update_activities' => 'posts#update_activities'
   resources :posts do
     opinio
   end

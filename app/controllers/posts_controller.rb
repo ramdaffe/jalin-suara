@@ -54,9 +54,15 @@ class PostsController < ApplicationController
     if params["activty"] != ""
       @post.postable_type = "Activity"
       @post.postable_id = params["activity"]
+      activity = Activity.find(params["activity"])
+      @post.latitude = activity.latitude
+      @post.latitude = activity.longitude
     elsif params["subdistrict"] != ""
       @post.postable_type = "Subdistrict"
       @post.postable_id = params["subdistrict"]
+      subdistrict = Subdistrict.find(params["subdistrict"])
+      @post.latitude = subdistrict.latitude
+      @post.longitude = subdistrict.longitude
     end
 
     respond_to do |format|
@@ -116,5 +122,10 @@ class PostsController < ApplicationController
   def update_subdistricts
     district = District.find(params[:district])
     @subdistricts = district.subdistricts.map{|s| [s.name, s.id]}.insert(0, "-Pilih kecamatan-")
+  end
+
+  def update_activities
+    subdistrict = Subdistrict.find(params[:subdistrict])
+    @activities = subdistrict.activities.map{|s| [s.name, s.id]}.insert(0, "-Pilih sub proyek-")
   end
 end
