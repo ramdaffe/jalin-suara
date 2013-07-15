@@ -37,19 +37,17 @@ class ExcelFilesController < ApplicationController
           end
 
           # Preparting activity variables
-          activity_name = row[12]
-          project_length = row[14]
-          project_area = row[15]
-          project_quantity = row[16]
-          blm_amount = row[17]
-          self_fund_amount = row[18]
-          male_proposal = row[19]
-          female_proposal = row[20]
-          male_beneficiary = row[21]
-          female_beneficiary = row[22]
-          poor_beneficiary = row[23]
-          latitude = row[25]
-          longitude = row[24]
+          activity_name = row[7]
+          project_length = row[9]
+          project_area = row[10]
+          project_quantity = row[11]
+          blm_amount = row[12]
+          self_fund_amount = row[13]
+          male_beneficiary = row[14]
+          female_beneficiary = row[15]
+          poor_beneficiary = row[16]
+          latitude = row[17]
+          longitude = row[18]
           subdistrict_id = subdistrict.id
           
           activity = Activity.find(:first, :conditions => {:name => activity_name, :subdistrict_id => subdistrict_id}) 
