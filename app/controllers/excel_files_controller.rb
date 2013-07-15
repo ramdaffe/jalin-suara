@@ -55,7 +55,7 @@ class ExcelFilesController < ApplicationController
           
           activity = Activity.find(:first, :conditions => {:name => activity_name, :subdistrict_id => subdistrict_id}) 
           if activity == nil
-            Activity.create(:name => activity_name, :project_length => project_length, :project_area => project_area, :project_quantity => project_quantity, :blm_amount => blm_amount, :self_fund_amount => self_fund_amount, :male_proposal => male_proposal, :female_proposal => female_proposal, :male_beneficiary => male_beneficiary, :female_beneficiary => female_beneficiary, :poor_beneficiary => poor_beneficiary, :latitude => latitude, :longitude => longitude, :subdistrict_id => subdistrict_id)
+            Activity.create(:name => activity_name, :project_length => project_length, :project_area => project_area, :project_quantity => project_quantity, :blm_amount => blm_amount, :self_fund_amount => self_fund_amount, :male_beneficiary => male_beneficiary, :female_beneficiary => female_beneficiary, :poor_beneficiary => poor_beneficiary, :latitude => latitude, :longitude => longitude, :subdistrict_id => subdistrict_id)
           end
         end
 
