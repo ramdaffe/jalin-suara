@@ -9,7 +9,7 @@ class ExcelFilesController < ApplicationController
     respond_to do |format|
       if @excel_file.save
         redirect_path = activities_path
-        CSV.foreach(@excel_file.document.path, headers: true) do |row|
+        CSV.foreach(@excel_file.document.url, headers: true) do |row|
           province_name = row[1]
           district_name = row[3]
           subdistrict_name = row[5]
