@@ -92,6 +92,16 @@ class Admin::ActivitiesController < ApplicationController
   def import_excel
     @excel_file = ExcelFile.new
 
+    # Temporary fix, for lacking of access to ssh in EBS
+    jawa_tengah = Province.find(6)
+    jawa_tengah.districts.each do |district|
+      district.subdistricts.each do |subdistrict|
+        subdistrict.activities.each do |activity|
+          activity.destroy
+        end
+      end
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @excel_file }
