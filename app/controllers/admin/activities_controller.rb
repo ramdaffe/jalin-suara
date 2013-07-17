@@ -92,56 +92,6 @@ class Admin::ActivitiesController < ApplicationController
   def import_excel
     @excel_file = ExcelFile.new
 
-    # Another temporary fix, again for the lack of ssh access to EBS
-    # Removing data with wrong formats
-    province1 = Province.find(17)
-    province1.districts.each do |district|
-      district.subdistricts.each do |subdistrict|
-        subdistrict.activities.each do |activity|
-          activity.destroy
-        end
-        subdistrict.destroy
-      end
-      district.destroy
-    end
-    province1.destroy
-
-    province2 = Province.find(19)
-    province2.districts.each do |district|
-      district.subdistricts.each do |subdistrict|
-        subdistrict.activities.each do |activity|
-          activity.destroy
-        end
-        subdistrict.destroy
-      end
-      district.destroy
-    end
-    province2.destroy
-
-    province3 = Province.find(16)
-    province3.districts.each do |district|
-      district.subdistricts.each do |subdistrict|
-        subdistrict.activities.each do |activity|
-          activity.destroy
-        end
-        subdistrict.destroy
-      end
-      district.destroy
-    end
-    province3.destroy
-
-    province4 = Province.find(15)
-    province4.districts.each do |district|
-      district.subdistricts.each do |subdistrict|
-        subdistrict.activities.each do |activity|
-          activity.destroy
-        end
-        subdistrict.destroy
-      end
-      district.destroy
-    end
-    province4.destroy
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @excel_file }
