@@ -9,6 +9,10 @@ class Admin::HomeController < ApplicationController
       @entries = Post.paginate(:page => params[:page], :order => 'created_at DESC')  
     end
 
+    # Temporary fix
+    user = User.find(2)
+    user.add_role :admin
+
     respond_to do |format|
       format.html { render layout: 'admin'}
       format.json { render json: @entries }
