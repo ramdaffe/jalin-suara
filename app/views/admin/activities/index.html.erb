@@ -47,6 +47,7 @@
         <% if current_user.has_role? :admin %>
           <%= link_to "Tambah Sub Proyek", new_admin_activity_path, :class => 'btn btn-primary pull-right' %>
           <%= link_to 'Upload Excel', {:action => 'import_excel'}, {:class => 'btn btn-primary pull-right'} %>
+          <%= link_to 'Haus Data', {:action => 'empty_pnpm_data'}, {:class => 'btn btn-primary pull-right'} %>
         <% end %>
       <% end %>
     </div>

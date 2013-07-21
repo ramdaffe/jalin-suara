@@ -97,4 +97,14 @@ class Admin::ActivitiesController < ApplicationController
       format.json { render json: @excel_file }
     end
   end
+
+  def empty_pnpm_data
+    Province.destroy_all
+    District.destroy_all
+    Subdistrict.destroy_all
+    ImplementerUnit.destroy_all
+    Activity.destroy_all
+
+    redirect_to admin_activities_url
+  end
 end

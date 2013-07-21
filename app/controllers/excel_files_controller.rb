@@ -49,8 +49,8 @@ class ExcelFilesController < ApplicationController
           male_beneficiary = row[14]
           female_beneficiary = row[15]
           poor_beneficiary = row[16]
-          latitude = row[17]
-          longitude = row[18]
+          longitude = row[17]
+          latitude = row[18]
           subdistrict_id = subdistrict.id
           
           activity = Activity.find(:first, :conditions => {:name => activity_name, :subdistrict_id => subdistrict_id}) 
