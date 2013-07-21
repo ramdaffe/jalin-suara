@@ -1,9 +1,9 @@
 Mapstories::Application.routes.draw do
   match '/admin' => 'admin/home#index'
   namespace :admin do
-    resources :activities
-    match 'activites/import_excel' => 'activities#import_excel'
+    match 'activities/import_excel' => 'activities#import_excel'
     match 'activities/empty_pnpm_data' => 'activities#empty_pnpm_data'
+    resources :activities
     resources :comments
     resources :districts
     resources :posts
@@ -25,7 +25,7 @@ Mapstories::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   opinio_model
   resources :activities
-  match 'activites/import_excel' => 'activities#import_excel'
+  match 'activities/import_excel' => 'activities#import_excel'
   resources :categories
   resources :districts
   resources :excel_files
