@@ -14,10 +14,10 @@ class Post < ActiveRecord::Base
     styles: {
     	tiny: '50x50',
       thumb: '100x100>',
-      thumbnail: '220x130\!',
+      thumbnail: '220x130!',
       square: '200x200#',
       medium: '300x300>',
-      large: '620x266\!'
+      large: '620x260!'
     }
 
   def comments_count
