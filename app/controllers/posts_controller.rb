@@ -51,18 +51,34 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
 
     # Postable
-    if params["activty"] != ""
-      @post.postable_type = "Activity"
-      @post.postable_id = params["activity"]
-      activity = Activity.find(params["activity"])
-      @post.latitude = activity.latitude
-      @post.latitude = activity.longitude
-    elsif params["subdistrict"] != ""
-      @post.postable_type = "Subdistrict"
-      @post.postable_id = params["subdistrict"]
-      subdistrict = Subdistrict.find(params["subdistrict"])
-      @post.latitude = subdistrict.latitude
-      @post.longitude = subdistrict.longitude
+    if params["postable"] != ""
+      if params["postable"] != "Activity" 
+        @post.postable_type = "Activity"
+        @post.postable_id = params["postable_id"]
+        activity = Activity.find(params["postable_id"])
+        @post.latitude = activity.latitude
+        @post.latitude = activity.longitude
+      elsif params["postable"] != "Subdistrict"
+        @post.postable_type = "Subdistrict"
+        @post.postable_id = params["postable_id"]
+        subdistrict = Subdistrict.find(params["postable_id"])
+        @post.latitude = subdistrict.latitude
+        @post.longitude = subdistrict.longitude
+      end
+    else
+      if params["activty"] != "" 
+        @post.postable_type = "Activity"
+        @post.postable_id = params["activity"]
+        activity = Activity.find(params["activity"])
+        @post.latitude = activity.latitude
+        @post.latitude = activity.longitude
+      elsif params["subdistrict"] != ""
+        @post.postable_type = "Subdistrict"
+        @post.postable_id = params["subdistrict"]
+        subdistrict = Subdistrict.find(params["subdistrict"])
+        @post.latitude = subdistrict.latitude
+        @post.longitude = subdistrict.longitude
+      end
     end
 
     respond_to do |format|
