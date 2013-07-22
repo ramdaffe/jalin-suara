@@ -91,4 +91,16 @@ class Admin::SubdistrictsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def update_lat_long_data
+    @subdistricts = Subdistrict.all
+    @subdistricts.each do |subdistrict|
+      activity = subdistrict.activities.first
+      subdistrict.latitude = activity.latitude
+      subdistrict.longitude = activity.longitude
+      subdistrict.save
+    end
+
+    redirect_to admin_subdistricts_url
+  end
 end

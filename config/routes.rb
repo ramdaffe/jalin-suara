@@ -9,6 +9,7 @@ Mapstories::Application.routes.draw do
     resources :posts
     resources :provinces
     resources :roles
+    match 'subdistricts/update_lat_long_data' => 'subdistricts#update_lat_long_data'
     resources :subdistricts
     resources :users
   end

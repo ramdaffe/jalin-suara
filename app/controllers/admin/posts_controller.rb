@@ -63,6 +63,20 @@ class Admin::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
+    if params["activity"] != "" 
+      @post.postable_type = "Activity"
+      @post.postable_id = params["activity"]
+      activity = Activity.find(params["activity"])
+      @post.latitude = activity.latitude
+      @post.latitude = activity.longitude
+    elsif params["subdistrict"] != ""
+      @post.postable_type = "Subdistrict"
+      @post.postable_id = params["subdistrict"]
+      subdistrict = Subdistrict.find(params["subdistrict"])
+      @post.latitude = subdistrict.latitude
+      @post.longitude = subdistrict.longitude
+    end
+
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to admin_post_path(@post), notice: 'Post was successfully updated.' }
@@ -86,12 +100,22 @@ class Admin::PostsController < ApplicationController
     end
   end
 
-  def import_excel
-    @excel_file = ExcelFile.new
+  def update_districts
+    province = Province.find(params[:province])
+    @districts = province.districts.map{|a| [a.name, a.id]}.insert(0, ["-Pilih kabupaten-", ""])
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @excel_file }
+      format.js
     end
+  end
+ 
+  def update_subdistricts
+    district = District.find(params[:district])
+    @subdistricts = district.subdistricts.map{|s| [s.name, s.id]}.insert(0, ["-Pilih kecamatan-", ""])
+  end
+
+  def update_activities
+    subdistrict = Subdistrict.find(params[:subdistrict])
+    @activities = subdistrict.activities.map{|s| [s.name, s.id]}.insert(0, ["-Pilih sub proyek-", ""])
   end
 end
