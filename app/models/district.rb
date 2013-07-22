@@ -1,5 +1,6 @@
 class District < ActiveRecord::Base
   attr_accessible :latitude, :longitude, :name, :province_id
+  acts_as_gmappable validation: false
   belongs_to :province
   has_many :subdistricts
 
