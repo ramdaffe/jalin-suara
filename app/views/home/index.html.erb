@@ -22,6 +22,7 @@
               <% @popular_posts.each do |post| %>
                 <div class="entry">
                    <h3><%= link_to post.title, post %></h3>
+                   <% puts "Lat: "+post.latitude %>
                    
                    <!-- Meta details -->
                    <div class="meta">
