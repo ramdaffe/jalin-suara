@@ -15,6 +15,8 @@ class ExcelFilesController < ApplicationController
           province_name = row[1]
           district_name = row[3]
           subdistrict_name = row[5]
+          longitude = row[17]
+          latitude = row[18]
 
           # Create Province
           province = Province.find_by_name(province_name)
@@ -31,7 +33,7 @@ class ExcelFilesController < ApplicationController
           # Create Subdistrict
           subdistrict = Subdistrict.find_by_name(subdistrict_name)
           if subdistrict == nil
-            subdistrict = Subdistrict.create(:name => subdistrict_name, :district_id => district.id)
+            subdistrict = Subdistrict.create(:name => subdistrict_name, :district_id => district.id, :latitude => latitude, :longitude => longitude)
           end
 
           # Create UPK
@@ -49,8 +51,6 @@ class ExcelFilesController < ApplicationController
           male_beneficiary = row[14]
           female_beneficiary = row[15]
           poor_beneficiary = row[16]
-          longitude = row[17]
-          latitude = row[18]
           subdistrict_id = subdistrict.id
           
           activity = Activity.find(:first, :conditions => {:name => activity_name, :subdistrict_id => subdistrict_id}) 
