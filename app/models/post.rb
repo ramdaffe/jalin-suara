@@ -12,11 +12,11 @@ class Post < ActiveRecord::Base
 
   has_attached_file :picture, 
     styles: {
-    	tiny: '50x50',
-      thumb: '100x100>',
+    	tiny: '50x50#',
+      thumb: '100x100#',
       thumbnail: '220x130#',
       square: '200x200#',
-      medium: '300x300>',
+      medium: '300x300#',
       large: '620x260#'
     }
 
@@ -40,6 +40,11 @@ class Post < ActiveRecord::Base
   def gmaps4rails_infowindow
     info = ""
     info << "<h5>#{self.title}</h5>"
+    if self.postable_type == "Activity"
+      info << "Penerima Manfaat (L): #{self.postable.male_beneficiary}<br />"
+      info << "Penerima Manfaat (P): #{self.postable.female_beneficiary}<br />"
+      info << "Penerima Manfaat (Miskin): #{self.postable.poor_beneficiary}<br />"
+    end
     info << "<a href='/posts/#{self.id}'>Lihat cerita</a>"
 
     return info

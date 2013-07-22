@@ -36,4 +36,49 @@ class Subdistrict < ActiveRecord::Base
     
     return number
   end
+
+  def get_total_male_beneficiary
+    number = 0
+    if self.activities != nil
+      number = self.activities.sum(:male_beneficiary)
+    end
+
+    return number
+  end
+
+  def get_total_female_beneficiary
+    number = 0
+    if self.activities != nil
+      number = self.activities.sum(:female_beneficiary)
+    end
+
+    return number
+  end
+
+  def get_total_poor_beneficiary
+    number = 0
+    if self.activities != nil
+      number = self.activities.sum(:poor_beneficiary)
+    end
+
+    return number
+  end
+
+  def get_total_blm_amount
+    number = 0
+    if self.activities != nil
+      number = self.activities.sum(:blm_amount)
+    end
+
+    return number
+  end
+
+  def get_total_self_fund_amount
+    number = 0
+    if self.activities != nil
+      number = self.activities.sum(:self_fund_amount)
+    end
+
+    return number
+  end
 end

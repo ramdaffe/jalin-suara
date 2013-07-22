@@ -49,7 +49,22 @@
                 <% if @implementer_unit %>
                   <h5 class="nav-list" style="text-align: center; border-bottom: 1px solid #eee;"><%= image_tag @implementer_unit.picture.url(:square) %></h5>
                 <% end %>
-                <br />
+                
+                <h5 style="margin-top: 10px;">Cakupan PNPM</h5>
+                <ul>
+                  <li>Jumlah Aktivitas: <b><%= @subdistrict.get_activities_number %></b></li>
+                  <li>Total Penerima Manfaat (L): <b><%= @subdistrict.get_total_male_beneficiary %></b></li>
+                  <li>Total Penerima Manfaat (P): <b><%= @subdistrict.get_total_female_beneficiary %></b></li>
+                  <li>Total Penerima Manfaat (Miskin): <b><%= @subdistrict.get_total_poor_beneficiary %></b></li>
+                  <li>Total Dana BLM:</li>
+                  <li style="background-image: none;"><b><%= number_to_currency(@subdistrict.get_total_blm_amount, :unit => "Rp ") %></b></li>
+                  <li>Total Dana Swadaya Masyarakat:</li>
+                  <li style="background-image: none;"><b><%= number_to_currency(@subdistrict.get_total_self_fund_amount, :unit => "Rp ") %></b></li>
+                </ul>
+                
+                <div style="margin-top: -15px; border-bottom: 1px solid #eee;">&nbsp;</div>
+                
+                <h5 style="margin-top: 10px;">Informasi UPK</h5>
                 <ul>
                   <li>Alamat UPK: <b><%= @implementer_unit.address %></b></li>
                   <li>Telepon UPK: <b><%= @implementer_unit.phone %></b></li>
@@ -58,7 +73,6 @@
                   <li>Telepon Pengaduan: <b><%= @implementer_unit.call_center %></b></li>
                   <li>Jumlah Desa: </li>
                   <li>Jumlah Kelurahan: </li>
-                  <li>Jumlah Penerima Manfaat: </li>
                 </ul>
               </div>
             </div>
