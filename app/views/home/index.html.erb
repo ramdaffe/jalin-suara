@@ -36,8 +36,9 @@
                    <%= image_tag post.picture.url(:thumbnail) %>
                    </div>
                    
-                   <%= raw(truncate(post.description, length: 250)) %>
-                   
+                   <div style="min-height: 100px">
+                    <%= raw(truncate(post.description, length: 250)) %>
+                   </div>
                    <div class="button"><%= link_to "Baca selengkapnya...", post_path(post) %></div>
                 </div>
               <% end %>
