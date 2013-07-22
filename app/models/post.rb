@@ -39,17 +39,8 @@ class Post < ActiveRecord::Base
 
   def gmaps4rails_infowindow
     info = ""
-    info << "<h5>#{self.get_subdistrict_name}</h5>"
-    if self.get_subdistrict != nil
-      if self.get_subdistrict.activities != nil
-        self.get_subdistrict.activities.each do |activity|
-          info << "#{activity.name}<br/>"
-          info << "<a href='localhost:3000/activities/#{activity.id}'>Lihat selengkapnya</a><br/>"
-        end
-      end
-    end
-    info << "#{self.title}<br/>"
-    info << "<a href='localhost:3000/posts/#{self.id}'>Lihat cerita</a>"
+    info << "<h5>#{self.title}</h5>"
+    info << "<a href='/posts/#{self.id}'>Lihat cerita</a>"
 
     return info
   end
