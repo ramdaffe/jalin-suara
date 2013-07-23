@@ -10,6 +10,30 @@ class Subdistrict < ActiveRecord::Base
     text :name
   end
 
+  def gmaps4rails_address
+    "#{self.name}" 
+  end
+
+  def gmaps4rails_infowindow
+    info = ""
+    info << "<h5>#{self.name}</h5>"
+    i = 0
+    
+    self.activities.each do |activity|
+      i += 1
+      info << "<b>#{i}. #{activity.name}</b><br/>"
+      info << "Jumlah Penerima Manfaat: #{activity.male_beneficiary + activity.female_beneficiary}<br/>"
+      info << "Jumlah BLM: #{activity.blm_amount}<br/>"
+      info << "<a href='/activities/#{activity.id}'>Lihat selengkapnya</a><br/><br/>"
+    end
+
+    return info
+  end
+
+  def gmaps4rails_title
+    "#{self.name}"
+  end
+
   def get_district_name
   	name = ''
   	if self.district != nil

@@ -78,7 +78,7 @@ class Activity < ActiveRecord::Base
         info << "<b>#{i}. #{activity.name}</b><br/>"
         info << "Jumlah Penerima Manfaat: #{activity.male_beneficiary + activity.female_beneficiary}<br/>"
         info << "Jumlah BLM: #{activity.blm_amount}<br/>"
-        info << "<a href='localhost:3000/activities/#{activity.id}'>Lihat selengkapnya</a><br/><br/>"
+        info << "<a href='/activities/#{activity.id}'>Lihat selengkapnya</a><br/><br/>"
       end
     end
 
