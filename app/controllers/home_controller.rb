@@ -22,7 +22,8 @@ class HomeController < ApplicationController
   def search
     search_query = params[:query]
     @search = Sunspot.search(Province, District, Subdistrict, Activity, Post) do 
-      fulltext search_query 
+      fulltext search_query
+      paginate(:page => params[:page], :per_page => params[:per_page])
     end
     @results = @search.results
 

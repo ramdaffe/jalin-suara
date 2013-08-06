@@ -36,6 +36,7 @@
                   <% end %>
                 </div>
               <% end %>
+              <%= will_paginate @results, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => '<', :params => { :query => params[:query] } %>
             </div>
             <!-- End of Search Result -->
           </div>
