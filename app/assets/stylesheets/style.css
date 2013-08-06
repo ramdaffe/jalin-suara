@@ -2382,6 +2382,9 @@ color:#e24e35;
 .content ul li{
 background-image:url('list-o.png');
 }
+.pagination ul li{
+background-image: none;
+}
 
 .blog .meta i{
 color:#e24e35;
