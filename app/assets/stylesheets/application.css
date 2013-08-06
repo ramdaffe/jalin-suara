@@ -13,10 +13,10 @@
  *= require gmaps4rails
  *= require bootstrap
  *= require bootstrap-modal
+ *= require bootstrap-responsive
  *= require slider
  *= require prettyPhoto
  *= require font-awesome
  *= require font-awesome-ie7
  *= require style
- *= require bootstrap-responsive
  */
