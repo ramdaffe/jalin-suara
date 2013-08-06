@@ -1935,6 +1935,9 @@ legend + .control-group {
   margin-bottom: 20px;
   *zoom: 1;
 }
+.form-horizontal textarea {
+  width: 90%;
+}
 .form-horizontal .control-group:before,
 .form-horizontal .control-group:after {
   display: table;
