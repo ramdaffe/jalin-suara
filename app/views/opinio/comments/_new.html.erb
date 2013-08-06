@@ -16,14 +16,14 @@
   <% else %>
     <%= form_for Comment.new, :remote => false do |f| %>
       <div class="control-group">
-        <label class="control-label" for="comment">Komentar</label>
-        <div class="controls">
-          <%= f.text_area :body, :rows => 5 %>
+        <label class="control-label" for="comment" style="width: 80px;">Komentar</label>
+        <div class="controls" style="margin-left: 100px;">
+          <%= f.text_area :body, :rows => 5, :style => "width: 90%;" %>
         </div>
       </div>
       <%= hidden_field_tag :commentable_id, commentable.id %>
       <%= hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s %>
-      <div class="form-actions">
+      <div class="form-actions" style="padding-left: 100px;">
         <%= f.submit 'Kirim', :class => 'btn' %>
       </div>
     <% end %>
