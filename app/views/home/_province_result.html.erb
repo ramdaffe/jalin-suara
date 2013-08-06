@@ -1,0 +1,16 @@
+<h3><%= link_to result.name, result %></h3>
+
+<!-- Thumbnail -->
+<div class="bthumb2">
+  <% if result.districts != nil %>
+    <% if result.districts.first.subdistricts != nil %>
+      <%= image_tag result.districts.first.subdistricts.first.implementer_unit.picture.url(:thumbnail) %>
+    <% end %>
+  <% end %>
+</div>
+
+<div style="min-height: 100px">
+  Jumlah Kabupaten/Kotamadya: <%= result.get_districts_number %><br/>
+  Jumlah Kecamatan: <%= result.get_subdistricts_number %><br/>
+  Jumlah Sub Proyek: <%= result.get_activities_number %><br/>
+</div>

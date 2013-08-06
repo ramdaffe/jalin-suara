@@ -14,7 +14,7 @@
       </div>
     <% end %>
   <% else %>
-    <%= form_for Comment.new, :remote => false do |f| %>
+    <%= form_for Comment.new, :remote => false, :html => {:class => "form-horizontal"} do |f| %>
       <div class="control-group">
         <label class="control-label" for="comment" style="width: 80px;">Komentar</label>
         <div class="controls" style="margin-left: 100px;">
