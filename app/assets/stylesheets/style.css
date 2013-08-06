@@ -2382,6 +2382,10 @@ color:#e24e35;
 .content ul li{
 background-image:url('list-o.png');
 }
+.pagination ul li{
+	background-image: none;
+  padding-left: 0px;
+}
 
 .blog .meta i{
 color:#e24e35;
