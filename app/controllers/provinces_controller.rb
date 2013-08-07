@@ -1,4 +1,6 @@
 class ProvincesController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   # GET /provinces
   # GET /provinces.json
   def index
@@ -7,7 +9,7 @@ class ProvincesController < ApplicationController
     @subdistricts_number = Subdistrict.count
     @activities_number = Activity.count
 
-    @provinces = Province.paginate(:page => params[:page], :order => 'name')
+    @provinces = Province.paginate(:page => params[:page], :order => (sort_column + ' ' + sort_direction))
 
     respond_to do |format|
       format.html
@@ -29,5 +31,14 @@ class ProvincesController < ApplicationController
       format.html { render layout: 'three_columns'}
       format.json { render json: @province }
     end
+  end
+
+  private
+  def sort_column
+    Province.column_names.include?(params[:sort]) ? params[:sort] : "name" 
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 end

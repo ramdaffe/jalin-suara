@@ -2459,3 +2459,18 @@ border-top:3px solid #e24e35;
 footer ul li{
 background-image:url('list-o.png');
 }
+
+/* Customization */
+th .current {  
+  padding-right: 12px;  
+  background-repeat: no-repeat;  
+  background-position: right center;  
+}
+
+th .asc {   
+  background-image: url('up_arrow.gif');   
+}  
+  
+th .desc {   
+  background-image: url('down_arrow.gif');   
+}
