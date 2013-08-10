@@ -9,7 +9,8 @@ class ProvincesController < ApplicationController
     @subdistricts_number = Subdistrict.count
     @activities_number = Activity.count
 
-    @provinces = Province.paginate(:page => params[:page], :order => (sort_column + ' ' + sort_direction))
+    # @provinces = Province.paginate(:page => params[:page], :order => (sort_column + ' ' + sort_direction))
+    @provinces = Province.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 20, :page => params[:page])
 
     respond_to do |format|
       format.html

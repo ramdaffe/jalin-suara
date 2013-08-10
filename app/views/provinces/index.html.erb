@@ -5,28 +5,15 @@
     <div class="span8">
       <div class="support-page">
         <h2>Daftar Propinsi</h2>
-        <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th><%= sortable "name", "Nama Propinsi" %></th>
-            <th>Jumlah Kabupaten</th>
-            <th>Jumlah Kecamatan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% i=0 %>
-          <% @provinces.each do |province| %>
-            <% i+= 1 %>
-            <tr>
-              <td><%= i %></td>
-              <td><%= link_to province.name, province_path(province) %></td>
-              <td style='text-align: right;'><%= province.get_districts_number %></td>
-              <td style='text-align: right;'><%= province.get_subdistricts_number %></td>
-            </tr>
+        <div class="pull-right">
+          <%= form_tag provinces_path, :method => 'get' do %>
+            <%= hidden_field_tag :direction, params[:direction] %>
+            <%= hidden_field_tag :sort, params[:sort] %>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Cari", :name => nil, :class => "btn btn-primary", :style => "margin-bottom: 10px;" %>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+        <div id="provinces"><%= render 'provinces' %></div>
       </div>
     </div>
     <!-- End of Main Content -->

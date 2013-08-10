@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th><%= sortable "name", "Nama Propinsi" %></th>
+      <th>Jumlah Kabupaten</th>
+      <th>Jumlah Kecamatan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% i=0 %>
+    <% @provinces.each do |province| %>
+      <% i+= 1 %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= link_to province.name, province_path(province) %></td>
+        <td style='text-align: right;'><%= province.get_districts_number %></td>
+        <td style='text-align: right;'><%= province.get_subdistricts_number %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
