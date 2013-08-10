@@ -14,6 +14,7 @@ class ProvincesController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.js
       format.json { render json: @provinces }
     end
   end
@@ -34,7 +35,8 @@ class ProvincesController < ApplicationController
     end
   end
 
-  private
+private
+
   def sort_column
     Province.column_names.include?(params[:sort]) ? params[:sort] : "name" 
   end
