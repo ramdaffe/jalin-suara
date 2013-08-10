@@ -22,4 +22,4 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @provinces %>
+<%= will_paginate @provinces, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => "<", :style => "margin-bottom: 55px;" %>

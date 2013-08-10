@@ -1,4 +1,6 @@
 class DistrictsController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   # GET /districts
   # GET /districts.json
   def index
@@ -11,11 +13,13 @@ class DistrictsController < ApplicationController
       @province = Province.find(params[:province_id])
       @districts = District.paginate(:page => params[:page], :order => 'name', :conditions => ['province_id = ?', params[:province_id]])  
     else
-      @districts = District.joins(:province).order('provinces.name, districts.name').paginate(:page => params[:page], :order => 'name')
+      # @districts = District.joins(:province).order('provinces.name, districts.name').paginate(:page => params[:page], :order => 'name')
+      @districts = District.joins(:province).search(params[:search]).order(sorting).paginate(:per_page => 20, :page => params[:page])
     end
 
     respond_to do |format|
       format.html
+      format.js
       format.json { render json: @districts }
     end
   end
@@ -34,4 +38,26 @@ class DistrictsController < ApplicationController
       format.json { render json: @district }
     end
   end
+
+private
+
+  def sorting
+    sort_order = ""
+    if District.column_names.include?(params[:sort])
+      sort_order = sort_column + ' ' + sort_direction
+    elsif params[:sort] == "provinces.name"
+      sort_order = sort_column + ' ' + sort_direction + ', ' + "districts.name ASC"
+    else
+      sort_order = "provinces.name, districts.name" 
+    end
+    return sort_order
+  end
+
+  def sort_column
+    (params[:sort])
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+  end  
 end

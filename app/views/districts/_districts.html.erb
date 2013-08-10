@@ -1,0 +1,27 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th>No</th>
+    <th><%= sortable "provinces.name", "Nama Propinsi" %></th>
+    <th><%= sortable "name", "Nama Kabupaten" %></th>
+    <th>Kecamatan</th>
+    <th>Sub Proyek</th>
+  </tr>
+</thead>
+<tbody>
+  <% i=0 %>
+  <% @districts.each do |district| %>
+    <% i+= 1 %>
+    <tr>
+      <td><%= i %></td>
+      <td><%= district.get_province_name %></td>
+      <td><%= link_to district.name, district_path(district) %></td>
+      <td style='text-align: right;'><%= district.get_subdistricts_number %></td>
+      <td style='text-align: right;'><%= district.get_activities_number %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+<%= will_paginate @districts, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => "<", :style => "margin-bottom: 55px;" %>
