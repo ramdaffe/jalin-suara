@@ -10,6 +10,14 @@ class Subdistrict < ActiveRecord::Base
     text :name
   end
 
+  def self.search(search, province_id = nil)
+    if search
+      where('subdistricts.name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+
   def gmaps4rails_address
     "#{self.name}" 
   end
