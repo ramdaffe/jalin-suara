@@ -11,9 +11,8 @@ class DistrictsController < ApplicationController
 
     if params[:province_id] != nil
       @province = Province.find(params[:province_id])
-      @districts = District.paginate(:page => params[:page], :order => 'name', :conditions => ['province_id = ?', params[:province_id]])  
+      @districts = District.joins(:province).where(districts: {province_id: params[:province_id]}).search(params[:search], params[:province_id]).order(sorting).paginate(:per_page => 20, :page => params[:page])
     else
-      # @districts = District.joins(:province).order('provinces.name, districts.name').paginate(:page => params[:page], :order => 'name')
       @districts = District.joins(:province).search(params[:search]).order(sorting).paginate(:per_page => 20, :page => params[:page])
     end
 

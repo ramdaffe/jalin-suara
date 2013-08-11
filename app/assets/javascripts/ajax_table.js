@@ -24,8 +24,8 @@ $(function(){
     return false;
   });
 
-  $('#districts_search input').keyup(function () {
-    $.get($('#districts_search').attr('action'), $('#districts_search').serialize(), null, 'script');
-    return false;
-  });
+  // $('#districts_search input').keyup(function () {
+  //   $.get($('#districts_search').attr('action'), $('#districts_search').serialize(), null, 'script');
+  //   return false;
+  // });
 });
