@@ -5,7 +5,7 @@
     <div class="span8">
       <div class="support-page">
         <h2>Daftar Propinsi</h2>
-        <%= form_tag provinces_path, :method => 'get', :id => "provinces_search" do %>
+        <%= form_tag provinces_path, :method => 'get', :id => "table_search" do %>
           <%= text_field_tag :search, params[:search] %>
           <%= submit_tag "Cari", :name => nil, :class => "btn btn-primary", :style => "margin-bottom: 10px;" %>
           <div id="provinces"><%= render 'provinces' %></div>
