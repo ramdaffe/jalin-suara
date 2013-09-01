@@ -4,21 +4,23 @@
 <% else %>
   <li class="comment">
 <% end %>
-  <a class="pull-left" href="#">
+  <div style="float: left; width: 12%;">
     <%= image_tag comment.owner.picture.url(:tiny), :class => "avatar" %>
-  </a>
-  <div class="comment-author">
-    <% if comment.guest_owner? %>
-      <%= comment.guest_name %>
-    <% else %>
-      <%= link_to comment.owner.username, "#" %>
+  </div>
+  <div style="float: left; width: 88%;">
+    <div class="comment-author">
+      <% if comment.guest_owner? %>
+        <%= comment.guest_name %>
+      <% else %>
+        <%= link_to comment.owner.username, "#" %>
+      <% end %>
+    </div>
+    <div class="cmeta">Dibuat pada <%= comment.created_at.strftime("%e-%m-%Y") %></div>
+    <%= simple_format(comment.body) %>
+    <% if Opinio.accept_replies && !reply %>
+      <%= link_to 'Balas Komentar', reply_comment_path(comment), :remote => true, :class => 'btn btn-small' %>
     <% end %>
   </div>
-  <div class="cmeta">Dibuat pada <%= comment.created_at.strftime("%e-%m-%Y") %></div>
-  <%= simple_format(comment.body) %>
-  <% if Opinio.accept_replies && !reply %>
-    <%= link_to 'Balas Komentar', reply_comment_path(comment), :remote => true, :class => 'btn btn-small', :style => 'margin-left: 60px;' %>
-  <% end %>
   <div class="clearfix"></div>
 </li>
 <!-- Reply -->
