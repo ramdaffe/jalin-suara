@@ -7,7 +7,13 @@
   <a class="pull-left" href="#">
     <%= image_tag comment.owner.picture.url(:tiny), :class => "avatar" %>
   </a>
-  <div class="comment-author"><%= link_to comment.owner.username, "#" %></div>
+  <div class="comment-author">
+    <% if comment.guest_owner? %>
+      <%= comment.guest_name %>
+    <% else %>
+      <%= link_to comment.owner.username, "#" %>
+    <% end %>
+  </div>
   <div class="cmeta">Dibuat pada <%= comment.created_at.strftime("%e-%m-%Y") %></div>
   <%= simple_format(comment.body) %>
   <% if Opinio.accept_replies && !reply %>

@@ -11,12 +11,27 @@ class User < ActiveRecord::Base
 
   has_many :services, :dependent => :destroy
   has_many :posts
-  has_attached_file :picture,
-    styles: {
-    	tiny: '50x50',
-      thumb: '100x100',
-      square: '128x128'
-    }
+  has_attached_file :picture, styles: {
+  	tiny: '50x50',
+    thumb: '100x100',
+    square: '128x128'
+  }
+
+  def self.guest_account_available?
+    if self.find_by_username('guest') == nil
+      return false
+    else
+      return true
+    end
+  end
+
+  def self.create_guest_account
+    self.new(:email => 'guest@jalinsuara.com', :username => 'guest', :password => 'j4l1nsu4r4', :password_confirmation => 'j4l1nsu4r4').save!
+  end
+
+  def self.get_guest_account
+    return self.find_by_username('guest')
+  end
 
   # def password_required?
   #   super && provider.blank?

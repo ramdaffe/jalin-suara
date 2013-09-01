@@ -1,5 +1,11 @@
 class Comment < ActiveRecord::Base
   opinio
+  attr_accessible :owner_id, :commentable_id, :commentable_type, :body, :created_at, :updated_at, :guest_name, :guest_email
+
+  def guest_owner?
+    guest_id = User.get_guest_account.id
+    return self.owner_id == guest_id
+  end
 
   def get_commenter_name
     commenter_name = ""

@@ -24,7 +24,7 @@ Mapstories::Application.routes.draw do
   resources :services, :only => [:index, :create, :destroy]
   
   mount Ckeditor::Engine => '/ckeditor'
-  opinio_model
+  opinio_model :controller => 'comments'
   resources :activities
   match 'activities/import_excel' => 'activities#import_excel'
   resources :categories
