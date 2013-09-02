@@ -1,0 +1,28 @@
+<div class="tabbable">
+  <div class="tab-content">
+    <div class="tab-pane active">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Komentar</th>
+            <th>Cerita</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% i=0 %>
+          <% @entries.each do |comment| %>
+            <% i = i+1 %>
+            <tr>
+              <td><%= i %></td>
+              <td><%= comment.body %></td>
+              <td><%= link_to comment.get_story_title, post_path(comment.get_story) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= will_paginate @entries, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => '<' %>
+    </div>
+  </div>
+</div>

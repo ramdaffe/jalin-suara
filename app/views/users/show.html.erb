@@ -1,0 +1,61 @@
+<div class="span12">
+  <!-- Content -->
+  <div class="blog">
+    <div class="row">
+      <div class="span12">
+
+        <div class="row">
+          <!-- Main Content -->
+          <div class="span8">
+            <!-- Navigation Tabs -->
+            <ul class="nav nav-tabs">
+              <li class="<%= 'active' if params[:tab] == nil %>" style="background-image: none; margin-bottom: -5px; margin-left: -20px;">
+                <% if params[:tab] == nil %>
+                  <%= link_to "Cerita", {:controller => 'users', :action => 'show'}, {:style => "background-color: #fcfcfc;"} %>
+                <% else %>
+                  <%= link_to "Cerita", :controller => 'users', :action => 'show'  %>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if params[:tab] == 'comments' %>" style="background-image: none; margin-bottom: -5px; margin-left: -20px;">
+                <% if params[:tab] == 'comments' %>
+                  <%= link_to "Komentar", {:controller => 'users', :action => 'show', :tab => "comments"}, {:style => "background-color: #fcfcfc;"} %>
+                <% else %>
+                  <%= link_to "Komentar", :controller => 'users', :action => 'show', :tab => "comments" %>
+                <% end %>
+              </li>
+            </ul>
+            <!-- End of Navigation Tabs -->
+            <br />
+            <% if params[:tab] == nil %>
+              <%= render "stories_tab" %>
+            <% elsif params[:tab] == 'comments' %>
+              <%= render "comments_tab" %>
+            <% end %>
+          </div>
+          <!-- End of Main Content -->
+          <!-- Widgets -->
+          <div class="span4">
+            <div class="sidebar", style="margin-top: 0px;">
+              <div class="widget">
+                <h4><%= @user.username %></h4>
+                <h5 class="nav-list" style="text-align: center; border-bottom: 1px solid #eee;"><%= image_tag @user.picture.url(:square) %></h5>
+                
+                <h5 style="margin-top: 10px;">Informasi Profil</h5>
+                <ul>
+                  <li>Email: <%= @user.email %></li>
+                  <li>Peran: <%= @user.email %></li>
+                  <li>Jumlah Cerita: <%= @user.get_number_of_stories %></li>
+                  <li>Jumlah Komentar: <%= @user.get_number_of_comments %></li>
+                </ul>
+
+                <div class="nav-list" style="text-align: center;"><%= link_to "Edit Profil", edit_user_registration_path(current_user), :class => 'btn' %></div>
+              </div>
+            </div>
+          </div>
+          <!-- End of Widgets -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Content -->
+</div>

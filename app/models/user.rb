@@ -33,6 +33,14 @@ class User < ActiveRecord::Base
     return self.find_by_username('guest')
   end
 
+  def get_number_of_stories
+    Post.count(:conditions => "user_id = #{self.id}")
+  end
+
+  def get_number_of_comments
+    Comment.count(:conditions => "owner_id = #{self.id}")
+  end
+
   # def password_required?
   #   super && provider.blank?
   # end

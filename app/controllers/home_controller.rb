@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     @activities_number = Activity.all.size
 
     respond_to do |format|
-      format.html { render layout: 'three_columns' }
+      format.html
       format.json { render json: @listed_posts }
     end
   end
@@ -33,7 +33,7 @@ class HomeController < ApplicationController
     @activities_number = Activity.all.size
 
     respond_to do |format|
-      format.html { render layout: 'three_columns' }
+      format.html
       format.json { render json: @results }
     end
   end
@@ -59,7 +59,7 @@ class HomeController < ApplicationController
     @activities = Activity.all
     
     respond_to do |format|
-      format.html { render layout: 'three_columns' }
+      format.html
     end
   end
 end

@@ -21,6 +21,7 @@ Mapstories::Application.routes.draw do
   # devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   match 'users/auth/:service/callback' => 'services#create'
   devise_for :users
+  resources :users
   resources :services, :only => [:index, :create, :destroy]
   
   mount Ckeditor::Engine => '/ckeditor'

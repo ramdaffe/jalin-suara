@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130901081439) do
+ActiveRecord::Schema.define(:version => 20130902142436) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20130901081439) do
     t.integer  "beneficiary"
     t.integer  "postable_id"
     t.string   "postable_type"
+    t.integer  "status"
   end
 
   create_table "provinces", :force => true do |t|

@@ -59,7 +59,7 @@
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to 'Edit Profil', edit_user_registration_path %></li>
+                  <li><%= link_to 'Lihat Profil', user_path(current_user) %></li>
                   <li><a href="#responsive" data-toggle="modal">Tambah Cerita</a></li>
                   <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
                 </ul>

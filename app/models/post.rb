@@ -106,4 +106,16 @@ class Post < ActiveRecord::Base
       return nil
     end
   end
+
+  def get_status
+    status = ""
+    case self.status
+    when 1
+      status = "Published"
+    else
+      status = "Draft"
+    end
+
+    return status
+  end
 end

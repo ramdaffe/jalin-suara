@@ -18,7 +18,7 @@
         <tbody>
           <% i=0 %>
           <% @entries.each do |comment| %>
-            <% i+= 1 %>
+            <% i = i+1 %>
             <tr>
               <td><%= i %></td>
               <td><%= comment.body %></td>
