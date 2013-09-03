@@ -50,6 +50,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
 
+    if params[:commit] == "Simpan Draft"
+      @post.status = 0
+    elsif params[:commit] == "Publikasikan"
+      @post.status = 1
+    end
+        
+
     # Postable
     if params[:post][:postable_type] != nil
       if params[:post][:postable_type] == "Activity" 
