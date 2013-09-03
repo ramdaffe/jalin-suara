@@ -43,7 +43,12 @@
                 <h5 style="margin-top: 10px;">Informasi Profil</h5>
                 <ul>
                   <li>Email: <%= @user.email %></li>
-                  <li>Peran: <%= @user.email %></li>
+                  <li>Peran: </li>
+                  <% if @user.roles != nil %>
+                    <% @user.roles.each do |role| %>
+                    <li style="background-image: none;">- <%= role.name %> <%= Subdistrict.find(role.resource_id).name if role.resource_type == "Subdistrict" %> </li>
+                    <% end %>
+                  <% end %>
                   <li>Jumlah Cerita: <%= @user.get_number_of_stories %></li>
                   <li>Jumlah Komentar: <%= @user.get_number_of_comments %></li>
                 </ul>
