@@ -8,18 +8,6 @@ class District < ActiveRecord::Base
     text :name
   end
 
-  def self.search(search, province_id = nil)
-    if search
-      if province_id
-        where('districts.name LIKE ? AND districts.province_id = ?', "%#{search}%", "#{province_id}")
-      else
-        where('districts.name LIKE ?', "%#{search}%")
-      end
-    else
-      scoped
-    end
-  end
-
   def get_subdistricts_number
     number = 0
     if self.subdistricts != nil

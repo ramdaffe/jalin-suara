@@ -16,7 +16,7 @@ class SubdistrictsController < ApplicationController
       @district = District.find(params[:district_id])
       @subdistricts = Subdistrict.paginate(:page => params[:page], :order => 'name', :conditions => ['district_id = ?', params[:district_id]])
     else
-      @subdistricts = Subdistrict.joins(:district => :province).search(params[:search]).order(sorting).paginate(:per_page => 20, :page => params[:page])
+      @subdistricts = Subdistrict.joins(:district => :province).search(:district_province_name_or_name_contains => params[:search]).order(sorting).paginate(:per_page => 20, :page => params[:page])
     end
 
     respond_to do |format|

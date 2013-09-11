@@ -7,14 +7,6 @@ class Province < ActiveRecord::Base
     text :name
   end
 
-  def self.search(search)
-    if search
-      where('name LIKE ?', "%#{search}%")
-    else
-      scoped
-    end
-  end
-
   def get_districts_number
   	number = 0
   	if self.districts != nil

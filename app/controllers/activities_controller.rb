@@ -17,7 +17,7 @@ class ActivitiesController < ApplicationController
       subdistricts = Subdistrict.find(:all, :conditions => ['district_id = ?', params[:district_id]])
       @activities = Activity.paginate(:page => params[:page], :order => 'name', :conditions => ['subdistrict_id in (?)', subdistricts])
     else
-      @activities = Activity.joins(:subdistrict => {:district => :province}).search(:name_contains => params[:search]).order(sorting).paginate(:per_page => 20, :page => params[:page])
+      @activities = Activity.joins(:subdistrict => {:district => :province}).search(:name_or_subdistrict_name_or_subdistrict_district_province_name_contains => params[:search]).order(sorting).paginate(:per_page => 20, :page => params[:page])
       #@activities = Activity.joins(:subdistrict => {:district => :province}).order('provinces.name', 'subdistricts.name', 'activities.name').paginate(:page => params[:page], :order => 'name')
     end
 

@@ -7,7 +7,7 @@
           <!-- Posts -->
           <div class="span8">
             <div class="rposts">
-              <h2>Peta Sub Proyek</h2>
+              <h2>Peta Lokasi PNPM</h2>
             </div>
             <!-- GMaps -->
             <div id="da-slider" class="da-slider">
@@ -22,10 +22,10 @@
               <div class="widget">
                 <h4>Pencarian Sub Proyek</h4>
                 <%= simple_form_for :search, :controller => 'home', :action => 'show_map', :html => { :style => 'margin-left: 15px;' } do |f| %>
-                  <%= f.input :subdistrict_district_province_name_contains, :label => 'Nama Propinsi' %>
-                  <%= f.input :subdistrict_district_name_contains, :label => 'Nama Kabupaten' %>
-                  <%= f.input :subdistrict_name_contains, :label => 'Nama Kecamatan' %>
-                  <%= f.input :name_contains, :label => 'Nama Sub Proyek' %>
+                  <%= f.input :district_province_name_contains, :label => 'Nama Propinsi' %>
+                  <%= f.input :district_name_contains, :label => 'Nama Kabupaten' %>
+                  <%= f.input :name_contains, :label => 'Nama Kecamatan' %>
+                  <%= f.input :activities_name_contains, :label => 'Nama Sub Proyek' %>
                   <%= f.button :submit, 'Cari', :class => 'btn-primary' %>
                 <% end %>
               </div>
