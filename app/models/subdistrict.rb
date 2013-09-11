@@ -22,9 +22,9 @@ class Subdistrict < ActiveRecord::Base
 
     if self.activities != nil
       self.activities.each do |activity|
-        i += 1
+        i = i+1
         info << "<b>#{i}. #{activity.name}</b><br/>"
-        info << "Jumlah Penerima Manfaat: #{activity.male_beneficiary + activity.female_beneficiary}<br/>"
+        info << "Jumlah Penerima Manfaat: #{activity.male_beneficiary}<br/>"
         info << "Jumlah BLM: #{activity.blm_amount}<br/>"
         info << "<a href='/activities/#{activity.id}'>Lihat selengkapnya</a><br/><br/>"
       end
