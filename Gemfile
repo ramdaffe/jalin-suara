@@ -80,3 +80,4 @@ gem 'paperclip', '~> 3.4.0'
 # Leaflet.js
 gem 'cloudmade', "~> 0.2.0"
 gem 'leaflet-rails'
+# gem 'leaflet-markercluster-rails'
