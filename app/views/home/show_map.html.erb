@@ -11,7 +11,12 @@
             </div>
             <!-- GMaps -->
             <div id="da-slider" class="da-slider">
-              <%= gmaps4rails(@json) %>
+              <% @subdistricts.each do |subdistrict| %>
+                <%= content_tag "div", class: "subdistrict", data: {latitude: (lat=subdistrict.latitude), longitude: (lon=subdistrict.longitude), name: subdistrict.name} do %>
+                <% end %>
+              <% end %>
+              <%#= gmaps4rails(@json) %>
+              <div id="map" style="height: 360px;" data-cloudmadekey="6e6e029f140943bf932368519b7f92fd"></div>
             </div>
             <!-- GMaps -->
           </div>

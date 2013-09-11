@@ -76,3 +76,7 @@ gem 'ckeditor', '3.7.3'
 # Paperclip and AWS S3
 gem 'aws-sdk', '~> 1.6.0'
 gem 'paperclip', '~> 3.4.0'
+
+# Leaflet.js
+gem 'cloudmade', "~> 0.2.0"
+gem 'leaflet-rails'

@@ -41,14 +41,15 @@ class HomeController < ApplicationController
   def show_map
     if params[:search] != nil
       @search = Subdistrict.search(params[:search])
-      subdistricts = @search.all
+      @subdistricts = @search.all
     else
-      subdistricts = Subdistrict.find(:all)
+      @subdistricts = Subdistrict.find(:all)
     end
-    @json = subdistricts.to_gmaps4rails
+    # @json = subdistricts.to_gmaps4rails
 
     respond_to do |format|
       format.html
+      format.json { render json: @subdistricts }
     end
   end
 

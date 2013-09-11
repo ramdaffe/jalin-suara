@@ -46,6 +46,7 @@ GEM
       orm_adapter
     climate_control (0.0.3)
       activesupport (>= 3.0)
+    cloudmade (0.2.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
@@ -92,6 +93,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.7.4)
+    leaflet-rails (0.5.0)
     less (2.3.1)
       commonjs (~> 0.2.6)
     less-rails (2.3.2)
@@ -248,6 +250,7 @@ DEPENDENCIES
   bootstrap_modal_rails (~> 2.0.0)
   cancan
   ckeditor (= 3.7.3)
+  cloudmade (~> 0.2.0)
   coffee-rails (~> 3.2.1)
   devise
   flickraw
@@ -256,6 +259,7 @@ DEPENDENCIES
   google-webfonts
   jquery-rails
   kaminari
+  leaflet-rails
   less-rails
   meta_search
   mysql2
