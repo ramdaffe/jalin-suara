@@ -5,51 +5,18 @@
     <div class="span12">
       <div class="support-page">
         <h2>Daftar Propinsi</h2>
-        <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Propinsi</th>
-            <th>Jumlah Kabupaten</th>
-            <th>Jumlah Kecamatan</th>
-            <% if current_user != nil %>
-              <% if current_user.has_role? :admin %>
-                <th>Aksi</th>
-              <% end %>
-            <% end %>
-          </tr>
-        </thead>
-        <tbody>
-          <% i=0 %>
-          <% @provinces.each do |province| %>
-            <% i+= 1 %>
-            <tr>
-              <td><%= i %></td>
-              <td><%= link_to province.name, admin_province_path(province) %></td>
-              <td style='text-align: right;'><%= province.get_districts_number %></td>
-              <td style='text-align: right;'><%= province.get_subdistricts_number %></td>
-              <% if current_user != nil %>
-                <% if current_user.has_role? :admin %>
-                  <td>
-                    <%= link_to "Edit", edit_admin_province_path(province), :class => 'btn btn-mini' %>
-                    <%= link_to "Hapus",
-                      admin_province_path(province),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-                  </td>
-                <% end %>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <% if current_user != nil %>
-        <% if current_user.has_role? :admin %>
-          <%= link_to "Tambah Propinsi", new_admin_province_path, :class => 'btn btn-primary' %>
+        <%= form_tag admin_provinces_path, :method => 'get', :id => "table_search" do %>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Cari", :name => nil, :class => "btn btn-primary", :style => "margin-bottom: 10px;" %>
+          <div id="provinces"><%= render 'provinces' %></div>
         <% end %>
-      <% end %>
+
+        <br/>
+        <% if current_user != nil %>
+          <% if current_user.has_role? :admin %>
+            <%= link_to "Tambah Propinsi", new_admin_province_path, :class => 'btn btn-primary' %>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <!-- End of Main Content -->

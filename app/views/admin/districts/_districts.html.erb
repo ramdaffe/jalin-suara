@@ -1,0 +1,40 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th><%= sortable "provinces.name", "Nama Propinsi" %></th>
+      <th><%= sortable "name", "Nama Kabupaten" %></th>
+      <th>Kecamatan</th>
+      <th>Sub Proyek</th>
+      <% if current_user != nil %>
+        <% if current_user.has_role? :admin %>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% i=0 %>
+    <% @districts.each do |district| %>
+      <% i+= 1 %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= district.get_province_name %></td>
+        <td><%= link_to district.name, admin_district_path(district) %></td>
+        <td style='text-align: right;'><%= district.get_subdistricts_number %></td>
+        <td style='text-align: right;'><%= district.get_activities_number %></td>
+        <% if current_user != nil %>
+          <% if current_user.has_role? :admin %>
+            <td>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_district_path(district), :class => 'btn btn-mini' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")), admin_district_path(district), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @districts, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => "<", :style => "margin-bottom: 55px;" %>

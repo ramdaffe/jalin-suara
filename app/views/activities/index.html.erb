@@ -4,30 +4,13 @@
     <!-- Main Content -->
     <div class="span8">
       <div class="support-page">
-        <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Propinsi</th>
-            <th>Nama Kecamatan</th>
-            <th>Nama Sub Proyek</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% i=0 %>
-          <% @activities.each do |activity| %>
-            <% i+= 1 %>
-            <tr>
-              <td><%= i %></td>
-              <td><%= activity.get_province_name %></td>
-              <td><%= activity.get_subdistrict_name %></td>
-              <td><%= link_to activity.name, activity_path(activity) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+        <h2>Daftar Sub Proyek</h2>
+        <%= form_tag activities_path, :method => 'get', :id => "table_search" do %>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Cari", :name => nil, :class => "btn btn-primary", :style => "margin-bottom: 10px;" %>
+          <div id="activities"><%= render 'activities' %></div>
+        <% end %>
       </div>
-      <%= will_paginate @activities, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => '<' %>
     </div>
     <!-- End of Main Content -->
     <!-- Widgets -->

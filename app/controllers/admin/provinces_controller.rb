@@ -1,11 +1,15 @@
 class Admin::ProvincesController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   # GET /provinces
   # GET /provinces.json
   def index
-    @provinces = Province.paginate(:page => params[:page], :order => 'name')
+    #@provinces = Province.paginate(:page => params[:page], :order => 'name')
+    @provinces = Province.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 20, :page => params[:page])
 
     respond_to do |format|
       format.html { render layout: "admin" }
+      format.js
       format.json { render json: @provinces }
     end
   end
@@ -86,5 +90,15 @@ class Admin::ProvincesController < ApplicationController
       format.html { redirect_to admin_provinces_url }
       format.json { head :no_content }
     end
+  end
+
+private
+
+  def sort_column
+    Province.column_names.include?(params[:sort]) ? params[:sort] : "name" 
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 end

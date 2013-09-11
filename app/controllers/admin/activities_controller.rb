@@ -1,11 +1,14 @@
 class Admin::ActivitiesController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   # GET /activities
   # GET /activities.json
   def index
-    @activities = Activity.joins(:subdistrict => {:district => :province}).order('provinces.name', 'subdistricts.name', 'activities.name').paginate(:page => params[:page], :order => 'name')
+    @activities = Activity.joins(:subdistrict => {:district => :province}).search(:name_contains => params[:search]).order(sorting).paginate(:per_page => 20, :page => params[:page])
 
     respond_to do |format|
       format.html { render layout: 'admin' }
+      format.js
       format.json { render json: @activities }
     end
   end
@@ -106,5 +109,29 @@ class Admin::ActivitiesController < ApplicationController
     Activity.destroy_all
 
     redirect_to admin_activities_url
+  end
+
+private
+
+  def sorting
+    sort_order = ""
+    if Activity.column_names.include?(params[:sort])
+      sort_order =  sort_column + " " + sort_direction + ", provinces.name ASC, subdistricts.name ASC"  
+    elsif params[:sort] == "provinces.name"
+      sort_order = sort_column + " " + sort_direction + ", " + "subdistricts.name ASC, activities.name ASC"
+    elsif params[:sort] == "subdistricts.name"
+      sort_order = sort_column + " " + sort_direction + ", provinces.name ASC, activities.name ASC"
+    else
+      sort_order = "provinces.name, subdistricts.name, activities.name"
+    end
+    return sort_order
+  end
+
+  def sort_column
+    (params[:sort])
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 end

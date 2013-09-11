@@ -1,0 +1,42 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th><%= sortable "name", "Nama Propinsi" %></th>
+      <th>Jumlah Kabupaten</th>
+      <th>Jumlah Kecamatan</th>
+      <% if current_user != nil %>
+        <% if current_user.has_role? :admin %>
+          <th>Aksi</th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% i=0 %>
+    <% @provinces.each do |province| %>
+      <% i+= 1 %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= link_to province.name, admin_province_path(province) %></td>
+        <td style='text-align: right;'><%= province.get_districts_number %></td>
+        <td style='text-align: right;'><%= province.get_subdistricts_number %></td>
+        <% if current_user != nil %>
+          <% if current_user.has_role? :admin %>
+            <td>
+              <%= link_to "Edit", edit_admin_province_path(province), :class => 'btn btn-mini' %>
+              <%= link_to "Hapus",
+                admin_province_path(province),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-mini btn-danger' %>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @provinces, :renderer => BootstrapPagination::Rails, :next_label => ">", :previous_label => "<",:style => "margin-bottom: 55px;" %>
