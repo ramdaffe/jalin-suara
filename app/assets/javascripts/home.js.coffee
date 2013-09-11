@@ -17,6 +17,6 @@ $ ->
     // m = L.marker([lat, lon])
     // m.bindPopup("<b>#{name}</b><br>Subproyek:")
     marker = L.marker([lat, lon]).addTo(map)
-    marker.bindPopup("<b>#{name}</b><br>#{details}")
+    marker.bindPopup("<b>#{name}</b><br>Subproyek:")
   //   markers.addLayer(m)
   // map.addLayer(markers)
