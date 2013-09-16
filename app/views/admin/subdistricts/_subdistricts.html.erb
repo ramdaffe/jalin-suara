@@ -6,7 +6,8 @@
       <th>No</th>
       <th><%= sortable "provinces.name", "Nama Propinsi" %></th>
       <th><%= sortable "name", "Nama Kecamatan" %></th>
-      <th>Jumlah Sub Proyek</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
       <% if current_user != nil %>
         <% if current_user.has_role? :admin %>
           <th>Aksi</th>
@@ -22,7 +23,8 @@
         <td><%= i %></td>
         <td><%= subdistrict.get_province_name %></td>
         <td><%= link_to subdistrict.name, admin_subdistrict_path(subdistrict) %></td>
-        <td style='text-align: right;'><%= subdistrict.get_activities_number %></td>
+        <td><%= subdistrict.latitude %></td>
+        <td><%= subdistrict.longitude %></td>
         <% if current_user != nil %>
           <% if current_user.has_role? :admin %>
             <td>

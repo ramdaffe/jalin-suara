@@ -7,6 +7,8 @@
       <th><%= sortable "provinces.name", "Nama Propinsi" %></th>
       <th><%= sortable "subdistricts.name", "Nama Kecamatan" %></th>
       <th><%= sortable "name", "Nama Sub Proyek" %></th>
+      <th>Latitude</th>
+      <th>Longitude</th>
       <% if current_user != nil %>
         <% if current_user.has_role? :admin %>
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -23,6 +25,8 @@
         <td><%= activity.get_province_name %></td>
         <td><%= activity.get_subdistrict_name %></td>
         <td><%= link_to activity.name, admin_activity_path(activity) %></td>
+        <td><%= activity.latitude %></td>
+        <td><%= activity.longitude %></td>
         <% if current_user != nil %>
           <% if current_user.has_role? :admin %>
             <td>
