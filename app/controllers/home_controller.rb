@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  layout :resolve_layout
+
   # GET /
   def index
     @recent_posts = Post.find(:all, :order => 'created_at DESC', :limit => 5)
@@ -61,6 +63,16 @@ class HomeController < ApplicationController
     
     respond_to do |format|
       format.html
+    end
+  end
+
+private
+  def resolve_layout
+    case action_name
+    when 'show_map'
+      'show_map'
+    else
+      'application'
     end
   end
 end
