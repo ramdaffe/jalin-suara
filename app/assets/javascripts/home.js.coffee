@@ -8,10 +8,13 @@ $ ->
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
       maxZoom: 18
   }).addTo(map)
+  markers = new L.MarkerClusterGroup()
   for subdistrict in $(".subdistrict")
     $subdistrict = $(subdistrict)
     lat = $subdistrict.data("latitude")
     lon = $subdistrict.data("longitude")
     name = $subdistrict.data("name")
-    marker = L.marker([lat, lon]).addTo(map)
+    marker = L.marker([lat, lon])
     marker.bindPopup("<b>#{name}</b><br>Subproyek:")
+    markers.addLayer(marker)
+  map.addLayer(markers)

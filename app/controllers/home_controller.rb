@@ -43,7 +43,7 @@ class HomeController < ApplicationController
       @search = Subdistrict.search(params[:search])
       @subdistricts = @search.all
     else
-      @subdistricts = Subdistrict.find(:all, :limit => 10)
+      @subdistricts = Subdistrict.all
     end
     # @json = subdistricts.to_gmaps4rails
 

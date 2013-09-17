@@ -93,6 +93,8 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.7.4)
+    leaflet-markercluster-rails (0.6.0)
+      railties (>= 3.1)
     leaflet-rails (0.5.0)
     less (2.3.1)
       commonjs (~> 0.2.6)
@@ -259,6 +261,7 @@ DEPENDENCIES
   google-webfonts
   jquery-rails
   kaminari
+  leaflet-markercluster-rails
   leaflet-rails
   less-rails
   meta_search
