@@ -1,6 +1,6 @@
 class ExcelFile < ActiveRecord::Base
   attr_accessible :document, :name
-  has_attached_file :document
+  has_attached_file :document,
     :storage => :s3,
     :s3_credentials => {
       :bucket => 'qbl-paperclip',
