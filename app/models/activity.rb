@@ -1,6 +1,6 @@
 class Activity < ActiveRecord::Base
   attr_accessible :latitude, :longitude, :name, :picture, :description, :project_length, :project_area, :project_quantity, :blm_amount, :self_fund_amount, :male_proposal, :female_proposal, :male_beneficiary, :female_beneficiary, :poor_beneficiary, :subdistrict_id, :category_id
-  acts_as_gmappable validation: false
+  acts_as_gmappable validation: false, process_geocoding: true, lat: "latitude", long: "longitude"
   belongs_to :subdistrict
   belongs_to :category
   has_many :posts, :as => :postable

@@ -1,7 +1,7 @@
 class Subdistrict < ActiveRecord::Base
   resourcify
   attr_accessible :district_id, :latitude, :longitude, :name
-  acts_as_gmappable validation: false
+  acts_as_gmappable validation: false, process_geocoding: true, lat: "latitude", long: "longitude"
   belongs_to :district
   has_one :implementer_unit
   has_many :activities
