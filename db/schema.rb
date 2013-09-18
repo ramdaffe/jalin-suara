@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902142436) do
+ActiveRecord::Schema.define(:version => 20130918041355) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
-    t.decimal  "latitude",                          :precision => 11, :scale => 8
-    t.decimal  "longitude",                         :precision => 11, :scale => 8
-    t.datetime "created_at",                                                       :null => false
-    t.datetime "updated_at",                                                       :null => false
+    t.decimal  "latitude",                          :precision => 15, :scale => 12
+    t.decimal  "longitude",                         :precision => 15, :scale => 12
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
@@ -161,10 +161,11 @@ ActiveRecord::Schema.define(:version => 20130902142436) do
   create_table "subdistricts", :force => true do |t|
     t.string   "name"
     t.integer  "district_id"
-    t.decimal  "latitude",    :precision => 11, :scale => 8
-    t.decimal  "longitude",   :precision => 11, :scale => 8
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.decimal  "latitude",    :precision => 15, :scale => 12
+    t.decimal  "longitude",   :precision => 15, :scale => 12
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.boolean  "gmaps"
   end
 
   create_table "users", :force => true do |t|

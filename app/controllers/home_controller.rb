@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
     @provinces_number = Province.all.size
     @districts_number = District.all.size
-    @subdistricts_number = Subdistrict.all.size
+    @activities_number = Activity.all.size
     @activities_number = Activity.all.size
 
     respond_to do |format|
@@ -23,7 +23,7 @@ class HomeController < ApplicationController
 
   def search
     search_query = params[:query]
-    @search = Sunspot.search(Province, District, Subdistrict, Activity, Post) do 
+    @search = Sunspot.search(Province, District, Activity, Activity, Post) do 
       fulltext search_query
       paginate(:page => params[:page], :per_page => params[:per_page])
     end
@@ -31,7 +31,7 @@ class HomeController < ApplicationController
 
     @provinces_number = Province.all.size
     @districts_number = District.all.size
-    @subdistricts_number = Subdistrict.all.size
+    @activities_number = Activity.all.size
     @activities_number = Activity.all.size
 
     respond_to do |format|
@@ -42,23 +42,23 @@ class HomeController < ApplicationController
 
   def show_map
     if params[:search] != nil
-      @search = Subdistrict.search(params[:search])
-      @subdistricts = @search.all
+      @search = Activity.search(params[:search])
+      @activities = @search.all
     else
-      @subdistricts = Subdistrict.all
+      @activities = Activity.all
     end
-    # @json = subdistricts.to_gmaps4rails
+    # @json = activities.to_gmaps4rails
 
     respond_to do |format|
       format.html
-      format.json { render json: @subdistricts }
+      format.json { render json: @activities }
     end
   end
 
   def about
     @provinces = Province.all
     @districts = District.all
-    @subdistricts = Subdistrict.all
+    @activities = Activity.all
     @activities = Activity.all
     
     respond_to do |format|

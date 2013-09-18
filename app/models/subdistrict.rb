@@ -1,7 +1,7 @@
 class Subdistrict < ActiveRecord::Base
   resourcify
   attr_accessible :district_id, :latitude, :longitude, :name
-  acts_as_gmappable validation: false, :process_geocoding => false
+  acts_as_gmappable validation: false
   belongs_to :district
   has_one :implementer_unit
   has_many :activities
@@ -12,7 +12,7 @@ class Subdistrict < ActiveRecord::Base
   end
 
   def gmaps4rails_address
-    "#{self.name}" 
+    "#{self.get_province_name}, #{self.get_district_name}, #{self.name}" 
   end
 
   def gmaps4rails_infowindow

@@ -8,8 +8,9 @@ class ExcelFilesController < ApplicationController
     @excel_file = ExcelFile.new(params[:excel_file])
     respond_to do |format|
       if @excel_file.save
-        redirect_path = activities_path
-        csv_file = open(@excel_file.document.url).read
+        redirect_path = admin_activities_path
+        csv_file = open(@excel_file.document.path).read
+        # csv_file = open(@excel_file.document.url).read
         csv = CSV.parse(csv_file, :headers => true)
         csv.each do |row|
           province_name = row[1]
@@ -41,16 +42,16 @@ class ExcelFilesController < ApplicationController
             ImplementerUnit.create(:name => "UPK #{subdistrict_name}", :subdistrict_id => subdistrict.id)
           end
 
-          # Preparting activity variables
-          activity_name = row[7]
-          project_length = row[9]
-          project_area = row[10]
-          project_quantity = row[11]
-          blm_amount = row[12]
-          self_fund_amount = row[13]
-          male_beneficiary = row[14]
-          female_beneficiary = row[15]
-          poor_beneficiary = row[16]
+          # Preparing activity variables
+          activity_name = row[12]
+          project_length = row[14]
+          project_area = row[15]
+          project_quantity = row[16]
+          blm_amount = row[17]
+          self_fund_amount = row[18]
+          male_beneficiary = row[21]
+          female_beneficiary = row[22]
+          poor_beneficiary = row[23]
           subdistrict_id = subdistrict.id
           
           activity = Activity.find(:first, :conditions => {:name => activity_name, :subdistrict_id => subdistrict_id}) 

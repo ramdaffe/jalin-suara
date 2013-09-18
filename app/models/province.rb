@@ -1,6 +1,6 @@
 class Province < ActiveRecord::Base
   attr_accessible :latitude, :longitude, :name
-  acts_as_gmappable validation: false
+  # acts_as_gmappable validation: false
   has_many :districts
 
   searchable do

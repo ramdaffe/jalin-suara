@@ -38,7 +38,7 @@ gem 'google-webfonts'
 # gem 'debugger'
 
 group :development, :test do
-  gem 'pg'
+  gem 'mysql2'
   gem 'thin'
 end
 

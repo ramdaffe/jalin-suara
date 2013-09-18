@@ -9,12 +9,11 @@ $ ->
       maxZoom: 18
   }).addTo(map)
   markers = new L.MarkerClusterGroup()
-  for subdistrict in $(".subdistrict")
-    $subdistrict = $(subdistrict)
-    lat = $subdistrict.data("latitude")
-    lon = $subdistrict.data("longitude")
-    name = $subdistrict.data("name")
+  for activity in $('#activities').data('url')
+    lat = activity.latitude
+    lon = activity.longitude
+    name = activity.name
     marker = L.marker([lat, lon])
-    marker.bindPopup("<b>#{name}</b><br>Subproyek:")
+    marker.bindPopup("<b>#{name}</b>")
     markers.addLayer(marker)
   map.addLayer(markers)
