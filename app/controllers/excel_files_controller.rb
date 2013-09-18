@@ -9,8 +9,8 @@ class ExcelFilesController < ApplicationController
     respond_to do |format|
       if @excel_file.save
         redirect_path = admin_activities_path
-        csv_file = open(@excel_file.document.path).read
-        # csv_file = open(@excel_file.document.url).read
+        # csv_file = open(@excel_file.document.path).read
+        csv_file = open(@excel_file.document.url).read
         csv = CSV.parse(csv_file, :headers => true)
         csv.each do |row|
           province_name = row[1]
