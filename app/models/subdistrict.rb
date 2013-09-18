@@ -12,7 +12,7 @@ class Subdistrict < ActiveRecord::Base
   end
 
   def gmaps4rails_address
-    "#{self.get_province_name}, #{self.get_district_name}, #{self.name}" 
+    "#{self.name}, #{self.get_district_name}, #{self.get_province_name}, Indonesia" 
   end
 
   def gmaps4rails_infowindow

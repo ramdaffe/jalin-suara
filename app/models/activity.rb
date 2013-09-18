@@ -65,7 +65,7 @@ class Activity < ActiveRecord::Base
   end
 
   def gmaps4rails_address
-	  "#{self.get_province_name}, #{self.get_district_name}, #{self.get_subdistrict_name}"
+	  "#{self.get_subdistrict_name}, #{self.get_district_name}, #{self.get_province_name}, Indonesia" 
 	end
 
   def gmaps4rails_infowindow
