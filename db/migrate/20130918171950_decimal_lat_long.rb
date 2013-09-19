@@ -1,6 +1,6 @@
 class DecimalLatLong < ActiveRecord::Migration
   def up
-    hange_column :activities, :latitude, :decimal, :precision => 15, :scale => 10
+    change_column :activities, :latitude, :decimal, :precision => 15, :scale => 10
     change_column :activities, :longitude, :decimal, :precision => 15, :scale => 10
     change_column :subdistricts, :latitude, :decimal, :precision => 15, :scale => 10
     change_column :subdistricts, :longitude, :decimal, :precision => 15, :scale => 10

@@ -16,8 +16,8 @@ class ExcelFilesController < ApplicationController
           province_name = row[1]
           district_name = row[3]
           subdistrict_name = row[5]
-          longitude = row[17]
-          latitude = row[18]
+          longitude = row[24]
+          latitude = row[25]
 
           # Create Province
           province = Province.find_by_name(province_name)

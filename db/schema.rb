@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130918141949) do
+ActiveRecord::Schema.define(:version => 20130918171950) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
-    t.decimal  "latitude",                          :precision => 15, :scale => 12
-    t.decimal  "longitude",                         :precision => 15, :scale => 12
+    t.decimal  "latitude",                          :precision => 15, :scale => 10
+    t.decimal  "longitude",                         :precision => 15, :scale => 10
     t.datetime "created_at",                                                        :null => false
     t.datetime "updated_at",                                                        :null => false
     t.string   "picture_file_name"
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(:version => 20130918141949) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "title"
-    t.decimal  "latitude",                          :precision => 15, :scale => 12
-    t.decimal  "longitude",                         :precision => 15, :scale => 12
+    t.decimal  "latitude",                          :precision => 15, :scale => 10
+    t.decimal  "longitude",                         :precision => 15, :scale => 10
     t.boolean  "gmaps"
     t.integer  "budget",               :limit => 8
     t.integer  "dimension"
@@ -161,8 +161,8 @@ ActiveRecord::Schema.define(:version => 20130918141949) do
   create_table "subdistricts", :force => true do |t|
     t.string   "name"
     t.integer  "district_id"
-    t.decimal  "latitude",    :precision => 15, :scale => 12
-    t.decimal  "longitude",   :precision => 15, :scale => 12
+    t.decimal  "latitude",    :precision => 15, :scale => 10
+    t.decimal  "longitude",   :precision => 15, :scale => 10
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
     t.boolean  "gmaps"
