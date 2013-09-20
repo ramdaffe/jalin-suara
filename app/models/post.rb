@@ -107,6 +107,24 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def get_district_name
+    name = ''
+    if self.postable_type != nil
+      name = self.postable.get_district_name
+    end
+
+    return name
+  end
+
+  def get_province_name
+    name = ''
+    if self.postable_type != nil
+      name = self.postable.get_province_name
+    end
+
+    return name
+  end
+
   def get_status
     status = ""
     case self.status
