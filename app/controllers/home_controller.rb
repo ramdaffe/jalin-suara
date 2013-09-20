@@ -4,20 +4,19 @@ class HomeController < ApplicationController
   # GET /
   def index
     @recent_posts = Post.find(:all, :order => 'created_at DESC', :limit => 5)
-    @popular_posts = Post.all.sort_by(&:comments_count).reverse.first(5)
+    @popular_posts = Post.all.sort_by(&:comments_count).reverse.first(20)
     
     # Filter to only show in Gmaps posts that have latitude and longitude 
     @posts = Post.find(:all, :conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"])
-    @json = @posts.to_gmaps4rails
 
-    @provinces_number = Province.all.size
-    @districts_number = District.all.size
-    @activities_number = Activity.all.size
-    @activities_number = Activity.all.size
+    # @provinces_number = Province.all.size
+    # @districts_number = District.all.size
+    # @activities_number = Activity.all.size
+    # @activities_number = Activity.all.size
 
     respond_to do |format|
       format.html
-      format.json { render json: @listed_posts }
+      format.json { render json: @posts }
     end
   end
 
@@ -71,6 +70,8 @@ private
     case action_name
     when 'show_map'
       'show_map'
+    when 'index'
+      'home_index'
     else
       'application'
     end

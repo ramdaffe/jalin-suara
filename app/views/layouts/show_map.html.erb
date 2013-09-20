@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jalin Suara</title>
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|Oswald:400,700' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "show_map" %>
+  <%= yield :scripts %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+          <!-- Logo and site link -->
+          <div class="logo">
+             <h1><a href="/">Jalin Suara</a></h1>
+          </div>
+       </div>
+      </div>
+    </div>
+  </header>
+  <!-- End of Header -->
+
+  <!-- Navigation -->
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          Menu
+        </a>
+        <div class="nav-collapse collapse">
+          <!-- Navigation Links -->
+          <!-- Main menu -->
+          <ul class="nav">
+            <li><a href="/">Beranda</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data PNPM<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Data Propinsi", provinces_path %></li>
+                <li><%= link_to "Data Kabupaten", districts_path %></li>
+                <li><%= link_to "Data Kecamatan", subdistricts_path %></li>
+                <li><%= link_to "Data Sub Proyek", activities_path %></li>
+              </ul>
+            </li>
+            <li><%= link_to "Peta Interaktif", home_show_map_path %></li>
+            <li><%= link_to "Tentang Jalin Suara", home_about_path %></li>
+          </ul>
+          <!-- End of Main menu -->
+
+          <!-- User menu -->
+          <ul class="nav pull-right">
+            <li class="dropdown">
+              <% if user_signed_in? %>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <%= current_user.email %>
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to 'Lihat Profil', user_path(current_user) %></li>
+                  <li><a href="#responsive" data-toggle="modal">Tambah Cerita</a></li>
+                  <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+                </ul>
+              <% else %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Daftar/Masuk<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Daftar Akun", new_user_registration_path %></li>
+                  <li><%= link_to "Masuk", new_user_session_path %></li>
+                  <li><%= link_to "Masuk dengan akun Twitter", user_omniauth_authorize_path(:twitter) %></li>
+                  <li><%= link_to "Masuk dengan akun Facebook", user_omniauth_authorize_path(:facebook) %></li>
+                </ul>
+              <% end %>
+            </li>
+          </ul>
+          <!-- End of User menu -->
+          <!-- End of Navigation Links -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Navigation -->
+
+  <!-- Content -->
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <!-- Add Post Form -->
+        <% if current_user != nil %>
+          <%= render "/posts/form" %>
+        <% end %>
+        <!-- End of Add Post Form -->
+        <%= yield %>
+      </div>
+    </div>
+  </div>   
+  <!-- End of Content-->
+
+  <!-- Footer-->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+           <!-- Widget 1 -->
+           <div class="widget">
+              <h4>Twitter</h4>
+              <!-- Too add twitter widget, goto "js" folder and open "custom.js" file and search for the word "ashokramesh90". This is my twitter username. Just replace the word with your twitter username. You are done. -->
+              <div class="tweet"></div>
+           </div>
+        </div>
+        <div class="span4">
+           <!-- widget 2 -->
+           <div class="widget">
+              <h4>Recent Posts</h4>
+                 <ul>
+                    <li><a href="#">Sed eu leo orci, in rhoncus puru condimentum gravida metus</a></li>
+                    <li><a href="#">Etiam at in rhoncus puru nulla ipsum, in rhoncus purus</a></li>
+                    <li><a href="#">Fusce vel magnain rhoncus puru faucibus felis dapibus facilisis</a></li>
+                 </ul>
+           </div>
+        </div>
+        <div class="span4">
+           <!-- Widget 3 -->
+           <div class="widget">
+              <h4>Categories</h4>
+              <ul>
+                 <li><a href="#">Condimentum</a></li>
+                 <li><a href="#">Etiam at</a></li>
+                 <li><a href="#">Fusce vel</a></li>
+                 <li><a href="#">Vivamus</a></li>
+                 <li><a href="#">Pellentesque</a></li>
+              </ul>
+           </div>
+        </div>
+      </div>
+    </div>
+  </footer> 
+  <!-- End of Footer -->
+</body>
+</html>

@@ -64,7 +64,7 @@ class PostsController < ApplicationController
         @post.postable_id = params[:post][:postable_id]
         activity = Activity.find(params[:post][:postable_id])
         @post.latitude = activity.latitude
-        @post.latitude = activity.longitude
+        @post.longitude = activity.longitude
       elsif params[:post][:postable_type] == "Subdistrict"
         @post.postable_type = "Subdistrict"
         @post.postable_id = params[:post][:postable_id]
@@ -78,7 +78,7 @@ class PostsController < ApplicationController
         @post.postable_id = params["activity"]
         activity = Activity.find(params["activity"])
         @post.latitude = activity.latitude
-        @post.latitude = activity.longitude
+        @post.longitude = activity.longitude
       elsif params["subdistrict"] != ""
         @post.postable_type = "Subdistrict"
         @post.postable_id = params["subdistrict"]
