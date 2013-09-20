@@ -52,6 +52,7 @@ class District < ActiveRecord::Base
     self.subdistricts.each do |subdistrict|
       subdistrict.activities.each do |activity|
         amount = amount + activity.self_fund_amount if activity.self_fund_amount != nil
+      end
     end
     return amount
   end
