@@ -32,7 +32,7 @@ class Province < ActiveRecord::Base
 		self.districts.each do |district|
 			district.subdistricts.each do |subdistrict|
 				if subdistrict.activities != nil
-					number += subdistrict.activities.count
+					number = number + subdistrict.activities.count
 				end
 			end
 		end
@@ -45,7 +45,7 @@ class Province < ActiveRecord::Base
     self.districts.each do |district|
       district.subdistricts.each do |subdistrict|
         subdistrict.activities.each do |activity|
-          amount += activity.blm_amount
+          amount = amount + activity.blm_amount if activity.blm_amount != nil
         end
       end
     end
@@ -57,7 +57,7 @@ class Province < ActiveRecord::Base
     self.districts.each do |district|
       district.subdistricts.each do |subdistrict|
         subdistrict.activities.each do |activity|
-          amount += activity.self_fund_amount
+          amount = amount + activity.self_fund_amount if activity.self_fund_amount != nil
         end
       end
     end

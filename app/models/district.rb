@@ -11,7 +11,7 @@ class District < ActiveRecord::Base
   def get_subdistricts_number
     number = 0
     if self.subdistricts != nil
-      number += self.subdistricts.size
+      number = number + self.subdistricts.size
     end
 
     return number
@@ -21,7 +21,7 @@ class District < ActiveRecord::Base
     number = 0
     self.subdistricts.each do |subdistrict|
       if subdistrict.activities != nil
-        number += subdistrict.activities.size
+        number = number + subdistrict.activities.size
       end
     end
     
@@ -41,7 +41,7 @@ class District < ActiveRecord::Base
     amount = 0
     self.subdistricts.each do |subdistrict|
       subdistrict.activities.each do |activity|
-        amount += activity.blm_amount
+        amount = amount + activity.blm_amount if activity.blm_amount != nil
       end
     end
     return amount
@@ -51,8 +51,7 @@ class District < ActiveRecord::Base
     amount = 0
     self.subdistricts.each do |subdistrict|
       subdistrict.activities.each do |activity|
-        amount += activity.self_fund_amount
-      end
+        amount = amount + activity.self_fund_amount if activity.self_fund_amount != nil
     end
     return amount
   end

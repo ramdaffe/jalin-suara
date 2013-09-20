@@ -58,7 +58,7 @@ class Subdistrict < ActiveRecord::Base
   def get_activities_number
     number = 0
     if self.activities != nil
-      number += self.activities.size
+      number = number + self.activities.size
     end
     
     return number
