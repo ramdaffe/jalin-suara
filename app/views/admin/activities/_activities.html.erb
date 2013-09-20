@@ -7,8 +7,8 @@
       <th><%= sortable "provinces.name", "Nama Propinsi" %></th>
       <th><%= sortable "subdistricts.name", "Nama Kecamatan" %></th>
       <th><%= sortable "name", "Nama Sub Proyek" %></th>
-      <th>Latitude</th>
-      <th>Longitude</th>
+      <th><%= sortable "latitude", "Latitude" %></th>
+      <th><%= sortable "longitude", "Longitude" %></th>
       <% if current_user != nil %>
         <% if current_user.has_role? :admin %>
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
