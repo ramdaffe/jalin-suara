@@ -6,8 +6,8 @@ class HomeController < ApplicationController
     @recent_posts = Post.find(:all, :order => 'created_at DESC', :limit => 5)
     @popular_posts = Post.all.sort_by(&:comments_count).reverse.first(20)
     
-    # Filter to only show in Gmaps posts that have latitude and longitude 
-    @posts = Post.find(:all, :conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"])
+    # Filter to only show in the map posts that have latitude and longitude 
+    @posts = Post.find(:all, :conditions => ["latitude IS NOT NULL and longitude IS NOT NULL"]).sort_by(&:comments_count).reverse.first(20)
 
     # @provinces_number = Province.all.size
     # @districts_number = District.all.size

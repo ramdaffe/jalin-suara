@@ -1,4 +1,5 @@
 class ProvincesController < ApplicationController
+  layout :resolve_layout
   helper_method :sort_column, :sort_direction
 
   # GET /provinces
@@ -27,15 +28,22 @@ class ProvincesController < ApplicationController
     @subdistrict_stats = Subdistrict.find(:all, :conditions => ['district_id IN (?)', @province.districts], :order => 'name ASC')
     
     @activities = Activity.joins(:subdistrict).order('subdistricts.name, activities.name').paginate(:per_page => 10, :page => params[:page], :conditions => ['subdistrict_id IN (?)', @subdistrict_stats])
-    @json = Activity.find(:all, :conditions => ['subdistrict_id IN (?)', @subdistrict_stats]).to_gmaps4rails
 
     respond_to do |format|
-      format.html { render layout: 'three_columns'}
+      format.html
       format.json { render json: @province }
     end
   end
 
 private
+  def resolve_layout
+    case action_name
+    when 'show'
+      'show_province'
+    else
+      'application'
+    end
+  end
 
   def sort_column
     Province.column_names.include?(params[:sort]) ? params[:sort] : "name" 
