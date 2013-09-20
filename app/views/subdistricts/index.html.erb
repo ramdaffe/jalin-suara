@@ -6,7 +6,10 @@
       <div class="support-page">
         <h2>Daftar Kecamatan</h2>
         <% if @district != nil %>
-          <h4><%= @district.name %> - <%= @district.get_province_name %></h4>
+          <h4>Propinsi <%= @district.get_province_name %>, Kabupaten <%= @district.name %></h4>
+        <% end %>
+        <% if @province != nil %>
+          <h4>Propinsi <%= @province.name %></h4>
         <% end %>
         <%= form_tag subdistricts_path, :method => 'get', :id => "table_search" do %>
           <%= hidden_field_tag :province_id, params[:province_id] if @province != nil %>
