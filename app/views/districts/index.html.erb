@@ -6,7 +6,7 @@
       <div class="support-page">
         <h2>Daftar Kabupaten</h2>
         <% if @province != nil %>
-          <h4><%= @province.name %></h4>
+          <h4>Propinsi <%= @province.name %></h4>
         <% end %>
         <%= form_tag districts_path, :method => 'get', :id => "table_search" do %>
           <%= hidden_field_tag :province_id, params[:province_id] if @province != nil %>
