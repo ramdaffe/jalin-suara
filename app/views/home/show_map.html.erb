@@ -6,21 +6,13 @@
         <div class="row">
           <!-- Posts -->
           <div class="span8">
-            <div class="rposts">
-              <h2>Peta Lokasi PNPM</h2>
-            </div>
-            <!-- GMaps -->
+            <!-- Map -->
             <div id="da-slider" class="da-slider">
               <%= content_tag "div", id: "activities", data: {url: @activities } do %>
               <% end %>
-              <%# @activities.each do |activity| %>
-                <%#= content_tag "div", class: "activity", data: {latitude: (lat=activity.latitude), longitude: (lon=activity.longitude), name: activity.name} do %>
-                <%# end %>
-              <%# end %>
-              <%#= gmaps4rails(@json) %>
-              <div id="map" style="height: 360px;" data-cloudmadekey="6e6e029f140943bf932368519b7f92fd"></div>
+              <div id="map" style="height: 100%;" data-cloudmadekey="6e6e029f140943bf932368519b7f92fd"></div>
             </div>
-            <!-- GMaps -->
+            <!-- End -->
           </div>
           <!-- End of Posts -->
           <!-- Widgets -->
