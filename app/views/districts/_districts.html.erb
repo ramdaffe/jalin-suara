@@ -17,7 +17,13 @@
     <tr>
       <td><%= i %></td>
       <td><%= district.get_province_name %></td>
-      <td><%= link_to district.name, district_path(district) %></td>
+      <td>
+        <% if @province != nil %>
+          <%= link_to district.name, {:controller => "districts", :action => "show", :id => district.id, :province_id => @province.id} %>
+        <% else %>
+          <%= link_to district.name, district_path(district.id) %>
+        <% end %>
+      </td>
       <td style='text-align: right;'><%= district.get_subdistricts_number %></td>
       <td style='text-align: right;'><%= district.get_activities_number %></td>
     </tr>

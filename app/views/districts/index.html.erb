@@ -5,9 +5,15 @@
     <div class="span8">
       <div class="support-page">
         <h2>Daftar Kabupaten</h2>
-        <% if @province != nil %>
-          <h4>Propinsi <%= @province.name %></h4>
-        <% end %>
+        <div class="blog">
+          <div class="meta">
+            <% if @province != nil %>
+              <i class="icon-map-marker"></i> Propinsi <%= @province.name %>
+            <% else %>
+              <i class="icon-map-marker"></i> Indonesia
+            <% end %>
+          </div>
+        </div>
         <%= form_tag districts_path, :method => 'get', :id => "table_search" do %>
           <%= hidden_field_tag :province_id, params[:province_id] if @province != nil %>
           <%= text_field_tag :search, params[:search] %>

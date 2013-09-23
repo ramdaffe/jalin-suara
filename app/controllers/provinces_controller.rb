@@ -2,6 +2,9 @@ class ProvincesController < ApplicationController
   layout :resolve_layout
   helper_method :sort_column, :sort_direction
 
+  add_breadcrumb "Beranda", :root_path
+  add_breadcrumb "Data Propinsi", :provinces_path
+
   # GET /provinces
   # GET /provinces.json
   def index
@@ -24,6 +27,8 @@ class ProvincesController < ApplicationController
   # GET /provinces/1.json
   def show
     @province = Province.find(params[:id])
+    add_breadcrumb "#{@province.name}", province_path(@province.id)
+
     @district_stats = District.find(:all, :conditions => {:province_id => @province.id})
     @subdistrict_stats = Subdistrict.find(:all, :conditions => ['district_id IN (?)', @province.districts], :order => 'name ASC')
     

@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   layout :resolve_layout
+  add_breadcrumb "Beranda", :root_path
 
   # GET /
   def index
@@ -21,6 +22,8 @@ class HomeController < ApplicationController
   end
 
   def search
+    add_breadcrumb "Hasil Pencarian", :home_search_path
+
     search_query = params[:query]
     @search = Sunspot.search(Province, District, Activity, Activity, Post) do 
       fulltext search_query
@@ -40,6 +43,8 @@ class HomeController < ApplicationController
   end
 
   def show_map
+    add_breadcrumb "Peta Lokasi PNPM", :home_show_map_path
+
     if params[:search] != nil
       @search = Activity.search(params[:search])
       @activities = @search.all
@@ -55,6 +60,8 @@ class HomeController < ApplicationController
   end
 
   def about
+    add_breadcrumb "Tentang Jalin Suara", :home_about_path
+
     @provinces = Province.all
     @districts = District.all
     @activities = Activity.all

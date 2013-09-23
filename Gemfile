@@ -72,6 +72,7 @@ gem 'kaminari'
 # Form utilities
 gem 'bootstrap_modal_rails', '~> 2.0.0'
 gem 'ckeditor', '3.7.3'
+gem 'breadcrumbs_on_rails'
 
 # Paperclip and AWS S3
 gem 'aws-sdk', '~> 1.6.0'

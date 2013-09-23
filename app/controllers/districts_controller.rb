@@ -2,6 +2,8 @@ class DistrictsController < ApplicationController
   layout :resolve_layout
   helper_method :sort_column, :sort_direction
 
+  add_breadcrumb "Beranda", :root_path
+
   # GET /districts
   # GET /districts.json
   def index
@@ -13,8 +15,13 @@ class DistrictsController < ApplicationController
     if params[:province_id] != nil
       @province = Province.find(params[:province_id])
       @districts = District.joins(:province).where(districts: {province_id: params[:province_id]}).search(params[:search]).order(sorting).paginate(:per_page => 20, :page => params[:page])
+
+      add_breadcrumb "Data Propinsi", :provinces_path
+      add_breadcrumb "#{@province.name}", province_path(@province.id)
+      add_breadcrumb "Data Kabupaten", :districts_path
     else
       @districts = District.joins(:province).search(:province_name_or_name_contains => params[:search]).order(sorting).paginate(:per_page => 20, :page => params[:page])
+      add_breadcrumb "Data Kabupaten", :districts_path
     end
 
     respond_to do |format|
@@ -28,9 +35,19 @@ class DistrictsController < ApplicationController
   # GET /districts/1.json
   def show
     @district = District.find(params[:id])
-    @subdistrict_stats = Subdistrict.find(:all, :conditions => ['district_id = ?', @district])
-    
+    @subdistrict_stats = Subdistrict.find(:all, :conditions => ['district_id = ?', @district])    
     @activities = Activity.joins(:subdistrict).order('subdistricts.name, activities.name').paginate(:per_page => 10, :page => params[:page], :conditions => ['subdistrict_id IN (?)', @subdistrict_stats])
+
+    if params[:province_id] != nil
+      @province = Province.find(params[:province_id])
+      add_breadcrumb "Data Propinsi", :provinces_path
+      add_breadcrumb "#{@province.name}", province_path(@province.id)
+      add_breadcrumb "Data Kabupaten", {:controller => "districts", :province_id => @province.id}
+      add_breadcrumb "#{@district.name}", district_path(@district.id)
+    else
+      add_breadcrumb "Data Kabupaten", :districts_path
+      add_breadcrumb "#{@district.name}", district_path(@district.id)
+    end
 
     respond_to do |format|
       format.html
